@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="RocketTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2022-01-02T14:59:38" hostname="LAPTOP" time="0.019">
-  <properties/>
-  <testcase name="moveRocket()" classname="RocketTest" time="0.019"/>
-  <system-out><![CDATA[]]></system-out>
-  <system-err><![CDATA[]]></system-err>
-</testsuite>

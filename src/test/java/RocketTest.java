@@ -8,7 +8,7 @@ public class RocketTest {
         Rocket rocket = new Rocket();
         int x = rocket.getX() - 1;
         int y = rocket.getY();
-        rocket.moveRocket();
+        rocket.move();
         Assertions.assertEquals(x,rocket.getX());
     }
 
