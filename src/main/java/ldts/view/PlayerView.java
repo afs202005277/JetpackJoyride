@@ -1,9 +1,6 @@
 package ldts.view;
 
-import com.googlecode.lanterna.SGR;
-import com.googlecode.lanterna.TerminalPosition;
-import com.googlecode.lanterna.TerminalSize;
-import com.googlecode.lanterna.TextColor;
+import com.googlecode.lanterna.*;
 import com.googlecode.lanterna.terminal.DefaultTerminalFactory;
 import com.googlecode.lanterna.terminal.Terminal;
 import com.googlecode.lanterna.terminal.swing.AWTTerminalFontConfiguration;
@@ -19,16 +16,16 @@ import java.net.URISyntaxException;
 import java.net.URL;
 
 public class PlayerView extends View{
-    public PlayerView() throws IOException {
+    public PlayerView() throws IOException, URISyntaxException, FontFormatException {
         initScreen();
     }
 
     @Override
     public void draw(Position pos) throws IOException {
-        graphics.setBackgroundColor(TextColor.Factory.fromString("#000000"));
+        graphics.setBackgroundColor(TextColor.Factory.fromString("#000C66"));
         graphics.setForegroundColor(TextColor.Factory.fromString("#FFFF33"));
         graphics.enableModifiers(SGR.BOLD);
-        graphics.putString(new TerminalPosition(pos.getX(), ROWS - pos.getY()),"X");
+        screen.setCharacter(pos.getX(), ROWS-pos.getY(), TextCharacter.fromCharacter('k')[0]);
         refresh();
     }
 }

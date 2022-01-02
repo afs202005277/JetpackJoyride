@@ -5,16 +5,18 @@ import ldts.model.Position;
 import ldts.view.BackgroundView;
 import ldts.view.PlayerView;
 
+import java.awt.*;
 import java.io.IOException;
+import java.net.URISyntaxException;
 
 public class Controller {
     private boolean gameOver = false;
     private final Player player;
     private PlayerView playerView;
     private BackgroundView backgroundView;
-    private static final int LOWER_LIMIT = 2;
+    private static final int LOWER_LIMIT = 1;
 
-    public Controller() throws IOException {
+    public Controller() throws IOException, URISyntaxException, FontFormatException {
         player = new Player();
         playerView = new PlayerView();
         backgroundView = new BackgroundView(LOWER_LIMIT);

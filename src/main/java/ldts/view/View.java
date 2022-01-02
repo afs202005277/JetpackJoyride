@@ -8,21 +8,24 @@ import com.googlecode.lanterna.screen.TerminalScreen;
 import com.googlecode.lanterna.terminal.DefaultTerminalFactory;
 import com.googlecode.lanterna.terminal.Terminal;
 import com.googlecode.lanterna.terminal.swing.AWTTerminalFontConfiguration;
+import com.googlecode.lanterna.terminal.swing.AWTTerminalFrame;
 import ldts.model.Position;
 
 import java.awt.*;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.io.File;
 import java.io.IOException;
 import java.net.URISyntaxException;
 import java.net.URL;
 
 public abstract class View {
-    protected static final int COLUMNS = 132;
-    protected static final int ROWS = 50;
-    static private Screen screen;
+    protected static final int COLUMNS = 60;
+    protected static final int ROWS = 18;
+    static protected Screen screen;
     static protected TextGraphics graphics;
 
-    public void teste() throws URISyntaxException, IOException, FontFormatException {
+    public void initScreen() throws IOException, FontFormatException, URISyntaxException {
         URL resource = getClass().getClassLoader().getResource("player.ttf");
         File fontFile = new File(resource.toURI());
         Font font =  Font.createFont(Font.TRUETYPE_FONT, fontFile);
@@ -32,19 +35,19 @@ public abstract class View {
 
         DefaultTerminalFactory factory = new DefaultTerminalFactory();
 
-        Font loadedFont = font.deriveFont(Font.PLAIN, 25);
+        Font loadedFont = font.deriveFont(Font.PLAIN, 50);
         AWTTerminalFontConfiguration fontConfig = AWTTerminalFontConfiguration.newInstance(loadedFont);
         factory.setTerminalEmulatorFontConfiguration(fontConfig);
         factory.setForceAWTOverSwing(true);
-        factory.setInitialTerminalSize(new TerminalSize(40, 20));
-
+        factory.setInitialTerminalSize(new TerminalSize(COLUMNS, ROWS));
         Terminal terminal = factory.createTerminal();
-    }
+        ((AWTTerminalFrame)terminal).addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosing(WindowEvent e) {
+                e.getWindow().dispose();
+            }
+        });
 
-    public void initScreen() throws IOException {
-        TerminalSize terminalSize = new TerminalSize(COLUMNS, ROWS);
-        DefaultTerminalFactory terminalFactory = new DefaultTerminalFactory().setInitialTerminalSize(terminalSize);
-        Terminal terminal = terminalFactory.createTerminal();
         screen = new TerminalScreen(terminal);
         screen.setCursorPosition(null);   // we don't need a cursor
         screen.startScreen();             // screens must be started
