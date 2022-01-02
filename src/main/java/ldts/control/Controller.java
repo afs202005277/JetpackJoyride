@@ -1,7 +1,6 @@
 package ldts.control;
 
 import ldts.model.Player;
-import ldts.model.Position;
 import ldts.view.BackgroundView;
 import ldts.view.PlayerView;
 
