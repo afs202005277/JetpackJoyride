@@ -24,8 +24,7 @@ public class PlayerView extends View{
     public void draw(Position pos) throws IOException {
         graphics.setBackgroundColor(TextColor.Factory.fromString("#000C66"));
         graphics.setForegroundColor(TextColor.Factory.fromString("#FFFF33"));
-        graphics.enableModifiers(SGR.BOLD);
-        screen.setCharacter(pos.getX(), ROWS-pos.getY(), TextCharacter.fromCharacter('k')[0]);
+        graphics.putString(pos.getX(), ROWS-pos.getY(), "k");
         refresh();
     }
 }
