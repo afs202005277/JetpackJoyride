@@ -1,5 +1,6 @@
 package ldts.control;
 
+import ldts.model.Background;
 import ldts.model.Player;
 import ldts.model.Position;
 import ldts.view.BackgroundView;
@@ -25,9 +26,10 @@ public class Controller {
     public void run() throws IOException, InterruptedException {
         Command command = new Command(playerView.getScreen());
         command.start();
+        int xMin = 0;
         while (!gameOver) {
             playerView.getScreen().clear();
-            backgroundView.draw(new Position(0, LOWER_LIMIT));
+            backgroundView.draw(new Position(player.getPosition().getX(), LOWER_LIMIT), xMin);
             playerView.draw(player.getPosition());
             Character keyPressed = command.useKey();
             if (keyPressed == ' '){
@@ -38,6 +40,7 @@ public class Controller {
                 if (player.getPosition().getY() > LOWER_LIMIT + 1)
                     player.goLower();
             }
+            xMin++;
             Thread.sleep(400);
         }
     }
