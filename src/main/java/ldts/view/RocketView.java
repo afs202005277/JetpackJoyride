@@ -1,16 +1,11 @@
 package ldts.view;
 
-
-
 import com.googlecode.lanterna.*;
 import ldts.model.Position;
-
 
 import java.awt.*;
 import java.io.IOException;
 import java.net.URISyntaxException;
-
-
 
 public class RocketView extends View {
 
