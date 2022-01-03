@@ -1,3 +1,5 @@
+package ldts.model;
+
 import com.googlecode.lanterna.graphics.TextGraphics;
 
 public abstract class Obstacle {
@@ -9,5 +11,4 @@ public abstract class Obstacle {
     public abstract Position getLastPosition();
 
     public abstract void draw(TextGraphics graphics);
-
 }

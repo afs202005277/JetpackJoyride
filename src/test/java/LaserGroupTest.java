@@ -1,3 +1,5 @@
+import ldts.model.LaserGroup;
+import ldts.model.LaserSing;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 

@@ -1,5 +1,6 @@
-//Rocket e 6x4
+package ldts.model;
 
+//Rocket e 6x4
 
 import com.googlecode.lanterna.TerminalPosition;
 import com.googlecode.lanterna.TerminalSize;
@@ -36,3 +37,4 @@ public class Rocket extends Obstacle{
         graphics.drawRectangle(new TerminalPosition(this.getX(), this.getY()), new TerminalSize(6,4), 'R');
     }
 }
+

@@ -1,5 +1,6 @@
 package ldts.model;
 
+
 public abstract class Element {
     Position position;
 

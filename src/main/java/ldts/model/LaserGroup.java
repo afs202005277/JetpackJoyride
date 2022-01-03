@@ -1,3 +1,5 @@
+package ldts.model;
+
 import com.googlecode.lanterna.graphics.TextGraphics;
 
 import java.util.ArrayList;
@@ -93,3 +95,4 @@ public class LaserGroup extends Obstacle {
         graphics.drawLine(this.getX(), this.getY(), this.getLastPosition().getX(), this.getLastPosition().getY(), 'L');
     }
 }
+

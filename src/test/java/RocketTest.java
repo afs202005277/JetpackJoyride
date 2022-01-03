@@ -1,3 +1,4 @@
+import ldts.model.Rocket;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
@@ -11,6 +12,4 @@ public class RocketTest {
         rocket.move();
         Assertions.assertEquals(x,rocket.getX());
     }
-
-
 }

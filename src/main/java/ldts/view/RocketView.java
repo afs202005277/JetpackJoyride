@@ -1,6 +1,9 @@
+package ldts.view;
+
 
 
 import com.googlecode.lanterna.*;
+import ldts.model.Position;
 
 
 import java.awt.*;
@@ -11,10 +14,6 @@ import java.net.URISyntaxException;
 
 public class RocketView extends View {
 
-    public RocketView() throws IOException, URISyntaxException, FontFormatException {
-        initScreen();
-    }
-
     @Override
     public void draw(Position pos) throws IOException {
         graphics.setBackgroundColor(TextColor.Factory.fromString("#336699"));
@@ -23,3 +22,4 @@ public class RocketView extends View {
         refresh();
     }
 }
+

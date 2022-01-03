@@ -1,3 +1,5 @@
+package ldts.model;
+
 public class LaserSing {
     private Position position;
 
@@ -11,6 +13,5 @@ public class LaserSing {
     public void moveLaser() {
         position.setX(position.getX()-1);
     }
-
-
 }
+
