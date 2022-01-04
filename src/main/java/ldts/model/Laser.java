@@ -45,33 +45,30 @@ public class Laser implements Obstacle {
     public int getSize() {return size;}
 
     public Laser() {
-        size = (int) (Math.random() * (8 - 2)) + 2;
+        int y = (int) (Math.random() * (18 - 2)) + 2;
+        int x = 60;
+        position = new Position(x,y);
         int ori = (int) (Math.random() * (10 - 1)) + 1;
         if (ori <= 2) {
             orient = 3;
-            int round = (int) Math.round(Math.sin(Math.PI / 4));
-            int y = (int) (Math.random() * (16 - size * round + 1)) + round + 1;
-            int x = 60;
-            position = new Position(x,y);
-
+            if (y < 7) size = (int) (Math.random() * ((y-1) - 1)) + 1;
+            else size = (int) (Math.random() * (5 - 1)) + 1;
         }
         else if (ori <= 5) {
             orient = 2;
-            int y = (int) (Math.random() * (16 - size + 1)) + size + 1;
-            position = new Position(60,y);
+            if (y < 7) size = (int) (Math.random() * ((y-1) - 1)) + 1;
+            else size = (int) (Math.random() * (5 - 1)) + 1;
+
         }
         else if (ori <= 8) {
             orient = 1;
-            int y = (int) (Math.random() * (16 - 1)) + 1;
-            int x = 60;
-            position = new Position(x,y);
+            size = (int) (Math.random() * (5 - 1)) + 1;
         }
         else {
             orient = 4;
-            int round = (int) Math.round(Math.sin(Math.PI / 4));
-            int y = (int) (Math.random() * ((16 - size * round) - 1)) + 1;
-            int x = 60;
-            position = new Position(x,y);
+            if (y > 14) size = (int) (Math.random() * ((19-y) - 1)) + 1;
+            else size = (int) (Math.random() * (5 - 1)) + 1;
+
         }
     }
     @Override
