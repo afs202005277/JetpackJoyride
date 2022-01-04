@@ -63,4 +63,8 @@ public abstract class View {
     public Screen getScreen() {
         return screen;
     }
+
+    public TextGraphics getGraphics() {
+        return graphics;
+    }
 }

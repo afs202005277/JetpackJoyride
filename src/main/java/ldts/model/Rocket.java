@@ -1,18 +1,15 @@
 package ldts.model;
 
-//Rocket e 6x4
-
 import com.googlecode.lanterna.TerminalPosition;
 import com.googlecode.lanterna.TerminalSize;
 import com.googlecode.lanterna.graphics.TextGraphics;
 
 public class Rocket implements Obstacle{
+    private Position position;
+
     public Position getPosition() {
         return position;
     }
-
-    private Position position;
-
     public int getX() {return position.getX();}
     public void setX(int x) {position.setX(x);}
     public int getY() {return position.getY();}
@@ -24,8 +21,8 @@ public class Rocket implements Obstacle{
     }
 
     public Rocket() {
-        int y = (int) (Math.random() * (74 - 1)) + 1;
-        position = new Position(132,y);
+        int y = (int) (Math.random() * (16 - 1)) + 1;
+        position = new Position(50,y);
     }
     @Override
     public void move() {
@@ -34,7 +31,7 @@ public class Rocket implements Obstacle{
 
     @Override
     public void draw(TextGraphics graphics) {
-        graphics.drawRectangle(new TerminalPosition(this.getX(), this.getY()), new TerminalSize(6,4), 'R');
+        graphics.drawRectangle(new TerminalPosition(this.getX(), this.getY()), new TerminalSize(1,2), 'R');
     }
 }
 
