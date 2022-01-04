@@ -9,6 +9,8 @@ public interface Obstacle {
     int getY();
     void setY(int y);
     Position getLastPosition();
+    boolean type();
+    public Position getPosition();
 
     void draw(TextGraphics graphics);
 }
