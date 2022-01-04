@@ -69,7 +69,7 @@ public class Controller {
             if (i % 15 == 0) {
                 int random = (int) (Math.random() * (5 - 1)) + 1;
                 if (random < 4) obstacles.add(new Laser());
-                else obstacles.add(new Laser());
+                else obstacles.add(new Rocket());
             }
             for (Obstacle obstacle: obstacles) {
                 obstacle.move();
@@ -78,7 +78,7 @@ public class Controller {
             }
             xMin++;
             i++;
-            Thread.sleep(30);
+            Thread.sleep(60);
         }
     }
 }
