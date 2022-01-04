@@ -76,17 +76,9 @@ public class Controller {
                 if (obstacle.type()) laserView.draw(obstacle.getPosition(), obstacle.getLastPosition());
                 else rocketView.draw(obstacle.getPosition());
             }
-            if (keyPressed == ' '){
-                if (player.getPosition().getY() < playerView.getScreen().getTerminalSize().getRows())
-                    player.goHigher();
-            }
-            else {
-                if (player.getPosition().getY() > LOWER_LIMIT + 1)
-                    player.goLower();
-            }
             xMin++;
-            Thread.sleep(60);
             i++;
+            Thread.sleep(60);
         }
     }
 }

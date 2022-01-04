@@ -29,10 +29,6 @@ public class Rocket implements Obstacle{
         position.setX(position.getX()-1);
     }
 
-    @Override
-    public void draw(TextGraphics graphics) {
-        graphics.drawRectangle(new TerminalPosition(this.getX(), this.getY()), new TerminalSize(1,2), 'R');
-    }
 
     @Override
     public boolean type() {

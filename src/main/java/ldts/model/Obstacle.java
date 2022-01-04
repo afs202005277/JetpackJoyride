@@ -12,5 +12,4 @@ public interface Obstacle {
     boolean type();
     public Position getPosition();
 
-    void draw(TextGraphics graphics);
 }

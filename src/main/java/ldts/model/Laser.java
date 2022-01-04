@@ -79,10 +79,6 @@ public class Laser implements Obstacle {
         position.setX(position.getX()-1);
     }
 
-    @Override
-    public void draw(TextGraphics graphics) {
-        graphics.drawLine(this.getX(), this.getY(), this.getLastPosition().getX(), this.getLastPosition().getY(), 'L');
-    }
     public boolean type() {return true;}
 }
 
