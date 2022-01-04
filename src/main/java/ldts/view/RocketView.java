@@ -11,9 +11,9 @@ public class RocketView extends View {
 
     @Override
     public void draw(Position pos) throws IOException {
-        graphics.setBackgroundColor(TextColor.Factory.fromString("#336699"));
-        graphics.setForegroundColor(TextColor.Factory.fromString("#FFFFFF"));
-        graphics.drawRectangle(new TerminalPosition(pos.getX(),ROWS - pos.getY()), new TerminalSize(2,1), 'R');
+        graphics.setBackgroundColor(TextColor.Factory.fromString("#000C66"));
+        graphics.setForegroundColor(TextColor.Factory.fromString("#FFFF33"));
+        graphics.putString(pos.getX(), pos.getY(), "xX");
         refresh();
     }
 }
