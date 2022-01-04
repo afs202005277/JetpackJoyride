@@ -10,7 +10,7 @@ import java.io.IOException;
 
 public class Command extends Thread {
     private final Screen screen;
-    private Character key = 0;
+    private Character key = '0';
 
     public Command(Screen screen) {
         this.screen = screen;
@@ -22,7 +22,7 @@ public class Command extends Thread {
 
     public synchronized Character useKey(){
         Character tmp = key;
-        key=0;
+        key='0';
         return tmp;
     }
 
@@ -30,20 +30,24 @@ public class Command extends Thread {
         Thread.sleep(mseconds);
     }
 
-    private synchronized void changeKey(Character c){key=c;}
+    public synchronized void changeKey(Character c){key=c;}
 
     @Override
     public void run() {
         while(!isInterrupted()) {
             try {
-                KeyStroke keyStroke = screen.readInput();
-                if (keyStroke.getKeyType() == KeyType.Character)
-                    changeKey(keyStroke.getCharacter());
-                else
-                    changeKey((char) 0);
+                inputReader(screen);
             } catch (IOException e) {
                 e.printStackTrace();
             }
         }
+    }
+
+    public void inputReader(Screen screen) throws IOException {
+        KeyStroke keyStroke = screen.readInput();
+        if (keyStroke.getKeyType() == KeyType.Character)
+            changeKey(keyStroke.getCharacter());
+        else
+            changeKey('0');
     }
 }

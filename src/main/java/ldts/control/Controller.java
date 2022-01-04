@@ -18,6 +18,22 @@ public class Controller {
     private BackgroundView backgroundView;
     private static final int LOWER_LIMIT = 1;
 
+    public boolean isGameOver() {
+        return gameOver;
+    }
+
+    public Player getPlayer() {
+        return player;
+    }
+
+    public PlayerView getPlayerView() {
+        return playerView;
+    }
+
+    public BackgroundView getBackgroundView() {
+        return backgroundView;
+    }
+
     public Controller() throws IOException, URISyntaxException, FontFormatException {
         player = new Player();
         playerView = new PlayerView();
