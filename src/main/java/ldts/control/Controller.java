@@ -2,6 +2,7 @@ package ldts.control;
 
 import ldts.model.Player;
 import ldts.model.Position;
+import ldts.model.Rocket;
 import ldts.view.BackgroundView;
 import ldts.view.PlayerView;
 
@@ -28,10 +29,12 @@ public class Controller {
         Command command = new Command(playerView.getScreen());
         command.start();
         int xMin = 0;
+        Rocket rocket = new Rocket();
         while (!gameOver) {
             playerView.getScreen().clear();
             backgroundView.draw(new Position(player.getPosition().getX(), LOWER_LIMIT), xMin);
             playerView.draw(player.getPosition());
+
             Character keyPressed = command.useKey();
             if (keyPressed == ' '){
                 if (player.getPosition().getY() < playerView.getScreen().getTerminalSize().getRows())
