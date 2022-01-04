@@ -50,27 +50,27 @@ public class Laser implements Obstacle {
         if (ori <= 2) {
             orient = 3;
             int round = (int) Math.round(Math.sin(Math.PI / 4));
-            int y = (int) (Math.random() * (14 - size * round)) + round;
-            int x = 30;
+            int y = (int) (Math.random() * (10 - size * round)) + round;
+            int x = 60;
             position = new Position(x,y);
 
         }
         else if (ori <= 5) {
             orient = 2;
-            int y = (int) (Math.random() * (14 - size)) + size;
-            position = new Position(30,y);
+            int y = (int) (Math.random() * (10 - size)) + size;
+            position = new Position(60,y);
         }
         else if (ori <= 8) {
             orient = 1;
-            int y = (int) (Math.random() * (14 - 1)) + 1;
-            int x = 30;
+            int y = (int) (Math.random() * (10 - 1)) + 1;
+            int x = 60;
             position = new Position(x,y);
         }
         else {
             orient = 4;
             int round = (int) Math.round(Math.sin(Math.PI / 4));
-            int y = (int) (Math.random() * ((14 - size * round) - 1)) + 1;
-            int x = 30;
+            int y = (int) (Math.random() * ((10 - size * round) - 1)) + 1;
+            int x = 60;
             position = new Position(x,y);
         }
     }

@@ -21,8 +21,8 @@ public class Rocket implements Obstacle{
     }
 
     public Rocket() {
-        int y = (int) (Math.random() * (16 - 1)) + 1;
-        position = new Position(30,y);
+        int y = (int) (Math.random() * (10 - 1)) + 1;
+        position = new Position(60,y);
     }
     @Override
     public void move() {

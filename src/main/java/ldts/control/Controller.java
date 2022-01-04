@@ -36,13 +36,20 @@ public class Controller {
         Command command = new Command(playerView.getScreen());
         command.start();
         int xMin = 0, i = 0;
-        Obstacle rocket = new Rocket();
-        Obstacle laser = new Laser();
         while (!gameOver) {
-            playerView.getScreen().clear();
-            backgroundView.draw(new Position(player.getPosition().getX(), LOWER_LIMIT), xMin);
-            playerView.draw(player.getPosition());
             Character keyPressed = command.useKey();
+            if (keyPressed == ' '){
+                if (player.getPosition().getY() < playerView.getScreen().getTerminalSize().getRows())
+                    player.goHigher();
+            }
+            else {
+                if (player.getPosition().getY() > LOWER_LIMIT + 1)
+                    player.goLower();
+            }
+            playerView.getScreen().clear();
+            backgroundView.draw(new Position(0, LOWER_LIMIT), xMin);
+            playerView.draw(player.getPosition());
+
             if (i % 15 == 0) {
                 int random = (int) (Math.random() * (5 - 1)) + 1;
                 if (random < 4) obstacles.add(new Laser());
@@ -53,10 +60,6 @@ public class Controller {
                 if (obstacle.type()) laserView.draw(obstacle.getPosition(), obstacle.getLastPosition());
                 else rocketView.draw(obstacle.getPosition());
             }
-            //rocket.move();
-            //laser.move();
-            //rocketView.draw(rocket.getPosition());
-            //laserView.draw(laser.getPosition(), laser.getLastPosition());
             if (keyPressed == ' '){
                 if (player.getPosition().getY() < playerView.getScreen().getTerminalSize().getRows())
                     player.goHigher();
@@ -66,7 +69,7 @@ public class Controller {
                     player.goLower();
             }
             xMin++;
-            Thread.sleep(34);
+            Thread.sleep(60);
             i++;
         }
     }
