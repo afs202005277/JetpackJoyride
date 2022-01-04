@@ -1,13 +1,8 @@
 package ldts.model;
 
-public class LaserSing {
-    private Position position;
-
-    public Position getPosition() {
-        return position;
-    }
+public class LaserSing extends Element{
     public LaserSing(int x, int y) {
-        position = new Position(x,y);
+        super(new Position(x, y));
     }
 
     public void moveLaser() {

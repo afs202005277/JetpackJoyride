@@ -5,9 +5,11 @@ import ldts.model.Position;
 import ldts.view.BackgroundView;
 import ldts.view.PlayerView;
 
+
 import java.awt.*;
 import java.io.IOException;
 import java.net.URISyntaxException;
+
 
 public class Controller {
     private boolean gameOver = false;
@@ -40,7 +42,7 @@ public class Controller {
                     player.goLower();
             }
             xMin++;
-            Thread.sleep(400);
+            Thread.sleep(300);
         }
     }
 }

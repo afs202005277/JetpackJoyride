@@ -6,7 +6,7 @@ import com.googlecode.lanterna.TerminalPosition;
 import com.googlecode.lanterna.TerminalSize;
 import com.googlecode.lanterna.graphics.TextGraphics;
 
-public class Rocket extends Obstacle{
+public class Rocket implements Obstacle{
     public Position getPosition() {
         return position;
     }

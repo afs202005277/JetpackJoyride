@@ -5,7 +5,7 @@ import com.googlecode.lanterna.graphics.TextGraphics;
 import java.util.ArrayList;
 import java.util.List;
 
-public class LaserGroup extends Obstacle {
+public class LaserGroup implements Obstacle {
     private List<LaserSing> lasers;
     private Position position;
     private final int orient;  // 1. -  2. |  3. \  4.  /
