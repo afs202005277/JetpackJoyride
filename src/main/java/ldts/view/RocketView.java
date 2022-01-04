@@ -14,7 +14,6 @@ public class RocketView extends View {
         graphics.setBackgroundColor(TextColor.Factory.fromString("#000C66"));
         graphics.setForegroundColor(TextColor.Factory.fromString("#ff1f1f"));
         graphics.putString(pos.getX(), ROWS - pos.getY(), "xX");
-        refresh();
     }
 }
 

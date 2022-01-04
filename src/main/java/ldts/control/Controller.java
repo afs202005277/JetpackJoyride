@@ -76,6 +76,7 @@ public class Controller {
                 if (obstacle.type()) laserView.draw(obstacle.getPosition(), obstacle.getLastPosition());
                 else rocketView.draw(obstacle.getPosition());
             }
+            playerView.getScreen().refresh();
             xMin++;
             i++;
             Thread.sleep(60);

@@ -14,6 +14,5 @@ public class LaserView extends View{
         graphics.setBackgroundColor(TextColor.Factory.fromString("#336699"));
         graphics.setForegroundColor(TextColor.Factory.fromString("#FFFFFF"));
         graphics.drawLine(pos1.getX(),ROWS- pos1.getY(), pos2.getX(),ROWS - pos2.getY(), 'L');
-        refresh();
     }
 }

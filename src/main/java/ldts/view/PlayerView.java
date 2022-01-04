@@ -18,6 +18,5 @@ public class PlayerView extends View{
         graphics.setBackgroundColor(TextColor.Factory.fromString("#000C66"));
         graphics.setForegroundColor(TextColor.Factory.fromString("#FFFF33"));
         graphics.putString(pos.getX(), ROWS-pos.getY(), "k");
-        refresh();
     }
 }

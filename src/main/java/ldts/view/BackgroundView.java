@@ -28,7 +28,6 @@ public class BackgroundView extends View{
     public void draw(Position pos, int xMin) throws IOException {
         drawWall(new Position(pos.getX(), 0));
         drawBase(pos);
-        refresh();
     }
 
     @Override
