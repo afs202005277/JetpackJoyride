@@ -25,7 +25,6 @@ public class BackgroundView extends View{
         graphics.fillRectangle(new TerminalPosition(pos.getX(), pos.getY()), screen.getTerminalSize(), ' ');
     }
 
-    //@Override
     public void draw(Position pos, int xMin) throws IOException {
         drawWall(new Position(pos.getX(), 0));
         drawBase(pos);
@@ -33,7 +32,5 @@ public class BackgroundView extends View{
     }
 
     @Override
-    public void draw(Position pos) throws IOException {
-
-    }
+    public void draw(Position pos) throws IOException {}
 }

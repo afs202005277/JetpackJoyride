@@ -1,6 +1,5 @@
 package ldts.model;
 
-import com.googlecode.lanterna.graphics.TextGraphics;
 
 public interface Obstacle {
     void move();
