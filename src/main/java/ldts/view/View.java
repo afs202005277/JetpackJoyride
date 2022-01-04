@@ -35,7 +35,7 @@ public abstract class View {
 
         DefaultTerminalFactory factory = new DefaultTerminalFactory();
 
-        Font loadedFont = font.deriveFont(Font.PLAIN, 50);
+        Font loadedFont = font.deriveFont(Font.PLAIN, 30);
         AWTTerminalFontConfiguration fontConfig = AWTTerminalFontConfiguration.newInstance(loadedFont);
         factory.setTerminalEmulatorFontConfiguration(fontConfig);
         factory.setForceAWTOverSwing(true);

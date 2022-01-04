@@ -45,31 +45,31 @@ public class Laser implements Obstacle {
     public int getSize() {return size;}
 
     public Laser() {
-        size = (int) (Math.random() * (18 - 5)) + 5;
+        size = (int) (Math.random() * (8 - 2)) + 2;
         int ori = (int) (Math.random() * (10 - 1)) + 1;
         if (ori <= 2) {
             orient = 3;
             int round = (int) Math.round(Math.sin(Math.PI / 4));
-            int y = (int) (Math.random() * (16 - size * round)) + round;
+            int y = (int) (Math.random() * (10 - size * round)) + round;
             int x = 60;
             position = new Position(x,y);
 
         }
         else if (ori <= 5) {
             orient = 2;
-            int y = (int) (Math.random() * (16 - size)) + size;
+            int y = (int) (Math.random() * (10 - size)) + size;
             position = new Position(60,y);
         }
         else if (ori <= 8) {
             orient = 1;
-            int y = (int) (Math.random() * (16 - 1)) + 1;
+            int y = (int) (Math.random() * (10 - 1)) + 1;
             int x = 60;
             position = new Position(x,y);
         }
         else {
             orient = 4;
             int round = (int) Math.round(Math.sin(Math.PI / 4));
-            int y = (int) (Math.random() * ((16 - size * round) - 1)) + 1;
+            int y = (int) (Math.random() * ((10 - size * round) - 1)) + 1;
             int x = 60;
             position = new Position(x,y);
         }
@@ -83,5 +83,6 @@ public class Laser implements Obstacle {
     public void draw(TextGraphics graphics) {
         graphics.drawLine(this.getX(), this.getY(), this.getLastPosition().getX(), this.getLastPosition().getY(), 'L');
     }
+    public boolean type() {return true;}
 }
 

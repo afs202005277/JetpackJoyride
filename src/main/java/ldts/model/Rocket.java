@@ -21,8 +21,8 @@ public class Rocket implements Obstacle{
     }
 
     public Rocket() {
-        int y = (int) (Math.random() * (16 - 1)) + 1;
-        position = new Position(50,y);
+        int y = (int) (Math.random() * (10 - 1)) + 1;
+        position = new Position(60,y);
     }
     @Override
     public void move() {
@@ -32,6 +32,11 @@ public class Rocket implements Obstacle{
     @Override
     public void draw(TextGraphics graphics) {
         graphics.drawRectangle(new TerminalPosition(this.getX(), this.getY()), new TerminalSize(1,2), 'R');
+    }
+
+    @Override
+    public boolean type() {
+        return false;
     }
 }
 
