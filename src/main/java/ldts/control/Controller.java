@@ -7,7 +7,6 @@ import ldts.view.LaserView;
 import ldts.view.PlayerView;
 import ldts.view.RocketView;
 
-
 import java.awt.*;
 import java.io.IOException;
 import java.net.URISyntaxException;
@@ -78,8 +77,19 @@ public class Controller {
             }
             for (Obstacle obstacle: obstacles) {
                 obstacle.move();
-                if (obstacle.type()) laserView.draw(obstacle.getPosition(), obstacle.getLastPosition());
-                else rocketView.draw(obstacle.getPosition());
+                if (obstacle.type())
+                {
+                    laserView.draw(obstacle.getPosition(), obstacle.getLastPosition());
+                }
+                else
+                {
+                    rocketView.draw(obstacle.getPosition());
+                    Position temp = new Position(obstacle.getX()+1, obstacle.getPosition().getY());
+                    if (obstacle.getPosition().equals(player.getPosition()) || temp.equals(player.getPosition()))
+                    {
+                        System.out.println("Collision with rocket.");
+                    }
+                }
             }
             playerView.getScreen().refresh();
             xMin++;
