@@ -1,5 +1,6 @@
 package ldts.control;
 
+import com.googlecode.lanterna.input.KeyStroke;
 import ldts.model.*;
 import ldts.view.BackgroundView;
 import ldts.view.LaserView;
@@ -54,6 +55,10 @@ public class Controller {
         int xMin = 0, i = 0;
         while (!gameOver) {
             Character keyPressed = command.useKey();
+            /*KeyStroke keyPressedtmp = playerView.getScreen().pollInput();
+            char keyPressed = '0';
+            if (keyPressedtmp != null)
+                keyPressed = keyPressedtmp.getCharacter();*/
             if (keyPressed == ' '){
                 if (player.getPosition().getY() < playerView.getScreen().getTerminalSize().getRows())
                     player.goHigher();
