@@ -17,6 +17,10 @@ This project is based on the popular Android game Jetpack Joyride where the play
 - **Distance and Coins Counter**: There will be a counter to inform the player of the coins it has collected so far and the distance it has travelled
 
 ## Design
+#### THE VIEW AND THE MODEL OF THE GAME SHOULD BE INDEPENDENT (the model doesn't need to know how the game will be displayed)
+**Problem in context**
+To make the code more modular and to minimize the dependencies between the several components of the game, we chose to use the MVC design pattern, so that multiple students can work at the same time without existing conflicts. Besides, as the model doesn't need to know how to draw itself, makes sense to separate those aspects of the game, in order to make the code more organized.
+
 
 ### General Structure
 
