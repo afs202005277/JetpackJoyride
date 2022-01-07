@@ -52,5 +52,9 @@ public class CommandTest {
         robot.keyPress(32); // 32 is the code of space bar
         command.inputReader(screen);
         Assertions.assertEquals(' ', command.getKey());
+
+        robot.keyPress(8);
+        command.inputReader(screen);
+        Assertions.assertEquals('0', command.getKey());
     }
 }

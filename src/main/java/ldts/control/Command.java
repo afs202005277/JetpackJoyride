@@ -26,10 +26,6 @@ public class Command extends Thread {
         return tmp;
     }
 
-    public void halt(int mseconds) throws InterruptedException {
-        Thread.sleep(mseconds);
-    }
-
     public synchronized void changeKey(Character c){key=c;}
 
     @Override

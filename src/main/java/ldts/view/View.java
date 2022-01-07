@@ -60,11 +60,11 @@ public abstract class View {
     }
     public abstract void draw(Position pos) throws IOException;
 
-    public Screen getScreen() {
+    public static Screen getScreen() {
         return screen;
     }
 
-    public TextGraphics getGraphics() {
+    public static TextGraphics getGraphics() {
         return graphics;
     }
 
@@ -83,4 +83,5 @@ public abstract class View {
     public static int getCollumns(){
         return COLUMNS;
     }
+
 }

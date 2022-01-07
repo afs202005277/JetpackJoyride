@@ -2,10 +2,7 @@ package ldts.control;
 
 import com.googlecode.lanterna.input.KeyStroke;
 import ldts.model.*;
-import ldts.view.BackgroundView;
-import ldts.view.LaserView;
-import ldts.view.PlayerView;
-import ldts.view.RocketView;
+import ldts.view.*;
 
 
 import java.awt.*;
@@ -60,14 +57,14 @@ public class Controller {
             if (keyPressedtmp != null)
                 keyPressed = keyPressedtmp.getCharacter();*/
             if (keyPressed == ' '){
-                if (player.getPosition().getY() < playerView.getScreen().getTerminalSize().getRows())
+                if (player.getPosition().getY() < View.getScreen().getTerminalSize().getRows())
                     player.goHigher();
             }
             else {
                 if (player.getPosition().getY() > LOWER_LIMIT + 1)
                     player.goLower();
             }
-            playerView.getScreen().clear();
+            View.getScreen().clear();
             backgroundView.draw(new Position(0, LOWER_LIMIT), xMin);
             playerView.draw(player.getPosition());
 
@@ -81,7 +78,7 @@ public class Controller {
                 if (obstacle.type()) laserView.draw(obstacle.getPosition(), obstacle.getLastPosition());
                 else rocketView.draw(obstacle.getPosition());
             }
-            playerView.getScreen().refresh();
+            View.getScreen().refresh();
             xMin++;
             i++;
             Thread.sleep(60);

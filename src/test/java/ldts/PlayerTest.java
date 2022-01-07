@@ -1,6 +1,7 @@
 package ldts;
 
 import ldts.model.Player;
+import ldts.model.Position;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -34,4 +35,13 @@ public class PlayerTest {
         Assertions.assertEquals(initY - 1, player.getPosition().getY());
         Assertions.assertEquals(initX, player.getPosition().getX());
     }
+
+    @Test
+    public void setTest(){
+        Position pos = new Position(12, 33);
+        player.setPosition(pos);
+        Assertions.assertEquals(pos, player.getPosition());
+    }
+
+
 }
