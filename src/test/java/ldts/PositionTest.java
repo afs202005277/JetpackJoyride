@@ -1,3 +1,5 @@
+package ldts;
+
 import ldts.model.Position;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;

@@ -1,3 +1,5 @@
+package ldts;
+
 import ldts.model.Laser;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
