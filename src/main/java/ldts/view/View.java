@@ -67,4 +67,20 @@ public abstract class View {
     public TextGraphics getGraphics() {
         return graphics;
     }
+
+    public static void setScreen(Screen screen) {
+        View.screen = screen;
+    }
+
+    public static void setGraphics(TextGraphics graphics) {
+        View.graphics = graphics;
+    }
+
+    public static int getRows(){
+        return ROWS;
+    }
+
+    public static int getCollumns(){
+        return COLUMNS;
+    }
 }
