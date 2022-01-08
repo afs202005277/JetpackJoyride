@@ -41,7 +41,7 @@ To be implemented.
 
 **Problem in context**
 
-The controller class is part of the MVC pattern and is responsible for putting all our game together. It acts on both model and view and controls the data flow into model object and updates the view whenever data changes. It also is responsible for keeping view and model separate. Since our game should only run once at a time, it shouldn’t be possible to have multiple controller classes.
+The controller class is part of the MVC pattern and is responsible for putting our game together. It acts on both model and view and controls the data flow into model object and updates the view whenever data changes. It also is responsible for keeping view and model separate. Since our game should only run once at a time, it shouldn’t be possible to have multiple controller classes.
 
 **The Pattern**
 
@@ -53,6 +53,22 @@ The pattern singleton aims to fix this issue by insuring that a class has only o
 
 - Only one instance and global access point of the class Controller
 - Violates the Single Responsibility Principle. The pattern solves two problems at a time.
+
+**Problem in context**
+
+In our game there is a constant creating and deleting of obstacle objects, Lasers or Rockets. These vary only a little from each other, but by not using an efficient design pattern we take up RAM by each of these objects and most of it ends up being repeated. This results in an inefficient use of memory and can result to crashes if the number of obstacles gets high.
+
+
+**The Pattern**
+
+The flyweight pattern aims to solve this by storing the extrinsic state, meaning the inconstant data of an object, outside of the object. Instead, this state should be passed to specific methods which rely on it. Only the intrinsic state stays within the object, letting you reuse it in different contexts. As a result, you’d need fewer of the objects since they only differ in the intrinsic state, which has much fewer variations than the extrinsic.
+
+**Implementation**
+
+**Consequences**
+
+- You have a more efficient use of memory.
+- Code becomes much more complicated.
 
 
 ### General Structure
