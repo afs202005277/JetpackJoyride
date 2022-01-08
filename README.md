@@ -132,13 +132,13 @@ This code smell happens when methods rely on the other methods of other classes 
 ## Testing
 
 # Coverage
-![Global Coverage](coverage.png)
+![Global Coverage](coverage.PNG)
 
-![Control Coverage](control.png)
+![Control Coverage](control.PNG)
 
-![Model Coverage](model.png)
+![Model Coverage](model.PNG)
 
-![View Coverage](view.png)
+![View Coverage](view.PNG)
 
 ### Link to mutation testing report
 [Mutation Test](https://github.com/FEUP-LDTS-2021/ldts-project-assignment-g0807/tree/master/build/reports/pitest/202201081711)
