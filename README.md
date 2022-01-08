@@ -16,6 +16,22 @@ This project is based on the popular Android game Jetpack Joyride where the play
 - **Reset**: The player will have a chance to replay the game when it looses
 - **Distance and Coins Counter**: There will be a counter to inform the player of the coins it has collected so far and the distance it has travelled
 
+## Mockups:
+Main Menu:
+![MainMenu](MainMenu.png)
+
+Ranking Menu:
+![RankingMenu](Ranking.png)
+
+Instructions Menu:
+![InstructionsMenu](InstructionsMenu.png)
+
+Game Running:
+![GameRunning](GameRunning.png)
+
+Game Over:
+![GameOver](GameOver.png)
+
 ## Design
 
 **Problem in context**
@@ -131,7 +147,7 @@ This code smell happens when methods rely on the other methods of other classes 
 
 ## Testing
 
-# Coverage
+## Coverage
 Global Coverage:
 ![Global Coverage](coverage.PNG)
 
