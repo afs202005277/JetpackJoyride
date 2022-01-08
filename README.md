@@ -41,7 +41,7 @@ To be implemented.
 
 **Problem in context**
 
-The controller class is part of the MVC pattern and is responsible for putting all our game together. It acts on both model and view and controls the data flow into model object and updates the view whenever data changes. It also is responsible for keeping view and model separate. Since our game should only run once at a time, it shouldn’t be possible to have multiple controller classes.
+The controller class is part of the MVC pattern and is responsible for putting our game together. It acts on both model and view and controls the data flow into model object and updates the view whenever data changes. It also is responsible for keeping view and model separate. Since our game should only run once at a time, it shouldn’t be possible to have multiple controller classes.
 
 **The Pattern**
 
@@ -54,6 +54,36 @@ The pattern singleton aims to fix this issue by insuring that a class has only o
 - Only one instance and global access point of the class Controller
 - Violates the Single Responsibility Principle. The pattern solves two problems at a time.
 
+**Problem in context**
+
+In our game there is a constant creating and deleting of obstacle objects, Lasers or Rockets. These vary only a little from each other, but by not using an efficient design pattern we take up RAM by each of these objects and most of it ends up being repeated. This results in an inefficient use of memory and can result to crashes if the number of obstacles gets high.
+
+
+**The Pattern**
+
+The flyweight pattern aims to solve this by storing the extrinsic state, meaning the inconstant data of an object, outside of the object. Instead, this state should be passed to specific methods which rely on it. Only the intrinsic state stays within the object, letting you reuse it in different contexts. As a result, you’d need fewer of the objects since they only differ in the intrinsic state, which has much fewer variations than the extrinsic.
+
+**Implementation**
+
+**Consequences**
+
+- You have a more efficient use of memory.
+- Code becomes much more complicated.
+
+**Problem in context**
+
+By using the MVC pattern, we use a view class to produce the result that the player sees on screen, but because of the amount of objects that need to be drawn, the view class quickly grew into different classes that differ only a little. If no design pattern is used, there will be a lot of repeated methods in these view classes.
+
+**The Pattern**
+
+The Template Method pattern suggests that you break down an algorithm into a series of steps, turn these steps into methods, and put a series of calls to these methods inside a single template method. The steps may either be abstract, or have some default implementation. To use the algorithm, the program provides the different view subclasses, implements all abstract steps, and overrides some of the optional ones if needed (but not the template method itself).
+
+**Implementation**
+
+**Consequences**
+
+- Removes duplicate code into a superclass
+- The program can override only certain parts of the main class, making them less affected by changes that happen to other parts of the algorithm.
 
 ### General Structure
 ![UML Diagram](UML.png)
