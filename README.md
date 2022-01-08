@@ -96,17 +96,26 @@ To be implemented.
 
 ## Known Code Smells And Refactoring Suggestions
 
-## Large Class
+###Large Class
 The Controller class contains many attributes, however, since this is the main class of the game makes sense that the class has all these attributes.
 
-## Parallel Inheritance Hierarchies
+### Parallel Inheritance Hierarchies
 Every time there is the need to add a new Element object to the game (if we wanted to add monsters, for instance) we are forced to create a sub class of Element and a sub class of View, but this is needed to keep both the model and the view independent of each other, following the MVC design pattern.
 
-## Duplicate Code
+### Duplicate Code
 The draw methods of PlayerView, RocketView and LaserView may be considered identical, however, correcting this smell would make the code less obvious and harder to read.
 
-## Data Classes
+### Data Classes
 All the classes of the Model package only have constructors, getters and setters (dumb classes) but this isn't an indication of a problem since we chose to use the MVC architectural pattern which puts the responsibility of handling the game's logic on the Controller class.
+
+### Alternative Classes with different Interfaces
+Two classes perform identical functions but have different method names. This code smell can be seen in our project on the element class and obstacle interface, in which their shared attribute (Position) can be same by making the obstacle an extension of the element class.
+
+### Switch statements
+The methods of the class Laser are legislated by the orientation of the laser and these to be longer and full of the switch statements, which can be hard to work on the future. This situation asks for polymorphism to simplify new implementations.
+
+### Messages Chains
+This code smell happens when methods rely on the other methods of other classes repeatedly. As stated before, if the obstacles were a subclass of element this wouldn't happen because this can fix the need to call numerous methods just to get a position of an element in the game.
 
 ## Testing
 
