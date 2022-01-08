@@ -17,14 +17,15 @@ This project is based on the popular Android game Jetpack Joyride where the play
 - **Distance and Coins Counter**: There will be a counter to inform the player of the coins it has collected so far and the distance it has travelled
 
 ## Design
-#### THE VIEW AND THE MODEL OF THE GAME SHOULD BE INDEPENDENT (the model doesn't need to know how the game will be displayed)
+
 **Problem in context**
+Since we are developing a game, we had to think about how to set up the structure and the logic of each component NAO COMPLETO
 To make the code more modular and to minimize the dependencies between the several components of the game, we chose to use the MVC design pattern, so that multiple students can work at the same time without existing conflicts. Besides, as the model doesn't need to know how to draw itself, makes sense to separate those aspects of the game, in order to make the code more organized.
 
 
 **Problem in context**
 
-When running our game, there is the constant need of creating obstacles and these for the time being are Lasers and Rockets. By not implementing the factory pattern, if we decide to remove, change or add a different type of obstacle, it will be required to change the bulk of our code, making our program highly unhandy.
+When running our game, there is the constant need of creating obstacles and these,for the time being, are Lasers and Rockets. By not implementing the factory pattern, if we decide to remove, change or add a different type of obstacle, it will be required to change the bulk of our code, making our program highly unhandy.
 
 **The Pattern**
 
@@ -41,13 +42,14 @@ To be implemented.
 
 **Problem in context**
 
-The controller class is part of the MVC pattern and is responsible for putting our game together. It acts on both model and view and controls the data flow into model object and updates the view whenever data changes. It also is responsible for keeping view and model separate. Since our game should only run once at a time, it shouldn’t be possible to have multiple controller classes.
+The controller class is part of the MVC pattern and is responsible for putting our game together. It acts on both model and view and controls the data flow into model object and updates the view whenever data changes. It also is responsible for keeping the view and the model separate. Since our game should only run once at a time, it shouldn’t be possible to have multiple controller classes.
 
 **The Pattern**
 
-The pattern singleton aims to fix this issue by insuring that a class has only one instance, while providing a global access point to this instance. Making the controller constructor private and creating a static creation method that acts as a constructor solves this problem, because the static method calls the private constructor and every time it is called again, it returns the cached object.
+The singleton pattern aims to fix this issue by insuring that a class has only one instance, while providing a global access point to this instance. Making the controller constructor private and creating a static creation method that acts as a constructor solves this problem, because the static method calls the private constructor and every time it is called again, it returns the cached object.
 
 **Implementation**
+Implemented on the Controller class (the constructor is private, so the only way to instantiate a controller is through the getInstance method)
 
 **Consequences**
 
@@ -65,6 +67,8 @@ The flyweight pattern aims to solve this by storing the extrinsic state, meaning
 
 **Implementation**
 
+To be implemented.
+
 **Consequences**
 
 - You have a more efficient use of memory.
@@ -79,6 +83,7 @@ By using the MVC pattern, we use a view class to produce the result that the pla
 The Template Method pattern suggests that you break down an algorithm into a series of steps, turn these steps into methods, and put a series of calls to these methods inside a single template method. The steps may either be abstract, or have some default implementation. To use the algorithm, the program provides the different view subclasses, implements all abstract steps, and overrides some of the optional ones if needed (but not the template method itself).
 
 **Implementation**
+To be implemented.
 
 **Consequences**
 
