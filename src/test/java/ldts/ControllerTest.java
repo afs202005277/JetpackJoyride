@@ -15,6 +15,7 @@ import org.mockito.Mockito;
 import java.awt.*;
 import java.io.IOException;
 import java.net.URISyntaxException;
+import java.util.ArrayList;
 
 public class ControllerTest {
     private Controller control;
@@ -35,16 +36,16 @@ public class ControllerTest {
         control.setBackgroundView(backViewer);
         control.setPlayerView(playerViewer);
     }
-/*
+
     @Test
     void generateObstacles(){
-        for (int i=0;i<100;i++)
-        {
-            control.generateObstacles(i);
-        }
-        Assertions.assertEquals(7, control.getObstacles().size());
+        control.generateObstacles(15);
+        Assertions.assertEquals(1, control.getObstacles().size());
+        control.setObstacles(new ArrayList<>());
+        control.generateObstacles(17);
+        Assertions.assertEquals(0, control.getObstacles().size());
     }
-*/
+
     @Test
     void drawElements() throws IOException {
         control.drawElements(2);

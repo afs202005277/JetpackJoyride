@@ -23,20 +23,8 @@ public class Controller {
     private static final int LOWER_LIMIT = 1;
     private static Controller singleton = null;
 
-    public boolean isGameOver() {
-        return gameOver;
-    }
-
     public Player getPlayer() {
         return player;
-    }
-
-    public PlayerView getPlayerView() {
-        return playerView;
-    }
-
-    public BackgroundView getBackgroundView() {
-        return backgroundView;
     }
 
     public ArrayList<Obstacle> getObstacles() {
@@ -51,13 +39,17 @@ public class Controller {
         this.backgroundView = backgroundView;
     }
 
+    public void setObstacles(ArrayList<Obstacle> obstacles) {
+        this.obstacles = obstacles;
+    }
+
     private Controller() throws IOException, URISyntaxException, FontFormatException {
         player = new Player();
         playerView = new PlayerView();
         backgroundView = new BackgroundView(LOWER_LIMIT);
         rocketView = new RocketView();
         laserView = new LaserView();
-        obstacles = new ArrayList<Obstacle>();
+        obstacles = new ArrayList<>();
     }
 
     public static Controller getInstance() throws IOException, URISyntaxException, FontFormatException {
