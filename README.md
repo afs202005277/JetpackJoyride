@@ -23,6 +23,7 @@ To make the code more modular and to minimize the dependencies between the sever
 
 
 ### General Structure
+[UML Diagram](UML.png)
 
 ## Known Code Smells And Refactoring Suggestions
 
