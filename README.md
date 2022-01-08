@@ -132,12 +132,16 @@ This code smell happens when methods rely on the other methods of other classes 
 ## Testing
 
 # Coverage
+Global Coverage:
 ![Global Coverage](coverage.PNG)
 
+Control Coverage:
 ![Control Coverage](control.PNG)
 
+Model Coverage:
 ![Model Coverage](model.PNG)
 
+View Coverage:
 ![View Coverage](view.PNG)
 
 ### Link to mutation testing report
