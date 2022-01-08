@@ -30,6 +30,10 @@ When running our game, there is the constant need of creating obstacles and thes
 
 The factory pattern replaces the direct object construction calls (using the new operator) with calls to a special factory method. This way we can easily change the behaviour of our obstacles (products), as well as, add and remove obstacles, and allows for simpler client code.
 
+**Implementation**
+
+To be implemented.
+
 **Consequences**
 
 - Avoid tight coupling between the creator and the concrete products.
