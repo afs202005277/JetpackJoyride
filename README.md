@@ -39,6 +39,21 @@ To be implemented.
 - Avoid tight coupling between the creator and the concrete products.
 - Make it possible to introduce new types of products into the program without breaking existing client code.
 
+**Problem in context**
+
+The controller class is part of the MVC pattern and is responsible for putting all our game together. It acts on both model and view and controls the data flow into model object and updates the view whenever data changes. It also is responsible for keeping view and model separate. Since our game should only run once at a time, it shouldn’t be possible to have multiple controller classes.
+
+**The Pattern**
+
+The pattern singleton aims to fix this issue by insuring that a class has only one instance, while providing a global access point to this instance. Making the controller constructor private and creating a static creation method that acts as a constructor solves this problem, because the static method calls the private constructor and every time it is called again, it returns the cached object.
+
+**Implementation**
+
+**Consequences**
+
+- Only one instance and global access point of the class Controller
+- Violates the Single Responsibility Principle. The pattern solves two problems at a time.
+
 
 ### General Structure
 ![UML Diagram](UML.png)
