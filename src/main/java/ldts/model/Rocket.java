@@ -1,8 +1,5 @@
 package ldts.model;
 
-import com.googlecode.lanterna.TerminalPosition;
-import com.googlecode.lanterna.TerminalSize;
-import com.googlecode.lanterna.graphics.TextGraphics;
 
 public class Rocket implements Obstacle{
     private Position position;
@@ -40,7 +37,7 @@ public class Rocket implements Obstacle{
 
 
     @Override
-    public boolean type() {
+    public boolean isLaser() {
         return false;
     }
 }

@@ -8,7 +8,7 @@ public interface Obstacle {
     int getY();
     void setY(int y);
     Position getLastPosition();
-    boolean type();
+    boolean isLaser();
     public Position getPosition();
 
 }

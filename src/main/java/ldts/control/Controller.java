@@ -1,6 +1,6 @@
 package ldts.control;
 
-import com.googlecode.lanterna.input.KeyStroke;
+
 import ldts.model.*;
 import ldts.view.*;
 
@@ -9,6 +9,7 @@ import java.awt.*;
 import java.io.IOException;
 import java.net.URISyntaxException;
 import java.util.ArrayList;
+
 
 
 public class Controller {
@@ -47,42 +48,48 @@ public class Controller {
         obstacles = new ArrayList<Obstacle>();
     }
 
+    private void generateObstacles(int i){
+        if (i % 15 == 0) {
+            int random = (int) (Math.random() * (5 - 1)) + 1;
+            if (random < 4) obstacles.add(new Laser());
+            else obstacles.add(new Rocket());
+        }
+    }
+
+    private void drawElements(int xMin) throws IOException {
+        View.getScreen().clear();
+        backgroundView.draw(new Position(0, LOWER_LIMIT), xMin);
+        playerView.draw(player.getPosition());
+        for (Obstacle obstacle: obstacles) {
+            obstacle.move();
+            if (obstacle.isLaser()) laserView.draw(obstacle.getPosition(), obstacle.getLastPosition());
+            else rocketView.draw(obstacle.getPosition());
+        }
+        View.getScreen().refresh();
+    }
+
     public void run() throws IOException, InterruptedException {
         Command command = new Command(View.getScreen());
         command.start();
         int xMin = 0, i = 0;
         while (!gameOver) {
             Character keyPressed = command.useKey();
-            /*KeyStroke keyPressedtmp = playerView.getScreen().pollInput();
-            char keyPressed = '0';
-            if (keyPressedtmp != null)
-                keyPressed = keyPressedtmp.getCharacter();*/
             if (keyPressed == ' '){
                 if (player.getPosition().getY() < View.getScreen().getTerminalSize().getRows())
                     player.goHigher();
             }
-            else {
-                if (player.getPosition().getY() > LOWER_LIMIT + 1)
-                    player.goLower();
+            else if (keyPressed == 'q'){
+                gameOver = true;
             }
-            View.getScreen().clear();
-            backgroundView.draw(new Position(0, LOWER_LIMIT), xMin);
-            playerView.draw(player.getPosition());
-
-            if (i % 15 == 0) {
-                int random = (int) (Math.random() * (5 - 1)) + 1;
-                if (random < 4) obstacles.add(new Laser());
-                else obstacles.add(new Rocket());
+            else if (player.getPosition().getY() > LOWER_LIMIT + 1) {
+                player.goLower();
             }
-            for (Obstacle obstacle: obstacles) {
-                obstacle.move();
-                if (obstacle.type()) laserView.draw(obstacle.getPosition(), obstacle.getLastPosition());
-                else rocketView.draw(obstacle.getPosition());
-            }
-            View.getScreen().refresh();
+            generateObstacles(i);
+            drawElements(xMin);
             xMin++;
             i++;
             Thread.sleep(60);
         }
+        System.exit(0);
     }
 }
