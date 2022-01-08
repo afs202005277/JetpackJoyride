@@ -21,7 +21,7 @@ public class LaserTest {
     @Test
     public void type() {
         Laser laser = new Laser();
-        Assertions.assertTrue(laser.type());
+        Assertions.assertTrue(laser.isLaser());
     }
     @Test
     public void lastPosition() {

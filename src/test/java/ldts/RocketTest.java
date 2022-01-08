@@ -19,7 +19,7 @@ public class RocketTest {
     @Test
     public void type() {
         Rocket rocket = new Rocket();
-        Assertions.assertFalse(rocket.type());
+        Assertions.assertFalse(rocket.isLaser());
     }
     @Test
     public void lastPosition() {
