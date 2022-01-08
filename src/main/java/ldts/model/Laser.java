@@ -10,13 +10,23 @@ public class Laser implements Obstacle {
     private final int orient;  // 1. -  2. |  3. \  4.  /
     private final int size;
 
+    @Override
     public int getX() {return position.getX();}
+
+    @Override
     public void setX(int x) {position.setX(x);}
+
+    @Override
     public int getY() {return position.getY();}
+
+    @Override
     public void setY(int y) {position.setY(y);}
+
+    @Override
     public Position getPosition() {
         return position;
     }
+
     @Override
     public Position getLastPosition() {
         Position position1;
@@ -76,6 +86,7 @@ public class Laser implements Obstacle {
         position.setX(position.getX()-1);
     }
 
+    @Override
     public boolean type() {return true;}
 }
 
