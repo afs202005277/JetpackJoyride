@@ -40,6 +40,7 @@ public class Controller {
     public Controller() throws IOException, URISyntaxException, FontFormatException {
         player = new Player();
         playerView = new PlayerView();
+        View.initScreen();
         backgroundView = new BackgroundView(LOWER_LIMIT);
         rocketView = new RocketView();
         laserView = new LaserView();
@@ -47,7 +48,7 @@ public class Controller {
     }
 
     public void run() throws IOException, InterruptedException {
-        Command command = new Command(playerView.getScreen());
+        Command command = new Command(View.getScreen());
         command.start();
         int xMin = 0, i = 0;
         while (!gameOver) {

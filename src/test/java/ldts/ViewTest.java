@@ -23,12 +23,6 @@ public class ViewTest {
     }
 
     @Test
-    void refresh() throws IOException {
-        screen.refresh();
-        Mockito.verify(screen, Mockito.times(1)).refresh();
-    }
-
-    @Test
     void getScreen(){
         Assertions.assertEquals(screen, View.getScreen());
     }
