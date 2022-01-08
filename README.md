@@ -29,6 +29,7 @@ To make the code more modular and to minimize the dependencies between the sever
 ## Testing
 
 ### Link to mutation testing report
+[Mutation Test](https://github.com/FEUP-LDTS-2021/ldts-project-assignment-g0807/tree/master/build/reports/pitest/202201081711)
 
 ## Self-evaluation
 
