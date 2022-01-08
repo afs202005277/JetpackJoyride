@@ -81,6 +81,12 @@ public class Laser implements Obstacle {
 
         }
     }
+    public Laser(int x,int y, int orient, int size) {
+        position = new Position(x,y);
+        this.orient = orient;
+        this.size = size;
+    }
+
     @Override
     public void move() {
         position.setX(position.getX()-1);

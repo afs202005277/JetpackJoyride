@@ -1,9 +1,5 @@
 package ldts.model;
 
-import com.googlecode.lanterna.TerminalPosition;
-import com.googlecode.lanterna.TerminalSize;
-import com.googlecode.lanterna.graphics.TextGraphics;
-
 public class Rocket implements Obstacle{
     private Position position;
 
@@ -33,6 +29,11 @@ public class Rocket implements Obstacle{
         int y = (int) (Math.random() * (18 - 2)) + 2;
         position = new Position(60,y);
     }
+    public Rocket(int x, int y) {
+        position= new Position(x,y);
+    }
+
+
     @Override
     public void move() {
         position.setX(position.getX()-3);
