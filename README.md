@@ -85,7 +85,12 @@ The Template Method pattern suggests that you break down an algorithm into a ser
 - Removes duplicate code into a superclass
 - The program can override only certain parts of the main class, making them less affected by changes that happen to other parts of the algorithm.
 
-### Known code smells
+
+### General Structure
+![UML Diagram](UML.png)
+
+## Known Code Smells And Refactoring Suggestions
+
 ## Large Class
 The Controller class contains many attributes, however, since this is the main class of the game makes sense that the class has all these attributes.
 
@@ -97,12 +102,6 @@ The draw methods of PlayerView, RocketView and LaserView may be considered ident
 
 ## Data Classes
 All the classes of the Model package only have constructors, getters and setters (dumb classes) but this isn't an indication of a problem since we chose to use the MVC architectural pattern which puts the responsibility of handling the game's logic on the Controller class.
-
-
-### General Structure
-![UML Diagram](UML.png)
-
-## Known Code Smells And Refactoring Suggestions
 
 ## Testing
 
