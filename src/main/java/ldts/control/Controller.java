@@ -21,6 +21,7 @@ public class Controller {
     private RocketView rocketView;
     private LaserView laserView;
     private static final int LOWER_LIMIT = 1;
+    private static Controller singleton = null;
 
     public boolean isGameOver() {
         return gameOver;
@@ -50,13 +51,19 @@ public class Controller {
         this.backgroundView = backgroundView;
     }
 
-    public Controller() throws IOException, URISyntaxException, FontFormatException {
+    private Controller() throws IOException, URISyntaxException, FontFormatException {
         player = new Player();
         playerView = new PlayerView();
         backgroundView = new BackgroundView(LOWER_LIMIT);
         rocketView = new RocketView();
         laserView = new LaserView();
         obstacles = new ArrayList<Obstacle>();
+    }
+
+    public static Controller getInstance() throws IOException, URISyntaxException, FontFormatException {
+        if (singleton == null)
+            singleton = new Controller();
+        return singleton;
     }
 
     public void generateObstacles(int i){
