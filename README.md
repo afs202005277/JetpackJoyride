@@ -44,7 +44,12 @@ To be implemented.
 ![UML Diagram](UML.png)
 
 ## Known Code Smells And Refactoring Suggestions
-
+### Alternative Classes with different Interfaces
+Two classes perform identical functions but have different method names. This code smell can be seen in our project on the element class and obstacle interface, in which their shared attribute (Position) can be same by making the obstacle an extension of the element class.
+###Switch statements
+The methods of the class Laser are legislated by the orientation of the laser and these to be longer and full of the switch statements, which can be hard to work on the future. This situation asks for polymorphism to simplify new implementations. 
+###Messages Chains
+This code smell happens when methods rely on the other methods of other classes repeatedly. As stated before, if the obstacles were a subclass of element this wouldn't happen because this can fix the need to call numerous methods just to get a position of an element in the game.
 ## Testing
 
 ### Link to mutation testing report
