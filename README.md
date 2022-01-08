@@ -70,6 +70,20 @@ The flyweight pattern aims to solve this by storing the extrinsic state, meaning
 - You have a more efficient use of memory.
 - Code becomes much more complicated.
 
+**Problem in context**
+
+By using the MVC pattern, we use a view class to produce the result that the player sees on screen, but because of the amount of objects that need to be drawn, the view class quickly grew into different classes that differ only a little. If no design pattern is used, there will be a lot of repeated methods in these view classes.
+
+**The Pattern**
+
+The Template Method pattern suggests that you break down an algorithm into a series of steps, turn these steps into methods, and put a series of calls to these methods inside a single template method. The steps may either be abstract, or have some default implementation. To use the algorithm, the program provides the different view subclasses, implements all abstract steps, and overrides some of the optional ones if needed (but not the template method itself).
+
+**Implementation**
+
+**Consequences**
+
+- Removes duplicate code into a superclass
+- The program can override only certain parts of the main class, making them less affected by changes that happen to other parts of the algorithm.
 
 ### General Structure
 ![UML Diagram](UML.png)
