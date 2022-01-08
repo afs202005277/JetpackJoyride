@@ -41,7 +41,7 @@ public class Rocket implements Obstacle{
 
 
     @Override
-    public boolean type() {
+    public boolean isLaser() {
         return false;
     }
 }

@@ -93,6 +93,6 @@ public class Laser implements Obstacle {
     }
 
     @Override
-    public boolean type() {return true;}
+    public boolean isLaser() {return true;}
 }
 

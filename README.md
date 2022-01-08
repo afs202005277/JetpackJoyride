@@ -22,7 +22,26 @@ This project is based on the popular Android game Jetpack Joyride where the play
 To make the code more modular and to minimize the dependencies between the several components of the game, we chose to use the MVC design pattern, so that multiple students can work at the same time without existing conflicts. Besides, as the model doesn't need to know how to draw itself, makes sense to separate those aspects of the game, in order to make the code more organized.
 
 
+**Problem in context**
+
+When running our game, there is the constant need of creating obstacles and these for the time being are Lasers and Rockets. By not implementing the factory pattern, if we decide to remove, change or add a different type of obstacle, it will be required to change the bulk of our code, making our program highly unhandy.
+
+**The Pattern**
+
+The factory pattern replaces the direct object construction calls (using the new operator) with calls to a special factory method. This way we can easily change the behaviour of our obstacles (products), as well as, add and remove obstacles, and allows for simpler client code.
+
+**Implementation**
+
+To be implemented.
+
+**Consequences**
+
+- Avoid tight coupling between the creator and the concrete products.
+- Make it possible to introduce new types of products into the program without breaking existing client code.
+
+
 ### General Structure
+![UML Diagram](UML.png)
 
 ## Known Code Smells And Refactoring Suggestions
 
