@@ -6,7 +6,7 @@ import java.awt.*;
 import java.io.IOException;
 import java.net.URISyntaxException;
 
-public class Main {
+public class Application {
     public static void main(String[] args) throws IOException, InterruptedException, URISyntaxException, FontFormatException {
         Controller controller = new Controller();
         controller.run();
