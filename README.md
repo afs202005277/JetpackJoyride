@@ -19,8 +19,13 @@ This project is based on the popular Android game Jetpack Joyride where the play
 ## Design
 
 **Problem in context**
-Since we are developing a game, we had to think about how to set up the structure and the logic of each component NAO COMPLETO
-To make the code more modular and to minimize the dependencies between the several components of the game, we chose to use the MVC design pattern, so that multiple students can work at the same time without existing conflicts. Besides, as the model doesn't need to know how to draw itself, makes sense to separate those aspects of the game, in order to make the code more organized.
+Since we are developing a game, we had to think about how to set up the structure and the logic of each component, while keeping in mind the need to make the code modular and easy to reuse. 
+
+**The Pattern**
+One common approach to this type of problem is using the Model-View-Controller arquitectural design pattern. By using this pattern, we are able to keep the code modular, easy to reuse and to extend. 
+
+**Implementation**
+The usage of the MVC pattern is evident in the structure of the packages, since there are 3 packages: Control, Model and View. The classes in Control are responsible for enforcing the game logic; the ones in Model are just data classes used by the controllers to manage the different objects of the game; the ones in View have the responsability to show the game to the user.
 
 
 **Problem in context**
