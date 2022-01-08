@@ -30,6 +30,10 @@ One common approach to this type of problem is using the Model-View-Controller a
 
 The usage of the MVC pattern is evident in the structure of the packages, since there are 3 packages: Control, Model and View. The classes in Control are responsible for enforcing the game logic; the ones in Model are just data classes used by the controllers to manage the different objects of the game; the ones in View have the responsability to show the game to the user.
 
+**Consequences:**
+- Multiple students can work at the same time on the three main components of the project (model, view and control).
+- Code becomes more modular, more readable, easier to extend and reuse. 
+
 
 **Problem in context**
 
