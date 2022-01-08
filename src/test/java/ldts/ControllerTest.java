@@ -15,6 +15,7 @@ import org.mockito.Mockito;
 import java.awt.*;
 import java.io.IOException;
 import java.net.URISyntaxException;
+import java.util.ArrayList;
 
 public class ControllerTest {
     private Controller control;
@@ -25,7 +26,7 @@ public class ControllerTest {
 
     @BeforeEach
     void setUp() throws IOException, URISyntaxException, FontFormatException {
-        control = new Controller();
+        control = Controller.getInstance();
         backViewer = Mockito.mock(BackgroundView.class);
         playerViewer = Mockito.mock(PlayerView.class);
         screen = Mockito.mock(Screen.class);
@@ -38,11 +39,11 @@ public class ControllerTest {
 
     @Test
     void generateObstacles(){
-        for (int i=0;i<100;i++)
-        {
-            control.generateObstacles(i);
-        }
-        Assertions.assertEquals(7, control.getObstacles().size());
+        control.generateObstacles(15);
+        Assertions.assertEquals(1, control.getObstacles().size());
+        control.setObstacles(new ArrayList<>());
+        control.generateObstacles(17);
+        Assertions.assertEquals(0, control.getObstacles().size());
     }
 
     @Test
