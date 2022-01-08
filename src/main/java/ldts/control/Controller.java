@@ -38,17 +38,28 @@ public class Controller {
         return backgroundView;
     }
 
+    public ArrayList<Obstacle> getObstacles() {
+        return obstacles;
+    }
+
+    public void setPlayerView(PlayerView playerView) {
+        this.playerView = playerView;
+    }
+
+    public void setBackgroundView(BackgroundView backgroundView) {
+        this.backgroundView = backgroundView;
+    }
+
     public Controller() throws IOException, URISyntaxException, FontFormatException {
         player = new Player();
         playerView = new PlayerView();
-        View.initScreen();
         backgroundView = new BackgroundView(LOWER_LIMIT);
         rocketView = new RocketView();
         laserView = new LaserView();
         obstacles = new ArrayList<Obstacle>();
     }
 
-    private void generateObstacles(int i){
+    public void generateObstacles(int i){
         if (i % 15 == 0) {
             int random = (int) (Math.random() * (5 - 1)) + 1;
             if (random < 4) obstacles.add(new Laser());
@@ -56,7 +67,7 @@ public class Controller {
         }
     }
 
-    private void drawElements(int xMin) throws IOException {
+    public void drawElements(int xMin) throws IOException {
         View.getScreen().clear();
         backgroundView.draw(new Position(0, LOWER_LIMIT), xMin);
         playerView.draw(player.getPosition());
@@ -68,7 +79,8 @@ public class Controller {
         View.getScreen().refresh();
     }
 
-    public void run() throws IOException, InterruptedException {
+    public void run() throws IOException, InterruptedException, URISyntaxException, FontFormatException {
+        View.initScreen();
         Command command = new Command(View.getScreen());
         command.start();
         int xMin = 0, i = 0;
