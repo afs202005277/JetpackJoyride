@@ -1,6 +1,5 @@
 package ldts.control;
 
-import com.googlecode.lanterna.input.KeyStroke;
 import ldts.model.*;
 import ldts.view.BackgroundView;
 import ldts.view.LaserView;
@@ -37,6 +36,36 @@ public class Controller {
 
     public BackgroundView getBackgroundView() {
         return backgroundView;
+    }
+
+    public boolean checkCollisions(Obstacle obstacle, Player player)
+    {
+        boolean collision = false;
+        if (obstacle.type())
+        {
+            // Laser Collision
+            if (obstacle.getPosition().getX() <= player.getPosition().getX() && player.getPosition().getX() <= obstacle.getLastPosition().getX()) {
+                int m = 0;
+                if (obstacle.getPosition().getX() == obstacle.getLastPosition().getX() && obstacle.getLastPosition().getY() <= player.getPosition().getY() && player.getPosition().getY() <= obstacle.getPosition().getY()) collision = true;
+                else
+                {
+                    if (obstacle.getPosition().getY() > obstacle.getLastPosition().getY()) m = -1;
+                    else if (obstacle.getPosition().getY() < obstacle.getLastPosition().getY()) m = 1;
+
+                    int b = obstacle.getPosition().getY() - m * obstacle.getPosition().getX();
+
+                    if (player.getPosition().getX()*m + b == player.getPosition().getY()) collision = true;
+                }
+
+            }
+        }
+        else
+        {
+            // Rocket Collision
+            Position temp = new Position(obstacle.getX()+1, obstacle.getPosition().getY());
+            if (obstacle.getPosition().equals(player.getPosition()) || temp.equals(player.getPosition())) collision = true;
+        }
+        return collision;
     }
 
     public Controller() throws IOException, URISyntaxException, FontFormatException {
@@ -77,6 +106,7 @@ public class Controller {
             }
             for (Obstacle obstacle: obstacles) {
                 obstacle.move();
+                System.out.println(checkCollisions(obstacle, player) + (obstacle.type() ? " Laser" : " Rocket"));
                 if (obstacle.type())
                 {
                     laserView.draw(obstacle.getPosition(), obstacle.getLastPosition());
@@ -84,11 +114,6 @@ public class Controller {
                 else
                 {
                     rocketView.draw(obstacle.getPosition());
-                    Position temp = new Position(obstacle.getX()+1, obstacle.getPosition().getY());
-                    if (obstacle.getPosition().equals(player.getPosition()) || temp.equals(player.getPosition()))
-                    {
-                        System.out.println("Collision with rocket.");
-                    }
                 }
             }
             playerView.getScreen().refresh();
