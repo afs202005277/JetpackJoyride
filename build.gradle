@@ -1,12 +1,19 @@
 plugins {
     id 'java'
+    id 'application'
+    id 'info.solidsoft.pitest' version '1.7.0'
+    //id "org.kordamp.gradle.errorprone" version "0.47.0"
 }
 
-group 'org.example'
+group 'ldts'
 version '1.0-SNAPSHOT'
 
 repositories {
     mavenCentral()
+}
+
+application {
+    mainClass.set('ldts.Application')
 }
 
 dependencies {
@@ -18,4 +25,8 @@ dependencies {
 
 test {
     useJUnitPlatform()
+}
+
+pitest {
+    junit5PluginVersion = '0.15'
 }

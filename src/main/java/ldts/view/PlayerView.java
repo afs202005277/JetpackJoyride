@@ -10,7 +10,7 @@ import java.net.URISyntaxException;
 
 public class PlayerView extends View{
     public PlayerView() throws IOException, URISyntaxException, FontFormatException {
-        initScreen();
+        //initScreen();
     }
 
     @Override

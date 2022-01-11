@@ -11,6 +11,10 @@ import java.util.ArrayList;
 public class BackgroundView extends View{
     private final int lower;
 
+    public int getLower() {
+        return lower;
+    }
+
     public BackgroundView(int lower) {
         this.lower = lower;
     }

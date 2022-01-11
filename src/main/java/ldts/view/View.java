@@ -25,8 +25,8 @@ public abstract class View {
     static protected Screen screen;
     static protected TextGraphics graphics;
 
-    public void initScreen() throws IOException, FontFormatException, URISyntaxException {
-        URL resource = getClass().getClassLoader().getResource("player.ttf");
+    public static void initScreen() throws IOException, FontFormatException, URISyntaxException {
+        URL resource = View.class.getClassLoader().getResource("player.ttf");
         File fontFile = new File(resource.toURI());
         Font font =  Font.createFont(Font.TRUETYPE_FONT, fontFile);
 
@@ -55,16 +55,30 @@ public abstract class View {
         graphics = screen.newTextGraphics();
     }
 
-    protected void refresh() throws IOException {
-        screen.refresh();
-    }
     public abstract void draw(Position pos) throws IOException;
 
-    public Screen getScreen() {
+    public static Screen getScreen() {
         return screen;
     }
 
-    public TextGraphics getGraphics() {
+    public static TextGraphics getGraphics() {
         return graphics;
     }
+
+    public static void setScreen(Screen screen) {
+        View.screen = screen;
+    }
+
+    public static void setGraphics(TextGraphics graphics) {
+        View.graphics = graphics;
+    }
+
+    public static int getRows(){
+        return ROWS;
+    }
+
+    public static int getCollumns(){
+        return COLUMNS;
+    }
+
 }
