@@ -15,7 +15,7 @@ import java.util.ArrayList;
 
 public class Controller {
     private boolean gameOver = false;
-    private final Player player;
+    private Player player;
     private PlayerView playerView;
     private BackgroundView backgroundView;
     private GameOverView gameOverView;
@@ -112,43 +112,54 @@ public class Controller {
     }
 
     public void run() throws IOException, InterruptedException, URISyntaxException, FontFormatException {
+        boolean replay;
         View.initScreen();
-        Command command = new Command(View.getScreen());
-        command.start();
-        int xMin = 0, i = 0;
-        while (!gameOver) {
-            Character keyPressed = command.useKey();
-            if (keyPressed == ' ') {
-                if (player.getPosition().getY() < View.getScreen().getTerminalSize().getRows())
-                    player.goHigher();
-            } else if (keyPressed == 'q') {
-                gameOver = true;
-            } else if (player.getPosition().getY() > LOWER_LIMIT + 1) {
-                player.goLower();
+        do {
+            replay = false;
+            Command command = new Command(View.getScreen());
+            command.start();
+            int xMin = 0, i = 0;
+            while (!gameOver) {
+                Character keyPressed = command.useKey();
+                if (keyPressed == ' ') {
+                    if (player.getPosition().getY() < View.getScreen().getTerminalSize().getRows())
+                        player.goHigher();
+                } else if (keyPressed == 'q') {
+                    gameOver = true;
+                } else if (player.getPosition().getY() > LOWER_LIMIT + 1) {
+                    player.goLower();
+                }
+                generateObstacles(i);
+                drawElements(xMin);
+                if (checkCollisions(obstacles, player)) {
+                    gameOver = true;
+                }
+                xMin++;
+                i++;
+                Thread.sleep(60);
             }
-            generateObstacles(i);
-            drawElements(xMin);
-            if (checkCollisions(obstacles, player)) {
-                gameOver = true;
+            command.interrupt();
+            while (gameOver) {
+                gameOverView.draw(null);
+                KeyStroke x = View.getScreen().readInput();
+                if (x.getKeyType() == KeyType.ArrowUp) {
+                    gameOverView.moveSelected(-1);
+                } else if (x.getKeyType() == KeyType.ArrowDown) {
+                    gameOverView.moveSelected(1);
+                } else if (x.getKeyType() == KeyType.Enter) {
+                    if (gameOverView.getSelected() == 1)
+                        System.exit(0);
+                    replay = true;
+                    gameOver = false;
+                    break;
+                }
             }
-            xMin++;
-            i++;
-            Thread.sleep(60);
-        }
+            resetElements();
+        }while(replay);
+    }
 
-        command.interrupt();
-        while (gameOver)
-        {
-            gameOverView.draw(null);
-            KeyStroke x = View.getScreen().readInput();
-            if (x.getKeyType() == KeyType.ArrowUp)
-            {
-                gameOverView.moveSelected(-1);
-            }
-            else if (x.getKeyType() == KeyType.ArrowDown)
-            {
-                gameOverView.moveSelected(1);
-            }
-        }
+    private void resetElements() throws IOException, URISyntaxException, FontFormatException {
+        player = new Player();
+        obstacles = new ArrayList<>();
     }
 }

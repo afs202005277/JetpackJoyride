@@ -19,14 +19,21 @@ public class GameOverView extends View
         else if (selected >= options) selected -= options;
     }
 
+    public int getSelected() {
+        return selected;
+    }
+
     @Override
     public void draw(Position pos) throws IOException {
         graphics.setBackgroundColor(TextColor.Factory.fromString("#FFFFFF"));
         graphics.fillRectangle(new TerminalPosition(COLUMNS/2-6, ROWS/2-3), new TerminalSize(12, 6), ' ');
+
         graphics.setForegroundColor(TextColor.Factory.fromString("#000000"));
         graphics.putString(new TerminalPosition(COLUMNS/2-4, ROWS/2-2), "GAMEOVER");
+
         graphics.setBackgroundColor(TextColor.Factory.fromString(selected == 0 ? "#111111" : "#FFFFFF"));
         graphics.putString(new TerminalPosition(COLUMNS/2-4, ROWS/2-1), "- REPLAY");
+
         graphics.setBackgroundColor(TextColor.Factory.fromString(selected == 0 ? "#FFFFFF" : "#111111"));
         graphics.putString(new TerminalPosition(COLUMNS/2-4, ROWS/2), "- QUIT");
         screen.refresh();

@@ -31,16 +31,17 @@ public class Command extends Thread {
     @Override
     public void run() {
         while(!isInterrupted()) {
-            try {
-                inputReader(screen);
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
+            inputReader(screen);
         }
     }
 
-    public void inputReader(Screen screen) throws IOException {
-        KeyStroke keyStroke = screen.readInput();
+    public void inputReader(Screen screen) {
+        KeyStroke keyStroke = null;
+        try {
+            keyStroke = screen.readInput();
+        } catch (IOException ignored) {
+
+        }
         if (keyStroke.getKeyType() == KeyType.Character)
             changeKey(keyStroke.getCharacter());
         else

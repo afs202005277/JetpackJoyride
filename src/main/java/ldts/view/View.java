@@ -26,7 +26,7 @@ public abstract class View {
     static protected TextGraphics graphics;
 
     public static void initScreen() throws IOException, FontFormatException, URISyntaxException {
-        URL resource = View.class.getClassLoader().getResource("player.ttf");
+        URL resource = View.class.getClassLoader().getResource("player_new.ttf");
         File fontFile = new File(resource.toURI());
         Font font =  Font.createFont(Font.TRUETYPE_FONT, fontFile);
 
@@ -45,6 +45,7 @@ public abstract class View {
             @Override
             public void windowClosing(WindowEvent e) {
                 e.getWindow().dispose();
+                System.exit(0);
             }
         });
 
