@@ -24,6 +24,7 @@ public class Controller {
     private LaserView laserView;
     private static final int LOWER_LIMIT = 1;
     private static Controller singleton = null;
+    private int timePerFrame = 1000 / 15;
 
     public Player getPlayer() {
         return player;
@@ -120,6 +121,7 @@ public class Controller {
             command.start();
             int xMin = 0, i = 0;
             while (!gameOver) {
+                long startTime = System.currentTimeMillis();
                 Character keyPressed = command.useKey();
                 if (keyPressed == ' ') {
                     if (player.getPosition().getY() < View.getScreen().getTerminalSize().getRows())
@@ -136,7 +138,8 @@ public class Controller {
                 }
                 xMin++;
                 i++;
-                Thread.sleep(60);
+                long finalTime = System.currentTimeMillis();
+                Thread.sleep(timePerFrame-(finalTime - startTime));
             }
             command.interrupt();
             while (gameOver) {
