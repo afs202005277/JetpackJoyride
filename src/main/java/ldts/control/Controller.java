@@ -1,6 +1,7 @@
 package ldts.control;
 
 import com.googlecode.lanterna.input.KeyStroke;
+import com.googlecode.lanterna.input.KeyType;
 import ldts.model.*;
 import ldts.view.*;
 
@@ -17,6 +18,7 @@ public class Controller {
     private final Player player;
     private PlayerView playerView;
     private BackgroundView backgroundView;
+    private GameOverView gameOverView;
     private ArrayList<Obstacle> obstacles;
     private RocketView rocketView;
     private LaserView laserView;
@@ -43,32 +45,32 @@ public class Controller {
         this.obstacles = obstacles;
     }
 
-    public boolean checkCollisions(Obstacle obstacle, Player player)
+    public boolean checkCollisions(ArrayList<Obstacle> obstacles, Player player)
     {
         boolean collision = false;
-        if (obstacle.type())
-        {
-            // Laser Collision
-            if (obstacle.getPosition().getX() <= player.getPosition().getX() && player.getPosition().getX() <= obstacle.getLastPosition().getX()) {
-                int m = 0;
-                if (obstacle.getPosition().getX() == obstacle.getLastPosition().getX() && obstacle.getLastPosition().getY() <= player.getPosition().getY() && player.getPosition().getY() <= obstacle.getPosition().getY()) collision = true;
-                else
-                {
-                    if (obstacle.getPosition().getY() > obstacle.getLastPosition().getY()) m = -1;
-                    else if (obstacle.getPosition().getY() < obstacle.getLastPosition().getY()) m = 1;
+        for (Obstacle obstacle : obstacles) {
+            if (obstacle.isLaser()) {
+                // Laser Collision
+                if (obstacle.getPosition().getX() <= player.getPosition().getX() && player.getPosition().getX() <= obstacle.getLastPosition().getX()) {
+                    int m = 0;
+                    if (obstacle.getPosition().getX() == obstacle.getLastPosition().getX() && obstacle.getLastPosition().getY() <= player.getPosition().getY() && player.getPosition().getY() <= obstacle.getPosition().getY())
+                        collision = true;
+                    else {
+                        if (obstacle.getPosition().getY() > obstacle.getLastPosition().getY()) m = -1;
+                        else if (obstacle.getPosition().getY() < obstacle.getLastPosition().getY()) m = 1;
 
-                    int b = obstacle.getPosition().getY() - m * obstacle.getPosition().getX();
+                        int b = obstacle.getPosition().getY() - m * obstacle.getPosition().getX();
 
-                    if (player.getPosition().getX()*m + b == player.getPosition().getY()) collision = true;
+                        if (player.getPosition().getX() * m + b == player.getPosition().getY()) collision = true;
+                    }
+
                 }
-
+            } else {
+                // Rocket Collision
+                Position temp = new Position(obstacle.getX() + 1, obstacle.getPosition().getY());
+                if (obstacle.getPosition().equals(player.getPosition()) || temp.equals(player.getPosition()))
+                    collision = true;
             }
-        }
-        else
-        {
-            // Rocket Collision
-            Position temp = new Position(obstacle.getX()+1, obstacle.getPosition().getY());
-            if (obstacle.getPosition().equals(player.getPosition()) || temp.equals(player.getPosition())) collision = true;
         }
         return collision;
     }
@@ -77,6 +79,7 @@ public class Controller {
         player = new Player();
         playerView = new PlayerView();
         backgroundView = new BackgroundView(LOWER_LIMIT);
+        gameOverView = new GameOverView();
         rocketView = new RocketView();
         laserView = new LaserView();
         obstacles = new ArrayList<>();
@@ -115,22 +118,37 @@ public class Controller {
         int xMin = 0, i = 0;
         while (!gameOver) {
             Character keyPressed = command.useKey();
-            if (keyPressed == ' '){
+            if (keyPressed == ' ') {
                 if (player.getPosition().getY() < View.getScreen().getTerminalSize().getRows())
                     player.goHigher();
-            }
-            else if (keyPressed == 'q'){
+            } else if (keyPressed == 'q') {
                 gameOver = true;
-            }
-            else if (player.getPosition().getY() > LOWER_LIMIT + 1) {
+            } else if (player.getPosition().getY() > LOWER_LIMIT + 1) {
                 player.goLower();
             }
             generateObstacles(i);
             drawElements(xMin);
+            if (checkCollisions(obstacles, player)) {
+                gameOver = true;
+            }
             xMin++;
             i++;
             Thread.sleep(60);
         }
-        System.exit(0);
+
+        command.interrupt();
+        while (gameOver)
+        {
+            gameOverView.draw(null);
+            KeyStroke x = View.getScreen().readInput();
+            if (x.getKeyType() == KeyType.ArrowUp)
+            {
+                gameOverView.moveSelected(-1);
+            }
+            else if (x.getKeyType() == KeyType.ArrowDown)
+            {
+                gameOverView.moveSelected(1);
+            }
+        }
     }
 }
