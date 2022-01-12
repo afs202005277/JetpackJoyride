@@ -24,6 +24,7 @@ public class Controller {
     private LaserView laserView;
     private static final int LOWER_LIMIT = 1;
     private static Controller singleton = null;
+    private DistanceCounterView distanceCounterView;
     private int timePerFrame = 1000 / 15;
 
     public Player getPlayer() {
@@ -84,6 +85,7 @@ public class Controller {
         rocketView = new RocketView();
         laserView = new LaserView();
         obstacles = new ArrayList<>();
+        distanceCounterView = new DistanceCounterView();
     }
 
     public static Controller getInstance() throws IOException, URISyntaxException, FontFormatException {
@@ -109,6 +111,7 @@ public class Controller {
             if (obstacle.isLaser()) laserView.draw(obstacle.getPosition(), obstacle.getLastPosition());
             else rocketView.draw(obstacle.getPosition());
         }
+        distanceCounterView.draw(xMin);
         View.getScreen().refresh();
     }
 

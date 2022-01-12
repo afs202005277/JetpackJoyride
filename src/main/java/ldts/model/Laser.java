@@ -1,6 +1,7 @@
 package ldts.model;
 
 import com.googlecode.lanterna.graphics.TextGraphics;
+import ldts.view.View;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -29,24 +30,13 @@ public class Laser implements Obstacle {
 
     @Override
     public Position getLastPosition() {
-        Position position1;
-        switch (orient) {
-            case 1:
-                position1 = new Position(position.getX() + size -1 , position.getY());
-                break;
-            case 2:
-                position1 =  new Position(position.getX(), position.getY() - size + 1);
-                break;
-            case 3:
-                position1 = new Position(position.getX() + size - 1, position.getY() - size + 1);
-                break;
-            case 4:
-                position1 = new Position(position.getX() + size - 1, position.getY() + size - 1);
-                break;
-            default:
-                position1 = position;
-                break;
-        }
+        Position position1 = switch (orient) {
+            case 1 -> new Position(position.getX() + size - 1, position.getY());
+            case 2 -> new Position(position.getX(), position.getY() - size + 1);
+            case 3 -> new Position(position.getX() + size - 1, position.getY() - size + 1);
+            case 4 -> new Position(position.getX() + size - 1, position.getY() + size - 1);
+            default -> position;
+        };
         return position1;
     }
 
@@ -55,8 +45,8 @@ public class Laser implements Obstacle {
     public int getSize() {return size;}
 
     public Laser() {
-        int y = (int) (Math.random() * (18 - 2)) + 2;
-        int x = 60;
+        int y = (int) (Math.random() * (View.getRows() - 2)) + 2;
+        int x = View.getCollumns();
         position = new Position(x,y);
         int ori = (int) (Math.random() * (10 - 1)) + 1;
         if (ori <= 2) {

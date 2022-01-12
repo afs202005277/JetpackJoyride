@@ -1,5 +1,7 @@
 package ldts.model;
 
+import ldts.view.View;
+
 public class Rocket implements Obstacle{
     private Position position;
 
@@ -26,8 +28,8 @@ public class Rocket implements Obstacle{
     }
 
     public Rocket() {
-        int y = (int) (Math.random() * (18 - 2)) + 2;
-        position = new Position(60,y);
+        int y = (int) (Math.random() * (View.getRows() - 2)) + 2;
+        position = new Position(View.getCollumns(),y);
     }
     public Rocket(int x, int y) {
         position= new Position(x,y);
