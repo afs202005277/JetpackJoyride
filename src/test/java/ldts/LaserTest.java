@@ -1,6 +1,7 @@
 package ldts;
 
 import ldts.model.Laser;
+import ldts.model.Position;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
@@ -28,7 +29,7 @@ public class LaserTest {
         List<Laser> lasers = new ArrayList<>();
         for (int orient = 1; orient < 5; orient++) {
             for (int size = 1; size < 6; size++)
-                lasers.add(new Laser(20,8,orient,size));
+                lasers.add(new Laser(new Position(20, 8),orient,size));
         }
 
         for (Laser laser: lasers){

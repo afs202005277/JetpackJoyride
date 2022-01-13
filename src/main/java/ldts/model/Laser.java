@@ -71,8 +71,8 @@ public class Laser implements Obstacle {
 
         }
     }
-    public Laser(int x,int y, int orient, int size) {
-        position = new Position(x,y);
+    public Laser(Position position, int orient, int size) {
+        this.position = position;
         this.orient = orient;
         this.size = size;
     }
