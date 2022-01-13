@@ -15,6 +15,6 @@ public class DistanceCounterView extends View{
 
         String tmp = String.valueOf(distance);
         tmp += " metros";
-        graphics.putString(18, 0, tmp);
+        graphics.putString(screen.getTerminalSize().getColumns() - tmp.length()-5, 0, tmp);
     }
 }

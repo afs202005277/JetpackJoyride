@@ -21,7 +21,7 @@ public class BackgroundView extends View{
 
     private void drawBase(Position pos){
         graphics.setBackgroundColor(TextColor.Factory.fromString("#808080")); // GREY
-        graphics.fillRectangle(new TerminalPosition(pos.getX(), ROWS - pos.getY()), new TerminalSize(COLUMNS, lower), ' ');
+        graphics.fillRectangle(new TerminalPosition(pos.getX(), ROWS - pos.getY()), new TerminalSize(screen.getTerminalSize().getColumns(), lower), ' ');
     }
 
     private void drawWall(Position pos) throws IOException {

@@ -54,6 +54,7 @@ public abstract class View {
         screen.startScreen();             // screens must be started
         screen.doResizeIfNecessary();     // resize screen if necessary
         graphics = screen.newTextGraphics();
+        System.out.println(screen.getTerminalSize().getColumns());
     }
 
     public abstract void draw(Position pos) throws IOException;

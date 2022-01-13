@@ -25,19 +25,20 @@ public class GameOverView extends View
 
     @Override
     public void draw(Position pos) throws IOException {
+        int currentNCols = screen.getTerminalSize().getColumns();
         graphics.setBackgroundColor(TextColor.Factory.fromString("#FFFFFF"));
-        graphics.fillRectangle(new TerminalPosition(COLUMNS/2-6, ROWS/2-3), new TerminalSize(12, 6), ' ');
+        graphics.fillRectangle(new TerminalPosition(currentNCols/2-6, ROWS/2-3), new TerminalSize(12, 6), ' ');
 
         graphics.setForegroundColor(TextColor.Factory.fromString("#000000"));
-        graphics.putString(new TerminalPosition(COLUMNS/2-4, ROWS/2-2), "GAMEOVER");
+        graphics.putString(new TerminalPosition(currentNCols/2-4, ROWS/2-2), "GAMEOVER");
 
         graphics.setBackgroundColor(TextColor.Factory.fromString(selected == 0 ? "#111111" : "#FFFFFF"));
         graphics.setForegroundColor(TextColor.Factory.fromString(selected == 0 ? "#FFFFFF" : "#000000"));
-        graphics.putString(new TerminalPosition(COLUMNS/2-4, ROWS/2-1), "- REPLAY");
+        graphics.putString(new TerminalPosition(currentNCols/2-4, ROWS/2-1), "- REPLAY");
 
         graphics.setBackgroundColor(TextColor.Factory.fromString(selected == 0 ? "#FFFFFF" : "#111111"));
         graphics.setForegroundColor(TextColor.Factory.fromString(selected == 0 ? "#000000" : "#FFFFFF"));
-        graphics.putString(new TerminalPosition(COLUMNS/2-4, ROWS/2), "- QUIT");
+        graphics.putString(new TerminalPosition(currentNCols/2-4, ROWS/2), "- QUIT");
         screen.refresh();
     }
 }
