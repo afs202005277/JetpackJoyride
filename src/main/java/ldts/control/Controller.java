@@ -26,7 +26,8 @@ public class Controller {
     private CoinView coinView;
     private static final int LOWER_LIMIT = 1;
     private static Controller singleton = null;
-    private CounterView counterView;
+    private CounterView distanceCounterView;
+    private CounterView coinsCounterView;
     private int timePerFrame = 1000 / 15;
 
     public Player getPlayer() {
@@ -94,7 +95,8 @@ public class Controller {
         coinView = new CoinView("#000C66", "#DEAC4C", "C");
         obstacles = new ArrayList<>();
         coins = new ArrayList<>();
-        counterView = new CounterView("#808080", "#000000");
+        distanceCounterView = new CounterView("#808080", "#000000", "meters");
+        coinsCounterView = new CounterView("#808080", "#DEAC4C", "coins");
     }
 
     public static Controller getInstance() throws IOException, URISyntaxException, FontFormatException {
@@ -112,7 +114,7 @@ public class Controller {
         }
     }
 
-    public void drawElements(int xMin) throws IOException {
+    public void drawElements(int xMin, int cns) throws IOException {
         View.getScreen().clear();
         backgroundView.draw(new Position(0, LOWER_LIMIT), xMin);
         playerView.draw(player.getPosition());
@@ -127,7 +129,8 @@ public class Controller {
             coin.move(-1, 0);
             coinView.draw(coin.getPosition());
         }
-        counterView.draw(xMin);
+        distanceCounterView.draw(new Position(View.getScreen().getTerminalSize().getColumns() - distanceCounterView.getUnits().length() - 10, 0), xMin);
+        coinsCounterView.draw(new Position(0, 0), cns);
         View.getScreen().refresh();
     }
 
@@ -152,7 +155,7 @@ public class Controller {
                 }
 
                 generateObjects(i);
-                drawElements(xMin);
+                drawElements(xMin, cns);
 
                 for (Obstacle obstacle : obstacles) {
                     Element object = (Element) obstacle;

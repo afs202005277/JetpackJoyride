@@ -38,17 +38,17 @@ public class ControllerTest {
     }
 
     @Test
-    void generateObstacles(){
-        control.generateObstacles(15);
+    void generateObjects(){
+        control.generateObjects(15);
         Assertions.assertEquals(1, control.getObstacles().size());
         control.setObstacles(new ArrayList<>());
-        control.generateObstacles(17);
+        control.generateObjects(17);
         Assertions.assertEquals(0, control.getObstacles().size());
     }
 
     @Test
     void drawElements() throws IOException {
-        control.drawElements(2);
+        control.drawElements(2, 0);
         Mockito.verify(screen, Mockito.times(1)).clear();
         Mockito.verify(backViewer, Mockito.times(1)).draw(new Position(0, 1), 2);
         Mockito.verify(playerViewer, Mockito.times(1)).draw(control.getPlayer().getPosition());

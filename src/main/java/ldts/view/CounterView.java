@@ -8,22 +8,28 @@ import java.io.IOException;
 public class CounterView extends View{
     private TextColor backGround;
     private TextColor foreGround;
-    private String string;
+
+    public String getUnits() {
+        return units;
+    }
+
+    private String units;
 
     @Override
     public void draw(Position pos) throws IOException {}
 
-    public CounterView(String backGround, String foreGround) {
+    public CounterView(String backGround, String foreGround, String units) {
         this.backGround = stringToColor(backGround);
         this.foreGround = stringToColor(foreGround);
+        this.units = units;
     }
 
-    public void draw(int distance, String units) throws IOException {
+    public void draw(Position pos, int quantity) throws IOException {
         graphics.setBackgroundColor(backGround);
         graphics.setForegroundColor(foreGround);
 
-        String tmp = String.valueOf(distance);
+        String tmp = String.valueOf(quantity);
         tmp += " " + units;
-        graphics.putString(screen.getTerminalSize().getColumns() - tmp.length() - 10, 0, tmp);
+        graphics.putString(pos.getX(), pos.getY(), tmp);
     }
 }
