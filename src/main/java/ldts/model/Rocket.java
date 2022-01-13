@@ -2,12 +2,18 @@ package ldts.model;
 
 import ldts.view.View;
 
-public class Rocket implements Obstacle {
+public class Rocket implements Element, Obstacle {
     private Position position;
 
     @Override
     public Position getPosition() {
         return position;
+    }
+
+    @Override
+    public void move(int x, int y) {
+        position.setX(position.getX()+x);
+        position.setY(position.getY()+y);
     }
 
     @Override
@@ -34,13 +40,6 @@ public class Rocket implements Obstacle {
     public Rocket(int x, int y) {
         position= new Position(x,y);
     }
-
-
-    @Override
-    public void move() {
-        position.setX(position.getX()-3);
-    }
-
 
     @Override
     public boolean isLaser() {

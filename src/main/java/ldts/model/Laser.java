@@ -6,7 +6,7 @@ import ldts.view.View;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Laser implements Obstacle {
+public class Laser implements Element, Obstacle {
     private Position position;
     private final int orient;  // 1. -  2. |  3. \  4.  /
     private final int size;
@@ -78,8 +78,9 @@ public class Laser implements Obstacle {
     }
 
     @Override
-    public void move() {
-        position.setX(position.getX()-1);
+    public void move(int x, int y) {
+        position.setX(position.getX()+x);
+        position.setY(position.getY()+y);
     }
 
     @Override

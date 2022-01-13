@@ -2,7 +2,7 @@ package ldts.model;
 
 public interface Element {
     public Position getPosition();
-    void move();
+    void move(int x, int y);
     int getX();
     void setX(int x);
     int getY();

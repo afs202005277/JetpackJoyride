@@ -106,8 +106,8 @@ public class Controller {
         View.getScreen().clear();
         backgroundView.draw(new Position(0, LOWER_LIMIT), xMin);
         playerView.draw(player.getPosition());
-        for (Obstacle obstacle: obstacles) {
-            obstacle.move();
+        for (Obstacle obstacle : obstacles) {
+            obstacle.move(-1, 0);
             if (obstacle.isLaser()) laserView.draw(obstacle.getPosition(), obstacle.getLastPosition());
             else rocketView.draw(obstacle.getPosition());
         }
