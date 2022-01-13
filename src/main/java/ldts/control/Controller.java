@@ -23,6 +23,7 @@ public class Controller {
     private ArrayList<Element> coins;
     private RocketView rocketView;
     private LaserView laserView;
+    private CoinView coinView;
     private static final int LOWER_LIMIT = 1;
     private static Controller singleton = null;
     private DistanceCounterView distanceCounterView;
@@ -90,6 +91,7 @@ public class Controller {
         gameOverView = new GameOverView();
         rocketView = new RocketView("#000C66", "#FF1F1F", "$%");
         laserView = new LaserView("#336699", ' ');
+        coinView = new CoinView("#000C66", "#DEAC4C", "C");
         obstacles = new ArrayList<>();
         coins = new ArrayList<>();
         distanceCounterView = new DistanceCounterView("#808080", "#000000");
@@ -101,10 +103,11 @@ public class Controller {
         return singleton;
     }
 
-    public void generateObstacles(int i){
+    public void generateObjects(int i){
         if (i % 15 == 0) {
-            int random = (int) (Math.random() * (5 - 1)) + 1;
-            if (random < 4) obstacles.add(new Laser());
+            int random = (int) (Math.random() * (7 - 1)) + 1;
+            if (random <= 4) obstacles.add(new Laser());
+            else if (random <= 6) coins.add(new Coin());
             else obstacles.add(new Rocket());
         }
     }
@@ -119,6 +122,11 @@ public class Controller {
             if (obstacle.isLaser()) laserView.draw(object.getPosition(), obstacle.getLastPosition());
             else rocketView.draw(object.getPosition());
         }
+        for (Element coin : coins)
+        {
+            coin.move(-1, 0);
+            coinView.draw(coin.getPosition());
+        }
         distanceCounterView.draw(xMin);
         View.getScreen().refresh();
     }
@@ -130,7 +138,7 @@ public class Controller {
             replay = false;
             Command command = new Command(View.getScreen());
             command.start();
-            int xMin = 0, i = 0;
+            int xMin = 0, i = 0, cns = 0;
             while (!gameOver) {
                 long startTime = System.currentTimeMillis();
                 Character keyPressed = command.useKey();
@@ -142,14 +150,27 @@ public class Controller {
                 } else if (player.getPosition().getY() > LOWER_LIMIT + 1) {
                     player.goLower();
                 }
-                generateObstacles(i);
+
+                generateObjects(i);
                 drawElements(xMin);
+
                 for (Obstacle obstacle : obstacles) {
                     Element object = (Element) obstacle;
                     if (checkCollisions(object, player)) {
                         gameOver = true;
                     }
                 }
+
+                for (int j = 0; j < coins.size(); j++)
+                {
+                    if (checkCollisions(coins.get(j), player))
+                    {
+                        coins.remove(j);
+                        cns++;
+                        j--;
+                    }
+                }
+
                 xMin++;
                 i++;
                 long finalTime = System.currentTimeMillis();
