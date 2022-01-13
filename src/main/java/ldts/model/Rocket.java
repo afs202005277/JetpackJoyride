@@ -2,7 +2,7 @@ package ldts.model;
 
 import ldts.view.View;
 
-public class Rocket implements Obstacle{
+public class Rocket implements Obstacle {
     private Position position;
 
     @Override

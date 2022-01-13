@@ -1,8 +1,10 @@
 package ldts.model;
 
-public class Player extends Element{
+public class Player {
+    Position position;
+
     public Player() {
-        super(new Position(4, 2));
+        position = new Position(4, 2);
     }
     public void goHigher(){
         position.y ++;
