@@ -24,6 +24,11 @@ public class Laser implements Element, Obstacle {
     public void setY(int y) {position.setY(y);}
 
     @Override
+    public boolean isObstacle() {
+        return true;
+    }
+
+    @Override
     public Position getPosition() {
         return position;
     }

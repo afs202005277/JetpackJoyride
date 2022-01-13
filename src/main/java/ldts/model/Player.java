@@ -42,6 +42,11 @@ public class Player implements Element {
 
     @Override
     public void setY(int y) {
-        position.setX(y);
+        position.setY(y);
+    }
+
+    @Override
+    public boolean isObstacle() {
+        return false;
     }
 }

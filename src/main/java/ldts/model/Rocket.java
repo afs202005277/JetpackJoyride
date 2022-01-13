@@ -17,6 +17,11 @@ public class Rocket implements Element, Obstacle {
     }
 
     @Override
+    public boolean isObstacle() {
+        return true;
+    }
+
+    @Override
     public int getX() {return position.getX();}
 
     @Override

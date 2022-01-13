@@ -20,6 +20,7 @@ public class Controller {
     private BackgroundView backgroundView;
     private GameOverView gameOverView;
     private ArrayList<Obstacle> obstacles;
+    private ArrayList<Element> coins;
     private RocketView rocketView;
     private LaserView laserView;
     private static final int LOWER_LIMIT = 1;
@@ -47,32 +48,37 @@ public class Controller {
         this.obstacles = obstacles;
     }
 
-    public boolean checkCollisions(ArrayList<Obstacle> obstacles, Player player)
+    public boolean checkCollisions(Element object, Player player)
     {
         boolean collision = false;
-        for (Obstacle obstacle : obstacles) {
+        if (object.isObstacle())
+        {
+            Obstacle obstacle = (Obstacle) object;
             if (obstacle.isLaser()) {
                 // Laser Collision
-                if (obstacle.getPosition().getX() <= player.getPosition().getX() && player.getPosition().getX() <= obstacle.getLastPosition().getX()) {
+                if (object.getPosition().getX() <= player.getPosition().getX() && player.getPosition().getX() <= obstacle.getLastPosition().getX()) {
                     int m = 0;
-                    if (obstacle.getPosition().getX() == obstacle.getLastPosition().getX() && obstacle.getLastPosition().getY() <= player.getPosition().getY() && player.getPosition().getY() <= obstacle.getPosition().getY())
+                    if (object.getPosition().getX() == obstacle.getLastPosition().getX() && obstacle.getLastPosition().getY() <= player.getPosition().getY() && player.getPosition().getY() <= object.getPosition().getY())
                         collision = true;
                     else {
-                        if (obstacle.getPosition().getY() > obstacle.getLastPosition().getY()) m = -1;
-                        else if (obstacle.getPosition().getY() < obstacle.getLastPosition().getY()) m = 1;
+                        if (object.getPosition().getY() > obstacle.getLastPosition().getY()) m = -1;
+                        else if (object.getPosition().getY() < obstacle.getLastPosition().getY()) m = 1;
 
-                        int b = obstacle.getPosition().getY() - m * obstacle.getPosition().getX();
+                        int b = object.getPosition().getY() - m * object.getPosition().getX();
 
                         if (player.getPosition().getX() * m + b == player.getPosition().getY()) collision = true;
                     }
-
                 }
             } else {
                 // Rocket Collision
-                Position temp = new Position(obstacle.getX() + 1, obstacle.getPosition().getY());
-                if (obstacle.getPosition().equals(player.getPosition()) || temp.equals(player.getPosition()))
+                Position temp = new Position(object.getX() + 1, object.getPosition().getY());
+                if (object.getPosition().equals(player.getPosition()) || temp.equals(player.getPosition()))
                     collision = true;
             }
+        }
+        else
+        {
+            if (object.getPosition().equals(player.getPosition())) collision = true;
         }
         return collision;
     }
@@ -85,6 +91,7 @@ public class Controller {
         rocketView = new RocketView("#000C66", "#FF1F1F", "$%");
         laserView = new LaserView("#336699", ' ');
         obstacles = new ArrayList<>();
+        coins = new ArrayList<>();
         distanceCounterView = new DistanceCounterView("#808080", "#000000");
     }
 
@@ -107,9 +114,10 @@ public class Controller {
         backgroundView.draw(new Position(0, LOWER_LIMIT), xMin);
         playerView.draw(player.getPosition());
         for (Obstacle obstacle : obstacles) {
-            obstacle.move(-1, 0);
-            if (obstacle.isLaser()) laserView.draw(obstacle.getPosition(), obstacle.getLastPosition());
-            else rocketView.draw(obstacle.getPosition());
+            Element object = (Element) obstacle;
+            object.move(-1, 0);
+            if (obstacle.isLaser()) laserView.draw(object.getPosition(), obstacle.getLastPosition());
+            else rocketView.draw(object.getPosition());
         }
         distanceCounterView.draw(xMin);
         View.getScreen().refresh();
@@ -136,8 +144,11 @@ public class Controller {
                 }
                 generateObstacles(i);
                 drawElements(xMin);
-                if (checkCollisions(obstacles, player)) {
-                    gameOver = true;
+                for (Obstacle obstacle : obstacles) {
+                    Element object = (Element) obstacle;
+                    if (checkCollisions(object, player)) {
+                        gameOver = true;
+                    }
                 }
                 xMin++;
                 i++;

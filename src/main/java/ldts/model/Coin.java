@@ -10,6 +10,13 @@ public class Coin implements Element {
         this.position = position;
     }
 
+    public Coin()
+    {
+        int y = (int) (Math.random() * (View.getRows() - 2)) + 2;
+        int x = View.getScreen().getTerminalSize().getColumns();
+        position = new Position(x,y);
+    }
+
     @Override
     public Position getPosition() {
         return position;
@@ -39,5 +46,10 @@ public class Coin implements Element {
     @Override
     public void setY(int y) {
         position.setY(y);
+    }
+
+    @Override
+    public boolean isObstacle() {
+        return false;
     }
 }
