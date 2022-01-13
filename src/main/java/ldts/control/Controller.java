@@ -26,7 +26,7 @@ public class Controller {
     private CoinView coinView;
     private static final int LOWER_LIMIT = 1;
     private static Controller singleton = null;
-    private DistanceCounterView distanceCounterView;
+    private CounterView counterView;
     private int timePerFrame = 1000 / 15;
 
     public Player getPlayer() {
@@ -94,7 +94,7 @@ public class Controller {
         coinView = new CoinView("#000C66", "#DEAC4C", "C");
         obstacles = new ArrayList<>();
         coins = new ArrayList<>();
-        distanceCounterView = new DistanceCounterView("#808080", "#000000");
+        counterView = new CounterView("#808080", "#000000");
     }
 
     public static Controller getInstance() throws IOException, URISyntaxException, FontFormatException {
@@ -127,7 +127,7 @@ public class Controller {
             coin.move(-1, 0);
             coinView.draw(coin.getPosition());
         }
-        distanceCounterView.draw(xMin);
+        counterView.draw(xMin);
         View.getScreen().refresh();
     }
 
