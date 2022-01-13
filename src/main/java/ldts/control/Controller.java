@@ -86,17 +86,19 @@ public class Controller {
     }
 
     public Controller() throws IOException, URISyntaxException, FontFormatException {
+        String BACKGROUND = "#57AAF8";
+        String WALLS = "#595959";
         player = new Player();
-        playerView = new PlayerView("#000C66", "#FFFF33", "!");
-        backgroundView = new BackgroundView("#808080", "#000C66", ' ', ' ', LOWER_LIMIT);
+        playerView = new PlayerView(BACKGROUND, "#D5433C", "!");
+        backgroundView = new BackgroundView(WALLS, BACKGROUND, ' ', ' ', LOWER_LIMIT);
         gameOverView = new GameOverView();
-        rocketView = new RocketView("#000C66", "#FF1F1F", "$%");
-        laserView = new LaserView("#336699", ' ');
-        coinView = new CoinView("#000C66", "#DEAC4C", "C");
+        rocketView = new RocketView(BACKGROUND, "#000000", "$%");
+        laserView = new LaserView("#fffb54", ' ');
+        coinView = new CoinView(BACKGROUND, "#DEAC4C", "C");
         obstacles = new ArrayList<>();
         coins = new ArrayList<>();
-        distanceCounterView = new CounterView("#808080", "#000000", "meters");
-        coinsCounterView = new CounterView("#808080", "#DEAC4C", "coins");
+        distanceCounterView = new CounterView(WALLS, "#000000", "meters");
+        coinsCounterView = new CounterView(WALLS, "#DEAC4C", "coins");
     }
 
     public static Controller getInstance() throws IOException, URISyntaxException, FontFormatException {
