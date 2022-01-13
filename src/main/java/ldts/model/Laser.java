@@ -46,7 +46,7 @@ public class Laser implements Obstacle {
 
     public Laser() {
         int y = (int) (Math.random() * (View.getRows() - 2)) + 2;
-        int x = View.getCollumns();
+        int x = View.getScreen().getTerminalSize().getColumns();
         position = new Position(x,y);
         int ori = (int) (Math.random() * (10 - 1)) + 1;
         if (ori <= 2) {

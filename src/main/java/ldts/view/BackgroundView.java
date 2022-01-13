@@ -10,23 +10,31 @@ import java.util.ArrayList;
 
 public class BackgroundView extends View{
     private final int lower;
+    private TextColor backGroundBase;
+    private TextColor backGroundWall;
+    private char characterWall;
+    private char characterBase;
+
+    public BackgroundView(String backGroundBase, String backGroundWall, char characterWall, char characterBase, int lower){
+        this.backGroundBase = stringToColor(backGroundBase);
+        this.backGroundWall = stringToColor(backGroundWall);
+        this.characterWall = characterWall;
+        this.lower = lower;
+        this.characterBase = characterBase;
+    }
 
     public int getLower() {
         return lower;
     }
 
-    public BackgroundView(int lower) {
-        this.lower = lower;
-    }
-
     private void drawBase(Position pos){
-        graphics.setBackgroundColor(TextColor.Factory.fromString("#808080")); // GREY
-        graphics.fillRectangle(new TerminalPosition(pos.getX(), ROWS - pos.getY()), new TerminalSize(screen.getTerminalSize().getColumns(), lower), ' ');
+        graphics.setBackgroundColor(backGroundBase); // GREY
+        graphics.fillRectangle(new TerminalPosition(pos.getX(), ROWS - pos.getY()), new TerminalSize(screen.getTerminalSize().getColumns(), lower), characterBase);
     }
 
     private void drawWall(Position pos) throws IOException {
-        graphics.setBackgroundColor(TextColor.Factory.fromString("#000C66"));  // DARK BLUE
-        graphics.fillRectangle(new TerminalPosition(pos.getX(), pos.getY()), screen.getTerminalSize(), ' ');
+        graphics.setBackgroundColor(backGroundWall);  // DARK BLUE
+        graphics.fillRectangle(new TerminalPosition(pos.getX(), pos.getY()), screen.getTerminalSize(), characterWall);
     }
 
     public void draw(Position pos, int xMin) throws IOException {

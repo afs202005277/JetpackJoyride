@@ -9,11 +9,24 @@ import java.net.URISyntaxException;
 
 
 public class PlayerView extends View{
+    private TextColor backGround;
+    private TextColor foreGround;
+    private String string;
+
+    public PlayerView(String backGround, String foreGround, String string) {
+        this.backGround = stringToColor(backGround);
+        this.foreGround = stringToColor(foreGround);
+        this.string = string;
+    }
 
     @Override
     public void draw(Position pos) throws IOException {
-        graphics.setBackgroundColor(TextColor.Factory.fromString("#000C66"));
-        graphics.setForegroundColor(TextColor.Factory.fromString("#FFFF33"));
-        graphics.putString(pos.getX(), ROWS-pos.getY(), "!");
+        graphics.setBackgroundColor(backGround);
+        graphics.setForegroundColor(foreGround);
+        graphics.putString(pos.getX(), ROWS-pos.getY(), string);
+
+        /*//TO DELETE LATER
+        graphics.setForegroundColor(TextColor.Factory.fromString("#FFBF00"));
+        graphics.putString(pos.getX(), pos.getY()+1, "#");*/
     }
 }

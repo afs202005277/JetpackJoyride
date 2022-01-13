@@ -79,13 +79,13 @@ public class Controller {
 
     public Controller() throws IOException, URISyntaxException, FontFormatException {
         player = new Player();
-        playerView = new PlayerView();
-        backgroundView = new BackgroundView(LOWER_LIMIT);
+        playerView = new PlayerView("#000C66", "#FFFF33", "!");
+        backgroundView = new BackgroundView("#808080", "#000C66", ' ', ' ', LOWER_LIMIT);
         gameOverView = new GameOverView();
-        rocketView = new RocketView();
-        laserView = new LaserView();
+        rocketView = new RocketView("#000C66", "#FF1F1F", "$%");
+        laserView = new LaserView("#336699", ' ');
         obstacles = new ArrayList<>();
-        distanceCounterView = new DistanceCounterView();
+        distanceCounterView = new DistanceCounterView("#808080", "#000000");
     }
 
     public static Controller getInstance() throws IOException, URISyntaxException, FontFormatException {

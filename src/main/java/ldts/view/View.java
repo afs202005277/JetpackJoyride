@@ -1,6 +1,7 @@
 package ldts.view;
 
 import com.googlecode.lanterna.TerminalSize;
+import com.googlecode.lanterna.TextColor;
 import com.googlecode.lanterna.graphics.TextGraphics;
 
 import com.googlecode.lanterna.screen.Screen;
@@ -20,7 +21,7 @@ import java.net.URISyntaxException;
 import java.net.URL;
 
 public abstract class View {
-    protected static final int COLUMNS = 60;
+    protected static final int COLUMNS = 51;
     protected static final int ROWS = 18;
     static protected Screen screen;
     static protected TextGraphics graphics;
@@ -54,7 +55,10 @@ public abstract class View {
         screen.startScreen();             // screens must be started
         screen.doResizeIfNecessary();     // resize screen if necessary
         graphics = screen.newTextGraphics();
-        System.out.println(screen.getTerminalSize().getColumns());
+    }
+
+    protected TextColor stringToColor(String s){
+        return TextColor.Factory.fromString(s);
     }
 
     public abstract void draw(Position pos) throws IOException;
