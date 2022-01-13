@@ -16,7 +16,7 @@ public class LaserTest {
         Laser laser = new Laser();
         int x = laser.getX() - 1;
         int y = laser.getY();
-        laser.move();
+        laser.move(-1, 0);
         Assertions.assertEquals(x,laser.getX());
     }
     @Test

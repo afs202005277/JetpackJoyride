@@ -12,7 +12,7 @@ public class RocketTest {
         Rocket rocket = new Rocket();
         int x = rocket.getX() - 3 ;
         int y = rocket.getY();
-        rocket.move();
+        rocket.move(-1, 0);
         Assertions.assertEquals(x,rocket.getX());
     }
 
