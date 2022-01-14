@@ -116,6 +116,11 @@ public class Controller {
         }
     }
 
+    public void runInstructions() throws IOException {
+        InstructionsView iView = new InstructionsView();
+        iView.draw(playerView, backgroundView, laserView, coinView);
+    }
+
     public void drawElements(int xMin, int coins) throws IOException {
         View.getScreen().clear();
         backgroundView.draw(new Position(0, LOWER_LIMIT), xMin);
@@ -165,7 +170,6 @@ public class Controller {
                         gameOver = true;
                     }
                 }
-
                 for (int j = 0; j < coins.size(); j++)
                 {
                     if (checkCollisions(coins.get(j), player))
@@ -175,7 +179,6 @@ public class Controller {
                         j--;
                     }
                 }
-
                 xMin++;
                 i++;
                 long finalTime = System.currentTimeMillis();

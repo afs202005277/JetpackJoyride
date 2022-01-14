@@ -24,9 +24,13 @@ public class PlayerView extends View{
         graphics.setBackgroundColor(backGround);
         graphics.setForegroundColor(foreGround);
         graphics.putString(pos.getX(), ROWS-pos.getY(), string);
+    }
 
-        /*//TO DELETE LATER
-        graphics.setForegroundColor(TextColor.Factory.fromString("#FFBF00"));
-        graphics.putString(pos.getX(), pos.getY()+1, "#");*/
+    public void drawLarge(Position pos){
+        graphics.setBackgroundColor(backGround);
+        graphics.setForegroundColor(foreGround);
+        graphics.putString(pos.getX(), ROWS-pos.getY(), "&?(");
+        graphics.putString(pos.getX(), ROWS-pos.getY() + 1, ")*+");
+        graphics.putString(pos.getX(), ROWS-pos.getY() + 2, ",;/");
     }
 }

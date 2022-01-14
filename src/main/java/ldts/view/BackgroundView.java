@@ -23,6 +23,10 @@ public class BackgroundView extends View{
         this.characterBase = characterBase;
     }
 
+    public TextColor getBackGroundWall() {
+        return backGroundWall;
+    }
+
     public int getLower() {
         return lower;
     }
