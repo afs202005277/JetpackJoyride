@@ -12,8 +12,7 @@ public class GameOverView extends View
     private int selected = 0; // 0 - Replay, 1 - QUIT
     private final int options = 2;
 
-    public void moveSelected(int move)
-    {
+    public void moveSelected(int move) {
         selected += move;
         if (selected < 0) selected = options - selected;
         else if (selected >= options) selected -= options;

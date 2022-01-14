@@ -2,6 +2,7 @@ package ldts.control;
 
 import com.googlecode.lanterna.input.KeyStroke;
 import com.googlecode.lanterna.input.KeyType;
+import com.googlecode.lanterna.screen.Screen;
 import ldts.model.*;
 import ldts.view.*;
 
@@ -29,6 +30,7 @@ public class Controller {
     private CounterView distanceCounterView;
     private CounterView coinsCounterView;
     private int timePerFrame = 1000 / 15;
+    private Screen screen;
 
     public Player getPlayer() {
         return player;
@@ -127,7 +129,7 @@ public class Controller {
     }
 
     public void drawElements(int xMin, int coins) throws IOException {
-        View.getScreen().clear();
+        screen.clear();
         backgroundView.draw(new Position(0, LOWER_LIMIT), xMin);
         playerView.draw(player.getPosition());
         for (Obstacle obstacle : obstacles) {
@@ -141,24 +143,24 @@ public class Controller {
             coin.move(-1, 0);
             coinView.draw(coin.getPosition());
         }
-        distanceCounterView.draw(new Position(View.getScreen().getTerminalSize().getColumns() - distanceCounterView.getUnits().length() - 10, 0), xMin);
+        distanceCounterView.draw(new Position(screen.getTerminalSize().getColumns() - distanceCounterView.getUnits().length() - 10, 0), xMin);
         coinsCounterView.draw(new Position(0, 0), coins);
-        View.getScreen().refresh();
+        screen.refresh();
     }
 
     public void run() throws IOException, InterruptedException, URISyntaxException, FontFormatException {
         boolean replay;
-        View.initScreen();
+        screen = View.initScreen();
         do {
             replay = false;
-            Command command = new Command(View.getScreen());
+            Command command = new Command(screen);
             command.start();
             int xMin = 0, i = 0, cns = 0;
             while (!gameOver) {
                 long startTime = System.currentTimeMillis();
                 Character keyPressed = command.useKey();
                 if (keyPressed == ' ') {
-                    if (player.getPosition().getY() < View.getScreen().getTerminalSize().getRows())
+                    if (player.getPosition().getY() < screen.getTerminalSize().getRows())
                         player.goHigher();
                 } else if (keyPressed == 'q') {
                     gameOver = true;
@@ -192,7 +194,7 @@ public class Controller {
             command.interrupt();
             while (gameOver) {
                 gameOverView.draw(null);
-                KeyStroke x = View.getScreen().readInput();
+                KeyStroke x = screen.readInput();
                 if (x.getKeyType() == KeyType.ArrowUp) {
                     gameOverView.moveSelected(-1);
                 } else if (x.getKeyType() == KeyType.ArrowDown) {

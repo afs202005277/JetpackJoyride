@@ -26,7 +26,7 @@ public abstract class View {
     static protected Screen screen;
     static protected TextGraphics graphics;
 
-    public static void initScreen() throws IOException, FontFormatException, URISyntaxException {
+    public static Screen initScreen() throws IOException, FontFormatException, URISyntaxException {
         URL resource = View.class.getClassLoader().getResource("player_new.ttf");
         File fontFile = new File(resource.toURI());
         Font font =  Font.createFont(Font.TRUETYPE_FONT, fontFile);
@@ -55,6 +55,7 @@ public abstract class View {
         screen.startScreen();             // screens must be started
         screen.doResizeIfNecessary();     // resize screen if necessary
         graphics = screen.newTextGraphics();
+        return screen;
     }
 
     protected TextColor stringToColor(String s){
