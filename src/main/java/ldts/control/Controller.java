@@ -121,6 +121,11 @@ public class Controller {
         iView.draw(playerView, backgroundView, laserView, coinView);
     }
 
+    public void runMenu() throws IOException {
+        MenuView menuView = new MenuView();
+        menuView.draw(playerView, backgroundView, laserView, coinView);
+    }
+
     public void drawElements(int xMin, int coins) throws IOException {
         View.getScreen().clear();
         backgroundView.draw(new Position(0, LOWER_LIMIT), xMin);
