@@ -6,7 +6,7 @@ import ldts.view.View;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Laser implements Element, Obstacle {
+public class Laser implements Obstacle {
     private Position position;
     private final int orient;  // 1. -  2. |  3. \  4.  /
     private final int size;

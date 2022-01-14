@@ -1,7 +1,7 @@
 package ldts.model;
 
 
-public interface Obstacle {
+public interface Obstacle extends Element{
     Position getLastPosition();
     boolean isLaser();
 }

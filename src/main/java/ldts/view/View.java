@@ -50,7 +50,6 @@ public abstract class View {
                 System.exit(0);
             }
         });
-        ((AWTTerminalFrame)terminal).addKeyListener(new InputReader());
         screen = new TerminalScreen(terminal);
         screen.setCursorPosition(null);   // we don't need a cursor
         screen.startScreen();             // screens must be started

@@ -14,9 +14,9 @@ import java.util.ArrayList;
 
 
 
-public class Controller implements InputObserver{
-    private boolean gameOver = false;
+public class Controller {
     private Player player;
+    private InputReader inputReader;
     private PlayerView playerView;
     private BackgroundView backgroundView;
     private GameOverView gameOverView;
@@ -91,6 +91,7 @@ public class Controller implements InputObserver{
         String BACKGROUND = "#57AAF8";
         String WALLS = "#595959";
         player = new Player();
+        inputReader = new InputReader(View.getScreen());
         playerView = new PlayerView(BACKGROUND, "#D5433C", "!");
         backgroundView = new BackgroundView(WALLS, BACKGROUND, ' ', ' ', LOWER_LIMIT);
         gameOverView = new GameOverView();
@@ -149,24 +150,21 @@ public class Controller implements InputObserver{
     }
 
     public void run() throws IOException, InterruptedException, URISyntaxException, FontFormatException {
-        boolean replay;
+        boolean gameOver = false;
         screen = View.initScreen();
-        InputReader inputReader = new InputReader();
-        inputReader.addObserver(this);
         do {
-            replay = false;
-            int xMin = 0, i = 0, cns = 0;
+            PlayerController playerController = new PlayerController(player, inputReader);
+            inputReader.start();
+            int xMin = 0, coinsCollected = 0;
             while (!gameOver) {
+                inputReader.notify();
                 long startTime = System.currentTimeMillis();
-                if (player.getPosition().getY() > LOWER_LIMIT + 1) {
-                    player.goLower();
-                }
-                generateObjects(i);
-                drawElements(xMin, cns);
+                playerController.step(LOWER_LIMIT);
+                generateObjects(xMin);
+                drawElements(xMin, coinsCollected);
 
                 for (Obstacle obstacle : obstacles) {
-                    Element object = (Element) obstacle;
-                    if (checkCollisions(object, player)) {
+                    if (checkCollisions(obstacle, player)) {
                         gameOver = true;
                     }
                 }
@@ -175,16 +173,16 @@ public class Controller implements InputObserver{
                     if (checkCollisions(coins.get(j), player))
                     {
                         coins.remove(j);
-                        cns++;
+                        coinsCollected++;
                         j--;
                     }
                 }
                 xMin++;
-                i++;
                 long finalTime = System.currentTimeMillis();
                 Thread.sleep(timePerFrame-(finalTime - startTime));
+                inputReader.wait();
             }
-            while (gameOver) {
+            while (true) {
                 gameOverView.draw(null);
                 KeyStroke x = screen.readInput();
                 if (x.getKeyType() == KeyType.ArrowUp) {
@@ -194,23 +192,16 @@ public class Controller implements InputObserver{
                 } else if (x.getKeyType() == KeyType.Enter) {
                     if (gameOverView.getSelected() == 1)
                         System.exit(0);
-                    replay = true;
                     gameOver = false;
                     break;
                 }
             }
             resetElements();
-        }while(replay);
+        }while(true);
     }
 
     private void resetElements() throws IOException, URISyntaxException, FontFormatException {
         player = new Player();
         obstacles = new ArrayList<>();
-    }
-
-    @Override
-    public void input(char input) {
-        if (input == ' ' && player.getPosition().getY() < screen.getTerminalSize().getRows())
-            player.goHigher(2);
     }
 }
