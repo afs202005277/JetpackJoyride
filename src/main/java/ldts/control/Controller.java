@@ -94,7 +94,7 @@ public class Controller {
         gameOverView = new GameOverView();
         rocketView = new RocketView(BACKGROUND, "#000000", "$%");
         laserView = new LaserView("#fffb54", ' ');
-        coinView = new CoinView(BACKGROUND, "#DEAC4C", "C");
+        coinView = new CoinView(BACKGROUND, "#DEAC4C", "#");
         obstacles = new ArrayList<>();
         coins = new ArrayList<>();
         distanceCounterView = new CounterView(WALLS, "#000000", "meters");
@@ -116,7 +116,7 @@ public class Controller {
         }
     }
 
-    public void drawElements(int xMin, int cns) throws IOException {
+    public void drawElements(int xMin, int coins) throws IOException {
         View.getScreen().clear();
         backgroundView.draw(new Position(0, LOWER_LIMIT), xMin);
         playerView.draw(player.getPosition());
@@ -126,13 +126,13 @@ public class Controller {
             if (obstacle.isLaser()) laserView.draw(object.getPosition(), obstacle.getLastPosition());
             else rocketView.draw(object.getPosition());
         }
-        for (Element coin : coins)
+        for (Element coin : this.coins)
         {
             coin.move(-1, 0);
             coinView.draw(coin.getPosition());
         }
         distanceCounterView.draw(new Position(View.getScreen().getTerminalSize().getColumns() - distanceCounterView.getUnits().length() - 10, 0), xMin);
-        coinsCounterView.draw(new Position(0, 0), cns);
+        coinsCounterView.draw(new Position(0, 0), coins);
         View.getScreen().refresh();
     }
 
