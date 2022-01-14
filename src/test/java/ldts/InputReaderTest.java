@@ -3,7 +3,7 @@ package ldts;
 import com.googlecode.lanterna.input.KeyStroke;
 import com.googlecode.lanterna.input.KeyType;
 import com.googlecode.lanterna.screen.Screen;
-import ldts.control.Command;
+import ldts.control.InputReader;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -11,30 +11,31 @@ import org.mockito.Mockito;
 
 import java.io.IOException;
 
-public class CommandTest {
+public class InputReaderTest {
     private Screen screen;
-    private Command command;
+    private InputReader inputReader;
     @BeforeEach
     public void getTestScreen() throws IOException {
         screen = Mockito.mock(Screen.class);
     }
 
     @BeforeEach
-    public void getTestCommand(){command = new Command(screen);}
+    public void getTestCommand(){
+        inputReader = new InputReader(screen);}
 
     @Test
     public void ChangeKeyTest(){
-        Assertions.assertEquals('0', command.getKey());
-        command.changeKey('A');
-        Assertions.assertEquals('A', command.getKey());
+        Assertions.assertEquals('0', inputReader.getKey());
+        inputReader.changeKey('A');
+        Assertions.assertEquals('A', inputReader.getKey());
     }
 
     @Test
     public void useKeyTest(){
-        Assertions.assertEquals('0', command.getKey());
-        command.changeKey('A');
-        Assertions.assertEquals('A', command.useKey());
-        Assertions.assertEquals('0', command.getKey());
+        Assertions.assertEquals('0', inputReader.getKey());
+        inputReader.changeKey('A');
+        Assertions.assertEquals('A', inputReader.useKey());
+        Assertions.assertEquals('0', inputReader.getKey());
     }
 
     @Test
@@ -44,17 +45,17 @@ public class CommandTest {
         Mockito.when(k.getKeyType()).thenReturn(KeyType.Character);
         Mockito.when(screen.readInput()).thenReturn(k);
         //When space is pressed
-        command.inputReader(screen);
-        Assertions.assertEquals(k.getCharacter(), command.getKey());
+        inputReader.inputReader(screen);
+        Assertions.assertEquals(k.getCharacter(), inputReader.getKey());
 
         //When any other char is pressed
         Mockito.when(k.getCharacter()).thenReturn('a');
-        command.inputReader(screen);
-        Assertions.assertEquals('a', command.getKey());
+        inputReader.inputReader(screen);
+        Assertions.assertEquals('a', inputReader.getKey());
 
         //When any other key is pressed (not character)
         Mockito.when(k.getKeyType()).thenReturn(KeyType.ArrowDown);
-        command.inputReader(screen);
-        Assertions.assertEquals('0', command.getKey());
+        inputReader.inputReader(screen);
+        Assertions.assertEquals('0', inputReader.getKey());
     }
 }

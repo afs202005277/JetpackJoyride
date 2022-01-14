@@ -10,6 +10,7 @@ import com.googlecode.lanterna.terminal.DefaultTerminalFactory;
 import com.googlecode.lanterna.terminal.Terminal;
 import com.googlecode.lanterna.terminal.swing.AWTTerminalFontConfiguration;
 import com.googlecode.lanterna.terminal.swing.AWTTerminalFrame;
+import ldts.control.InputReader;
 import ldts.model.Position;
 
 import java.awt.*;
@@ -49,7 +50,7 @@ public abstract class View {
                 System.exit(0);
             }
         });
-
+        ((AWTTerminalFrame)terminal).addKeyListener(new InputReader());
         screen = new TerminalScreen(terminal);
         screen.setCursorPosition(null);   // we don't need a cursor
         screen.startScreen();             // screens must be started

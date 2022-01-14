@@ -14,7 +14,7 @@ import java.util.ArrayList;
 
 
 
-public class Controller {
+public class Controller implements InputObserver{
     private boolean gameOver = false;
     private Player player;
     private PlayerView playerView;
@@ -87,7 +87,7 @@ public class Controller {
         return collision;
     }
 
-    public Controller() throws IOException, URISyntaxException, FontFormatException {
+    public Controller() {
         String BACKGROUND = "#57AAF8";
         String WALLS = "#595959";
         player = new Player();
@@ -110,7 +110,7 @@ public class Controller {
     }
 
     public void generateObjects(int i){
-        if (i % 15 == 0) {
+        if (i % 5 == 0) {
             int random = (int) (Math.random() * (7 - 1)) + 1;
             if (random <= 4) obstacles.add(new Laser());
             else if (random <= 6) coins.add(new Coin());
@@ -151,23 +151,16 @@ public class Controller {
     public void run() throws IOException, InterruptedException, URISyntaxException, FontFormatException {
         boolean replay;
         screen = View.initScreen();
+        InputReader inputReader = new InputReader();
+        inputReader.addObserver(this);
         do {
             replay = false;
-            Command command = new Command(screen);
-            command.start();
             int xMin = 0, i = 0, cns = 0;
             while (!gameOver) {
                 long startTime = System.currentTimeMillis();
-                Character keyPressed = command.useKey();
-                if (keyPressed == ' ') {
-                    if (player.getPosition().getY() < screen.getTerminalSize().getRows())
-                        player.goHigher();
-                } else if (keyPressed == 'q') {
-                    gameOver = true;
-                } else if (player.getPosition().getY() > LOWER_LIMIT + 1) {
+                if (player.getPosition().getY() > LOWER_LIMIT + 1) {
                     player.goLower();
                 }
-
                 generateObjects(i);
                 drawElements(xMin, cns);
 
@@ -191,7 +184,6 @@ public class Controller {
                 long finalTime = System.currentTimeMillis();
                 Thread.sleep(timePerFrame-(finalTime - startTime));
             }
-            command.interrupt();
             while (gameOver) {
                 gameOverView.draw(null);
                 KeyStroke x = screen.readInput();
@@ -214,5 +206,11 @@ public class Controller {
     private void resetElements() throws IOException, URISyntaxException, FontFormatException {
         player = new Player();
         obstacles = new ArrayList<>();
+    }
+
+    @Override
+    public void input(char input) {
+        if (input == ' ' && player.getPosition().getY() < screen.getTerminalSize().getRows())
+            player.goHigher(2);
     }
 }

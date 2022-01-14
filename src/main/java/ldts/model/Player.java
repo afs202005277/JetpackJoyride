@@ -6,8 +6,13 @@ public class Player implements Element {
     public Player() {
         position = new Position(4, 2);
     }
+
     public void goHigher(){
         position.setY(position.getY()+1);
+    }
+
+    public void goHigher(int step){
+        position.setY(position.getY()+step);
     }
 
     public void goLower() {
