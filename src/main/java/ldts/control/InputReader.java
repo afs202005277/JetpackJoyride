@@ -19,15 +19,15 @@ public class InputReader extends Thread {
         observers = new ArrayList<>();
     }
 
-    public void addObserver(InputObserver obs){
+    public synchronized void addObserver(InputObserver obs){
         observers.add(obs);
     }
 
-    public void removeObserver(InputObserver obs){
+    public synchronized void removeObserver(InputObserver obs){
         observers.remove(obs);
     }
 
-    public void notify(KeyStroke c){
+    public synchronized void notify(KeyStroke c){
         for (InputObserver observer:observers)
             observer.input(c);
     }

@@ -116,7 +116,6 @@ public class Controller {
         }
         distanceCounterView.draw(new Position(screen.getTerminalSize().getColumns() - distanceCounterView.getUnits().length() - 10, 0), xMin);
         coinsCounterView.draw(new Position(0, 0), coins);
-        screen.refresh();
     }
 
     public void run() throws IOException, InterruptedException, URISyntaxException, FontFormatException {

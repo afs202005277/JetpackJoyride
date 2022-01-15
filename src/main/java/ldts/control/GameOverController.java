@@ -38,7 +38,6 @@ public class GameOverController implements InputObserver{
                 System.exit(0);
             gameOver = false;
             enterPressed = true;
-            System.out.println("ENTER PRESSED");
         }
     }
 

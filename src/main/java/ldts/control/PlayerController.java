@@ -22,14 +22,15 @@ public class PlayerController implements InputObserver{
     }
 
     @Override
-    public void input(KeyStroke input) {
+    public synchronized void input(KeyStroke input) {
         if (input.getKeyType() != KeyType.Character)
             return;
-        if (input.getCharacter() == ' ' && player.getPosition().getY() < View.getScreen().getTerminalSize().getRows())
+        if (input.getCharacter() == ' ' && player.getPosition().getY() < View.getScreen().getTerminalSize().getRows()) {
             player.goHigher();
+        }
     }
 
-    public void step(int lower) throws IOException {
+    public synchronized void step(int lower) throws IOException {
         if (player.getPosition().getY() > lower + 1) {
             player.goLower();
         }
