@@ -72,8 +72,6 @@ public class Controller {
                 if (object.getPosition().equals(player.getPosition()) || temp.equals(player.getPosition()))
                     collision = true;
             }
-        } else {
-
         }
         return collision;
     }
