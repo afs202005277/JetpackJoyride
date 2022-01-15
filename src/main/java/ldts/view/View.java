@@ -3,15 +3,12 @@ package ldts.view;
 import com.googlecode.lanterna.TerminalSize;
 import com.googlecode.lanterna.TextColor;
 import com.googlecode.lanterna.graphics.TextGraphics;
-
 import com.googlecode.lanterna.screen.Screen;
 import com.googlecode.lanterna.screen.TerminalScreen;
 import com.googlecode.lanterna.terminal.DefaultTerminalFactory;
 import com.googlecode.lanterna.terminal.Terminal;
 import com.googlecode.lanterna.terminal.swing.AWTTerminalFontConfiguration;
 import com.googlecode.lanterna.terminal.swing.AWTTerminalFrame;
-import ldts.control.InputReader;
-import ldts.model.Position;
 
 import java.awt.*;
 import java.awt.event.WindowAdapter;
@@ -30,7 +27,7 @@ public abstract class View {
     public static Screen initScreen() throws IOException, FontFormatException, URISyntaxException {
         URL resource = View.class.getClassLoader().getResource("player_new.ttf");
         File fontFile = new File(resource.toURI());
-        Font font =  Font.createFont(Font.TRUETYPE_FONT, fontFile);
+        Font font = Font.createFont(Font.TRUETYPE_FONT, fontFile);
 
         GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
         ge.registerFont(font);
@@ -43,7 +40,7 @@ public abstract class View {
         factory.setForceAWTOverSwing(true);
         factory.setInitialTerminalSize(new TerminalSize(COLUMNS, ROWS));
         Terminal terminal = factory.createTerminal();
-        ((AWTTerminalFrame)terminal).addWindowListener(new WindowAdapter() {
+        ((AWTTerminalFrame) terminal).addWindowListener(new WindowAdapter() {
             @Override
             public void windowClosing(WindowEvent e) {
                 e.getWindow().dispose();
@@ -58,34 +55,32 @@ public abstract class View {
         return screen;
     }
 
-    protected TextColor stringToColor(String s){
-        return TextColor.Factory.fromString(s);
-    }
-
-    public abstract void draw(Position pos) throws IOException;
-
     public static Screen getScreen() {
         return screen;
-    }
-
-    public static TextGraphics getGraphics() {
-        return graphics;
     }
 
     public static void setScreen(Screen screen) {
         View.screen = screen;
     }
 
+    public static TextGraphics getGraphics() {
+        return graphics;
+    }
+
     public static void setGraphics(TextGraphics graphics) {
         View.graphics = graphics;
     }
 
-    public static int getRows(){
+    public static int getRows() {
         return ROWS;
     }
 
-    public static int getCollumns(){
+    public static int getCollumns() {
         return COLUMNS;
+    }
+
+    protected TextColor stringToColor(String s) {
+        return TextColor.Factory.fromString(s);
     }
 
 }

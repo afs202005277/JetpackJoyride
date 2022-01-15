@@ -4,37 +4,52 @@ import com.googlecode.lanterna.screen.Screen;
 import ldts.model.*;
 import ldts.view.*;
 
-
 import java.awt.*;
 import java.io.IOException;
 import java.net.URISyntaxException;
 import java.util.ArrayList;
 
 
-
 public class Controller {
-    private PlayerController playerController;
-    private InputReader inputReader;
-    private BackgroundView backgroundView;
-    private ArrayList<Element> elements;
-    private RocketView rocketView;
-    private LaserView laserView;
-    private CoinView coinView;
     private static final int LOWER_LIMIT = 1;
     private static Controller singleton = null;
     private final CounterView distanceCounterView;
     private final CounterView coinsCounterView;
+    private final PlayerController playerController;
+    private InputReader inputReader;
+    private BackgroundView backgroundView;
+    private ArrayList<Element> elements;
+    private final RocketView rocketView;
+    private final LaserView laserView;
+    private final CoinView coinView;
     private Screen screen;
+
+    public Controller() {
+        String BACKGROUND = "#57AAF8";
+        String WALLS = "#595959";
+        playerController = new PlayerController(new Player(), new PlayerView(BACKGROUND, "#D5433C", "!"));
+        backgroundView = new BackgroundView(WALLS, BACKGROUND, ' ', ' ', LOWER_LIMIT);
+        rocketView = new RocketView(BACKGROUND, "#000000", "$%");
+        laserView = new LaserView("#fffb54", ' ');
+        coinView = new CoinView(BACKGROUND, "#DEAC4C", "#");
+        elements = new ArrayList<>();
+        distanceCounterView = new CounterView(WALLS, "#000000", "meters");
+        coinsCounterView = new CounterView(WALLS, "#DEAC4C", "coins");
+    }
+
+    public static Controller getInstance() {
+        if (singleton == null)
+            singleton = new Controller();
+        return singleton;
+    }
 
     public void setBackgroundView(BackgroundView backgroundView) {
         this.backgroundView = backgroundView;
     }
 
-    public boolean checkCollisions(Element object, Player player)
-    {
+    public boolean checkCollisions(Element object, Player player) {
         boolean collision = false;
-        if (object.isRocket() || object.isLaser())
-        {
+        if (object.isRocket() || object.isLaser()) {
             if (object.isLaser()) {
                 // Laser Collision
                 Laser obstacle = (Laser) object;
@@ -57,33 +72,13 @@ public class Controller {
                 if (object.getPosition().equals(player.getPosition()) || temp.equals(player.getPosition()))
                     collision = true;
             }
-        }
-        else{
+        } else {
 
         }
         return collision;
     }
 
-    public Controller() {
-        String BACKGROUND = "#57AAF8";
-        String WALLS = "#595959";
-        playerController = new PlayerController(new Player(), new PlayerView(BACKGROUND, "#D5433C", "!"));
-        backgroundView = new BackgroundView(WALLS, BACKGROUND, ' ', ' ', LOWER_LIMIT);
-        rocketView = new RocketView(BACKGROUND, "#000000", "$%");
-        laserView = new LaserView("#fffb54", ' ');
-        coinView = new CoinView(BACKGROUND, "#DEAC4C", "#");
-        elements = new ArrayList<>();
-        distanceCounterView = new CounterView(WALLS, "#000000", "meters");
-        coinsCounterView = new CounterView(WALLS, "#DEAC4C", "coins");
-    }
-
-    public static Controller getInstance() {
-        if (singleton == null)
-            singleton = new Controller();
-        return singleton;
-    }
-
-    public void generateObjects(int i){
+    public void generateObjects(int i) {
         if (i % 5 == 0) {
             int random = (int) (Math.random() * 6) + 1;
             if (random <= 4) elements.add(new Laser());
@@ -104,13 +99,13 @@ public class Controller {
 
     public void drawElements(int xMin, int coins) throws IOException {
         screen.clear();
-        backgroundView.draw(new Position(0, LOWER_LIMIT), xMin);
+        backgroundView.draw(new Position(0, LOWER_LIMIT));
         for (Element element : elements) {
             element.move(-1, 0);
             if (element.isCoin() && !((Coin) element).isCollected())
                 coinView.draw(element.getPosition());
             else if (element.isLaser())
-                laserView.draw(element.getPosition(), ((Laser)element).getLastPosition());
+                laserView.draw(element.getPosition(), ((Laser) element).getLastPosition());
             else if (element.isRocket())
                 rocketView.draw(element.getPosition());
         }
@@ -137,27 +132,26 @@ public class Controller {
                 playerController.step(LOWER_LIMIT);
 
                 for (Element element : elements) {
-                    if (element.isCoin() && element.getPosition().equals(playerController.getPlayer().getPosition())){
+                    if (element.isCoin() && element.getPosition().equals(playerController.getPlayer().getPosition())) {
                         ((Coin) element).collect();
                         coinsCollected++;
-                    }
-                    else if (checkCollisions(element, playerController.getPlayer())) {
+                    } else if (checkCollisions(element, playerController.getPlayer())) {
                         gameOver = true;
                     }
                 }
                 xMin++;
                 long finalTime = System.currentTimeMillis();
                 int timePerFrame = 1000 / 15;
-                Thread.sleep(timePerFrame -(finalTime - startTime));
+                Thread.sleep(timePerFrame - (finalTime - startTime));
             }
             inputReader.addObserver(gameOverController);
             gameOverController.step();
             resetElements();
-            while(!gameOverController.isEnterPressed());
+            while (!gameOverController.isEnterPressed()) ;
             f1 = gameOverController.isGameOver();
             f2 = gameOverController.isEnterPressed();
             inputReader.removeObserver(gameOverController);
-        }while(!(f1) && f2);
+        } while (!(f1) && f2);
     }
 
     private void resetElements() {

@@ -6,10 +6,10 @@ import ldts.view.GameOverView;
 
 import java.io.IOException;
 
-public class GameOverController implements InputObserver{
-    private GameOverView gameOverView;
-    private boolean gameOver=true;
-    private boolean enterPressed=false;
+public class GameOverController implements InputObserver {
+    private final GameOverView gameOverView;
+    private boolean gameOver = true;
+    private boolean enterPressed = false;
 
     public GameOverController(GameOverView gameOverView) {
         this.gameOverView = gameOverView;
@@ -17,7 +17,7 @@ public class GameOverController implements InputObserver{
 
     public void step() {
         try {
-            gameOverView.draw(null);
+            gameOverView.draw();
         } catch (IOException e) {
             e.printStackTrace();
         }

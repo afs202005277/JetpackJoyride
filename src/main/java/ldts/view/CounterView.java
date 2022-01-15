@@ -5,18 +5,10 @@ import ldts.model.Position;
 
 import java.io.IOException;
 
-public class CounterView extends View{
-    private TextColor backGround;
-    private TextColor foreGround;
-
-    public String getUnits() {
-        return units;
-    }
-
-    private String units;
-
-    @Override
-    public void draw(Position pos) throws IOException {}
+public class CounterView extends View {
+    private final TextColor backGround;
+    private final TextColor foreGround;
+    private final String units;
 
     public CounterView(String backGround, String foreGround, String units) {
         this.backGround = stringToColor(backGround);
@@ -24,12 +16,15 @@ public class CounterView extends View{
         this.units = units;
     }
 
+    public String getUnits() {
+        return units;
+    }
+
     public void draw(Position pos, int quantity) throws IOException {
         graphics.setBackgroundColor(backGround);
         graphics.setForegroundColor(foreGround);
 
-        String tmp = String.valueOf(quantity);
-        tmp += " " + units;
+        String tmp = quantity + " " + units;
         graphics.putString(pos.getX(), pos.getY(), tmp);
     }
 }

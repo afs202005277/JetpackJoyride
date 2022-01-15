@@ -1,17 +1,15 @@
 package ldts.view;
 
-import com.googlecode.lanterna.*;
+import com.googlecode.lanterna.TextColor;
 import ldts.model.Position;
 
-import java.awt.*;
 import java.io.IOException;
-import java.net.URISyntaxException;
 
 
-public class PlayerView extends View{
-    private TextColor backGround;
-    private TextColor foreGround;
-    private String string;
+public class PlayerView extends View {
+    private final TextColor backGround;
+    private final TextColor foreGround;
+    private final String string;
 
     public PlayerView(String backGround, String foreGround, String string) {
         this.backGround = stringToColor(backGround);
@@ -19,19 +17,18 @@ public class PlayerView extends View{
         this.string = string;
     }
 
-    @Override
     public void draw(Position pos) throws IOException {
         graphics.setBackgroundColor(backGround);
         graphics.setForegroundColor(foreGround);
-        graphics.putString(pos.getX(), ROWS-pos.getY(), string);
+        graphics.putString(pos.getX(), ROWS - pos.getY(), string);
         screen.refresh();
     }
 
-    public void drawLarge(Position pos){
+    public void drawLarge(Position pos) {
         graphics.setBackgroundColor(backGround);
         graphics.setForegroundColor(foreGround);
-        graphics.putString(pos.getX(), ROWS-pos.getY(), "&?(");
-        graphics.putString(pos.getX(), ROWS-pos.getY() + 1, ")*+");
-        graphics.putString(pos.getX(), ROWS-pos.getY() + 2, ",;/");
+        graphics.putString(pos.getX(), ROWS - pos.getY(), "&?(");
+        graphics.putString(pos.getX(), ROWS - pos.getY() + 1, ")*+");
+        graphics.putString(pos.getX(), ROWS - pos.getY() + 2, ",;/");
     }
 }

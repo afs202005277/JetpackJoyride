@@ -5,10 +5,10 @@ import ldts.model.Position;
 
 import java.io.IOException;
 
-public class CoinView extends View{
-    private TextColor backGround;
-    private TextColor foreGround;
-    private String string;
+public class CoinView extends View {
+    private final TextColor backGround;
+    private final TextColor foreGround;
+    private final String string;
 
     public CoinView(String backGround, String foreGround, String character) {
         this.backGround = stringToColor(backGround);
@@ -16,10 +16,9 @@ public class CoinView extends View{
         this.string = character;
     }
 
-    @Override
     public void draw(Position pos) throws IOException {
         graphics.setBackgroundColor(backGround);
         graphics.setForegroundColor(foreGround);
-        graphics.putString(pos.getX(), ROWS-pos.getY(), string);
+        graphics.putString(pos.getX(), ROWS - pos.getY(), string);
     }
 }

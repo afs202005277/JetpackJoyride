@@ -5,16 +5,11 @@ import ldts.view.View;
 public class Coin extends Element {
     private boolean collected;
 
-    public Coin(Position position) {
-        this.position = position;
-    }
-
-    public Coin()
-    {
+    public Coin() {
         collected = false;
         int y = (int) (Math.random() * (View.getRows() - 2)) + 2;
         int x = View.getScreen().getTerminalSize().getColumns();
-        position = new Position(x,y);
+        position = new Position(x, y);
     }
 
     @Override
@@ -36,7 +31,7 @@ public class Coin extends Element {
         return collected;
     }
 
-    public void collect(){
+    public void collect() {
         collected = true;
     }
 }

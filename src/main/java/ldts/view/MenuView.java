@@ -8,6 +8,8 @@ import static ldts.view.View.graphics;
 
 public class MenuView {
     public void draw(PlayerView playerView, BackgroundView backgroundView, LaserView laserView, CoinView coinView) throws IOException {
+        View.screen.clear();
+
         MenuBackGround.draw(playerView, backgroundView, laserView, coinView);
         graphics.setBackgroundColor(backgroundView.getBackGroundWall());
         graphics.setForegroundColor(TextColor.Factory.fromString("#FFFFFF"));

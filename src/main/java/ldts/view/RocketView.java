@@ -1,16 +1,15 @@
 package ldts.view;
 
-import com.googlecode.lanterna.*;
+import com.googlecode.lanterna.TextColor;
 import ldts.model.Position;
 
-import java.awt.*;
 import java.io.IOException;
-import java.net.URISyntaxException;
+
 
 public class RocketView extends View {
-    private TextColor backGround;
-    private TextColor foreGround;
-    private String string;
+    private final TextColor backGround;
+    private final TextColor foreGround;
+    private final String string;
 
     public RocketView(String backGround, String foreGround, String string) {
         this.backGround = stringToColor(backGround);
@@ -18,7 +17,6 @@ public class RocketView extends View {
         this.string = string;
     }
 
-    @Override
     public void draw(Position pos) throws IOException {
         graphics.setBackgroundColor(backGround);
         graphics.setForegroundColor(foreGround);

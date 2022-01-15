@@ -6,12 +6,12 @@ public class Player extends Element {
         position = new Position(4, 2);
     }
 
-    public void goHigher(){
-        position.setY(position.getY()+1);
+    public void goHigher() {
+        position.setY(position.getY() + 1);
     }
 
     public void goLower() {
-        position.setY(position.getY()-1);
+        position.setY(position.getY() - 1);
     }
 
     @Override

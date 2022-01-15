@@ -2,16 +2,14 @@ package ldts.control;
 
 
 import com.googlecode.lanterna.input.KeyStroke;
-import com.googlecode.lanterna.input.KeyType;
 import com.googlecode.lanterna.screen.Screen;
-
 
 import java.io.IOException;
 import java.util.ArrayList;
 
 public class InputReader extends Thread {
-    private ArrayList<InputObserver> observers;
     private final Screen screen;
+    private final ArrayList<InputObserver> observers;
     private Character key = '0';
 
     public InputReader(Screen screen) {
@@ -19,16 +17,16 @@ public class InputReader extends Thread {
         observers = new ArrayList<>();
     }
 
-    public synchronized void addObserver(InputObserver obs){
+    public synchronized void addObserver(InputObserver obs) {
         observers.add(obs);
     }
 
-    public synchronized void removeObserver(InputObserver obs){
+    public synchronized void removeObserver(InputObserver obs) {
         observers.remove(obs);
     }
 
-    public synchronized void notify(KeyStroke c){
-        for (InputObserver observer:observers)
+    public synchronized void notify(KeyStroke c) {
+        for (InputObserver observer : observers)
             observer.input(c);
     }
 
@@ -36,17 +34,19 @@ public class InputReader extends Thread {
         return key;
     }
 
-    public synchronized Character useKey(){
+    public synchronized Character useKey() {
         Character tmp = key;
-        key='0';
+        key = '0';
         return tmp;
     }
 
-    public synchronized void changeKey(Character c){key=c;}
+    public synchronized void changeKey(Character c) {
+        key = c;
+    }
 
     @Override
     public void run() {
-        while(!isInterrupted()) {
+        while (!isInterrupted()) {
             try {
                 inputReader(screen);
             } catch (IOException e) {

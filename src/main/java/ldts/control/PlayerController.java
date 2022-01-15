@@ -8,13 +8,9 @@ import ldts.view.View;
 
 import java.io.IOException;
 
-public class PlayerController implements InputObserver{
+public class PlayerController implements InputObserver {
     private Player player;
-    private PlayerView playerView;
-
-    public void setPlayer(Player player) {
-        this.player = player;
-    }
+    private final PlayerView playerView;
 
     public PlayerController(Player player, PlayerView playerView) {
         this.player = player;
@@ -39,6 +35,10 @@ public class PlayerController implements InputObserver{
 
     public Player getPlayer() {
         return player;
+    }
+
+    public void setPlayer(Player player) {
+        this.player = player;
     }
 
     public PlayerView getPlayerView() {
