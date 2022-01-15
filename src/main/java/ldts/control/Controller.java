@@ -1,7 +1,5 @@
 package ldts.control;
 
-import com.googlecode.lanterna.input.KeyStroke;
-import com.googlecode.lanterna.input.KeyType;
 import com.googlecode.lanterna.screen.Screen;
 import ldts.model.*;
 import ldts.view.*;
@@ -15,33 +13,22 @@ import java.util.ArrayList;
 
 
 public class Controller {
-    private Player player;
+    private PlayerController playerController;
     private InputReader inputReader;
-    private PlayerView playerView;
     private BackgroundView backgroundView;
-    private GameOverView gameOverView;
     private ArrayList<Obstacle> obstacles;
-    private ArrayList<Element> coins;
+    private ArrayList<Coin> coins;
     private RocketView rocketView;
     private LaserView laserView;
     private CoinView coinView;
     private static final int LOWER_LIMIT = 1;
     private static Controller singleton = null;
-    private CounterView distanceCounterView;
-    private CounterView coinsCounterView;
-    private int timePerFrame = 1000 / 15;
+    private final CounterView distanceCounterView;
+    private final CounterView coinsCounterView;
     private Screen screen;
-
-    public Player getPlayer() {
-        return player;
-    }
 
     public ArrayList<Obstacle> getObstacles() {
         return obstacles;
-    }
-
-    public void setPlayerView(PlayerView playerView) {
-        this.playerView = playerView;
     }
 
     public void setBackgroundView(BackgroundView backgroundView) {
@@ -90,11 +77,8 @@ public class Controller {
     public Controller() {
         String BACKGROUND = "#57AAF8";
         String WALLS = "#595959";
-        player = new Player();
-        inputReader = new InputReader(View.getScreen());
-        playerView = new PlayerView(BACKGROUND, "#D5433C", "!");
+        playerController = new PlayerController(new Player(), new PlayerView(BACKGROUND, "#D5433C", "!"));
         backgroundView = new BackgroundView(WALLS, BACKGROUND, ' ', ' ', LOWER_LIMIT);
-        gameOverView = new GameOverView();
         rocketView = new RocketView(BACKGROUND, "#000000", "$%");
         laserView = new LaserView("#fffb54", ' ');
         coinView = new CoinView(BACKGROUND, "#DEAC4C", "#");
@@ -104,7 +88,7 @@ public class Controller {
         coinsCounterView = new CounterView(WALLS, "#DEAC4C", "coins");
     }
 
-    public static Controller getInstance() throws IOException, URISyntaxException, FontFormatException {
+    public static Controller getInstance() {
         if (singleton == null)
             singleton = new Controller();
         return singleton;
@@ -112,7 +96,7 @@ public class Controller {
 
     public void generateObjects(int i){
         if (i % 5 == 0) {
-            int random = (int) (Math.random() * (7 - 1)) + 1;
+            int random = (int) (Math.random() * 6) + 1;
             if (random <= 4) obstacles.add(new Laser());
             else if (random <= 6) coins.add(new Coin());
             else obstacles.add(new Rocket());
@@ -121,23 +105,21 @@ public class Controller {
 
     public void runInstructions() throws IOException {
         InstructionsView iView = new InstructionsView();
-        iView.draw(playerView, backgroundView, laserView, coinView);
+        iView.draw(playerController.getPlayerView(), backgroundView, laserView, coinView);
     }
 
     public void runMenu() throws IOException {
         MenuView menuView = new MenuView();
-        menuView.draw(playerView, backgroundView, laserView, coinView);
+        menuView.draw(playerController.getPlayerView(), backgroundView, laserView, coinView);
     }
 
     public void drawElements(int xMin, int coins) throws IOException {
         screen.clear();
         backgroundView.draw(new Position(0, LOWER_LIMIT), xMin);
-        playerView.draw(player.getPosition());
         for (Obstacle obstacle : obstacles) {
-            Element object = (Element) obstacle;
-            object.move(-1, 0);
-            if (obstacle.isLaser()) laserView.draw(object.getPosition(), obstacle.getLastPosition());
-            else rocketView.draw(object.getPosition());
+            obstacle.move(-1, 0);
+            if (obstacle.isLaser()) laserView.draw(obstacle.getPosition(), obstacle.getLastPosition());
+            else rocketView.draw(obstacle.getPosition());
         }
         for (Element coin : this.coins)
         {
@@ -150,27 +132,31 @@ public class Controller {
     }
 
     public void run() throws IOException, InterruptedException, URISyntaxException, FontFormatException {
-        boolean gameOver = false;
+        boolean gameOver;
         screen = View.initScreen();
+        inputReader = new InputReader(View.getScreen());
+        GameOverController gameOverController = new GameOverController(new GameOverView());
+        inputReader.addObserver(playerController);
+        inputReader.start();
+
+        boolean f1, f2;
         do {
-            PlayerController playerController = new PlayerController(player, inputReader);
-            inputReader.start();
+            gameOver = false;
             int xMin = 0, coinsCollected = 0;
             while (!gameOver) {
-                inputReader.notify();
                 long startTime = System.currentTimeMillis();
-                playerController.step(LOWER_LIMIT);
                 generateObjects(xMin);
                 drawElements(xMin, coinsCollected);
+                playerController.step(LOWER_LIMIT);
 
                 for (Obstacle obstacle : obstacles) {
-                    if (checkCollisions(obstacle, player)) {
+                    if (checkCollisions(obstacle, playerController.getPlayer())) {
                         gameOver = true;
                     }
                 }
                 for (int j = 0; j < coins.size(); j++)
                 {
-                    if (checkCollisions(coins.get(j), player))
+                    if (checkCollisions(coins.get(j), playerController.getPlayer()))
                     {
                         coins.remove(j);
                         coinsCollected++;
@@ -179,29 +165,22 @@ public class Controller {
                 }
                 xMin++;
                 long finalTime = System.currentTimeMillis();
-                Thread.sleep(timePerFrame-(finalTime - startTime));
-                inputReader.wait();
+                int timePerFrame = 1000 / 15;
+                Thread.sleep(timePerFrame -(finalTime - startTime));
             }
-            while (true) {
-                gameOverView.draw(null);
-                KeyStroke x = screen.readInput();
-                if (x.getKeyType() == KeyType.ArrowUp) {
-                    gameOverView.moveSelected(-1);
-                } else if (x.getKeyType() == KeyType.ArrowDown) {
-                    gameOverView.moveSelected(1);
-                } else if (x.getKeyType() == KeyType.Enter) {
-                    if (gameOverView.getSelected() == 1)
-                        System.exit(0);
-                    gameOver = false;
-                    break;
-                }
-            }
+            inputReader.addObserver(gameOverController);
+            gameOverController.step();
             resetElements();
-        }while(true);
+            while(!gameOverController.isEnterPressed());
+                //System.out.println("error");
+            f1 = gameOverController.isGameOver();
+            f2 = gameOverController.isEnterPressed();
+            inputReader.removeObserver(gameOverController);
+        }while(!(f1) && f2);
     }
 
-    private void resetElements() throws IOException, URISyntaxException, FontFormatException {
-        player = new Player();
+    private void resetElements() {
+        playerController.setPlayer(new Player());
         obstacles = new ArrayList<>();
     }
 }

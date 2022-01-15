@@ -24,6 +24,7 @@ public class PlayerView extends View{
         graphics.setBackgroundColor(backGround);
         graphics.setForegroundColor(foreGround);
         graphics.putString(pos.getX(), ROWS-pos.getY(), string);
+        screen.refresh();
     }
 
     public void drawLarge(Position pos){

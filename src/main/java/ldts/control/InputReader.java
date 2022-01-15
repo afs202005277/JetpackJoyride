@@ -27,7 +27,7 @@ public class InputReader extends Thread {
         observers.remove(obs);
     }
 
-    public void notify(char c){
+    public void notify(KeyStroke c){
         for (InputObserver observer:observers)
             observer.input(c);
     }
@@ -57,10 +57,6 @@ public class InputReader extends Thread {
 
     public void inputReader(Screen screen) throws IOException {
         KeyStroke keyStroke = screen.readInput();
-        if (keyStroke.getKeyType() == KeyType.Character)
-            changeKey(keyStroke.getCharacter());
-        else
-            changeKey('0');
-        notify(key);
+        notify(keyStroke);
     }
 }

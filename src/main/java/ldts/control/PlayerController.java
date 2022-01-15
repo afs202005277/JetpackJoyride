@@ -1,31 +1,46 @@
 package ldts.control;
 
+import com.googlecode.lanterna.input.KeyStroke;
+import com.googlecode.lanterna.input.KeyType;
 import ldts.model.Player;
+import ldts.view.PlayerView;
 import ldts.view.View;
+
+import java.io.IOException;
 
 public class PlayerController implements InputObserver{
     private Player player;
-    private InputReader inputReader;
+    private PlayerView playerView;
 
-    public PlayerController(Player player, InputReader inputReader) {
+    public void setPlayer(Player player) {
         this.player = player;
-        this.inputReader = inputReader;
+    }
+
+    public PlayerController(Player player, PlayerView playerView) {
+        this.player = player;
+        this.playerView = playerView;
     }
 
     @Override
-    public void input(char input) {
-        if (input == ' ' && player.getPosition().getY() < View.getScreen().getTerminalSize().getRows())
+    public void input(KeyStroke input) {
+        if (input.getKeyType() != KeyType.Character)
+            return;
+        if (input.getCharacter() == ' ' && player.getPosition().getY() < View.getScreen().getTerminalSize().getRows())
             player.goHigher();
     }
 
-    @Override
-    public void stopReadingInput() {
-        inputReader.interrupt();
-    }
-
-    public void step(int lower){
+    public void step(int lower) throws IOException {
         if (player.getPosition().getY() > lower + 1) {
             player.goLower();
         }
+        playerView.draw(player.getPosition());
+    }
+
+    public Player getPlayer() {
+        return player;
+    }
+
+    public PlayerView getPlayerView() {
+        return playerView;
     }
 }

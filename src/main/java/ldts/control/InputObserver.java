@@ -1,6 +1,7 @@
 package ldts.control;
 
+import com.googlecode.lanterna.input.KeyStroke;
+
 public interface InputObserver {
-    void input(char input);
-    void stopReadingInput();
+    void input(KeyStroke input);
 }
