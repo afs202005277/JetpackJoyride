@@ -16,8 +16,7 @@ public class Controller {
     private PlayerController playerController;
     private InputReader inputReader;
     private BackgroundView backgroundView;
-    private ArrayList<Obstacle> obstacles;
-    private ArrayList<Coin> coins;
+    private ArrayList<Element> elements;
     private RocketView rocketView;
     private LaserView laserView;
     private CoinView coinView;
@@ -27,22 +26,14 @@ public class Controller {
     private final CounterView coinsCounterView;
     private Screen screen;
 
-    public ArrayList<Obstacle> getObstacles() {
-        return obstacles;
-    }
-
     public void setBackgroundView(BackgroundView backgroundView) {
         this.backgroundView = backgroundView;
-    }
-
-    public void setObstacles(ArrayList<Obstacle> obstacles) {
-        this.obstacles = obstacles;
     }
 
     public boolean checkCollisions(Element object, Player player)
     {
         boolean collision = false;
-        if (object.isObstacle())
+        if (object.isRocket() || object.isLaser())
         {
             Obstacle obstacle = (Obstacle) object;
             if (obstacle.isLaser()) {
@@ -67,9 +58,8 @@ public class Controller {
                     collision = true;
             }
         }
-        else
-        {
-            if (object.getPosition().equals(player.getPosition())) collision = true;
+        else{
+
         }
         return collision;
     }
@@ -82,8 +72,7 @@ public class Controller {
         rocketView = new RocketView(BACKGROUND, "#000000", "$%");
         laserView = new LaserView("#fffb54", ' ');
         coinView = new CoinView(BACKGROUND, "#DEAC4C", "#");
-        obstacles = new ArrayList<>();
-        coins = new ArrayList<>();
+        elements = new ArrayList<>();
         distanceCounterView = new CounterView(WALLS, "#000000", "meters");
         coinsCounterView = new CounterView(WALLS, "#DEAC4C", "coins");
     }
@@ -97,9 +86,9 @@ public class Controller {
     public void generateObjects(int i){
         if (i % 5 == 0) {
             int random = (int) (Math.random() * 6) + 1;
-            if (random <= 4) obstacles.add(new Laser());
-            else if (random <= 6) coins.add(new Coin());
-            else obstacles.add(new Rocket());
+            if (random <= 4) elements.add(new Laser());
+            else if (random <= 6) elements.add(new Coin());
+            else elements.add(new Rocket());
         }
     }
 
@@ -116,15 +105,14 @@ public class Controller {
     public void drawElements(int xMin, int coins) throws IOException {
         screen.clear();
         backgroundView.draw(new Position(0, LOWER_LIMIT), xMin);
-        for (Obstacle obstacle : obstacles) {
-            obstacle.move(-1, 0);
-            if (obstacle.isLaser()) laserView.draw(obstacle.getPosition(), obstacle.getLastPosition());
-            else rocketView.draw(obstacle.getPosition());
-        }
-        for (Element coin : this.coins)
-        {
-            coin.move(-1, 0);
-            coinView.draw(coin.getPosition());
+        for (Element element : elements) {
+            element.move(-1, 0);
+            if (element.isCoin() && !((Coin) element).isCollected())
+                coinView.draw(element.getPosition());
+            else if (element.isLaser())
+                laserView.draw(element.getPosition(), ((Obstacle)element).getLastPosition());
+            else if (element.isRocket())
+                rocketView.draw(element.getPosition());
         }
         distanceCounterView.draw(new Position(screen.getTerminalSize().getColumns() - distanceCounterView.getUnits().length() - 10, 0), xMin);
         coinsCounterView.draw(new Position(0, 0), coins);
@@ -134,7 +122,7 @@ public class Controller {
     public void run() throws IOException, InterruptedException, URISyntaxException, FontFormatException {
         boolean gameOver;
         screen = View.initScreen();
-        inputReader = new InputReader(View.getScreen());
+        inputReader = new InputReader(screen);
         GameOverController gameOverController = new GameOverController(new GameOverView());
         inputReader.addObserver(playerController);
         inputReader.start();
@@ -149,18 +137,13 @@ public class Controller {
                 drawElements(xMin, coinsCollected);
                 playerController.step(LOWER_LIMIT);
 
-                for (Obstacle obstacle : obstacles) {
-                    if (checkCollisions(obstacle, playerController.getPlayer())) {
-                        gameOver = true;
-                    }
-                }
-                for (int j = 0; j < coins.size(); j++)
-                {
-                    if (checkCollisions(coins.get(j), playerController.getPlayer()))
-                    {
-                        coins.remove(j);
+                for (Element element : elements) {
+                    if (element.isCoin() && element.getPosition().equals(playerController.getPlayer().getPosition())){
+                        ((Coin) element).collect();
                         coinsCollected++;
-                        j--;
+                    }
+                    else if (checkCollisions(element, playerController.getPlayer())) {
+                        gameOver = true;
                     }
                 }
                 xMin++;
@@ -172,7 +155,6 @@ public class Controller {
             gameOverController.step();
             resetElements();
             while(!gameOverController.isEnterPressed());
-                //System.out.println("error");
             f1 = gameOverController.isGameOver();
             f2 = gameOverController.isEnterPressed();
             inputReader.removeObserver(gameOverController);
@@ -181,6 +163,6 @@ public class Controller {
 
     private void resetElements() {
         playerController.setPlayer(new Player());
-        obstacles = new ArrayList<>();
+        elements = new ArrayList<>();
     }
 }

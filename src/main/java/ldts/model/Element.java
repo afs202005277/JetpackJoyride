@@ -7,5 +7,7 @@ public interface Element {
     void setX(int x);
     int getY();
     void setY(int y);
-    boolean isObstacle();
+    boolean isLaser();
+    boolean isRocket();
+    boolean isCoin();
 }

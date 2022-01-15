@@ -5,6 +5,7 @@ import ldts.view.View;
 public class Coin implements Element {
 
     private Position position;
+    private boolean collected;
 
     public Coin(Position position) {
         this.position = position;
@@ -12,6 +13,7 @@ public class Coin implements Element {
 
     public Coin()
     {
+        collected = false;
         int y = (int) (Math.random() * (View.getRows() - 2)) + 2;
         int x = View.getScreen().getTerminalSize().getColumns();
         position = new Position(x,y);
@@ -49,7 +51,25 @@ public class Coin implements Element {
     }
 
     @Override
-    public boolean isObstacle() {
+    public boolean isLaser() {
         return false;
+    }
+
+    @Override
+    public boolean isRocket() {
+        return false;
+    }
+
+    @Override
+    public boolean isCoin() {
+        return true;
+    }
+
+    public boolean isCollected() {
+        return collected;
+    }
+
+    public void collect(){
+        collected = true;
     }
 }

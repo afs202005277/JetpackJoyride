@@ -17,11 +17,6 @@ public class Rocket implements Obstacle {
     }
 
     @Override
-    public boolean isObstacle() {
-        return true;
-    }
-
-    @Override
     public int getX() {return position.getX();}
 
     @Override
@@ -48,6 +43,16 @@ public class Rocket implements Obstacle {
 
     @Override
     public boolean isLaser() {
+        return false;
+    }
+
+    @Override
+    public boolean isRocket() {
+        return true;
+    }
+
+    @Override
+    public boolean isCoin() {
         return false;
     }
 }

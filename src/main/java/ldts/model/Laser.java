@@ -24,11 +24,6 @@ public class Laser implements Obstacle {
     public void setY(int y) {position.setY(y);}
 
     @Override
-    public boolean isObstacle() {
-        return true;
-    }
-
-    @Override
     public Position getPosition() {
         return position;
     }
@@ -90,5 +85,15 @@ public class Laser implements Obstacle {
 
     @Override
     public boolean isLaser() {return true;}
+
+    @Override
+    public boolean isRocket() {
+        return false;
+    }
+
+    @Override
+    public boolean isCoin() {
+        return false;
+    }
 }
 

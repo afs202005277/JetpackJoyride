@@ -51,7 +51,17 @@ public class Player implements Element {
     }
 
     @Override
-    public boolean isObstacle() {
+    public boolean isLaser() {
+        return false;
+    }
+
+    @Override
+    public boolean isRocket() {
+        return false;
+    }
+
+    @Override
+    public boolean isCoin() {
         return false;
     }
 }
