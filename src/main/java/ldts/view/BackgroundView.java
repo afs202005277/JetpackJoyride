@@ -5,14 +5,14 @@ import com.googlecode.lanterna.TerminalSize;
 import com.googlecode.lanterna.TextColor;
 import ldts.model.Position;
 
-public class BackgroundView extends View {
+public class BackgroundView extends View{
     private final int lower;
     private final TextColor backGroundBase;
     private final TextColor backGroundWall;
     private final char characterWall;
     private final char characterBase;
 
-    public BackgroundView(String backGroundBase, String backGroundWall, char characterWall, char characterBase, int lower) {
+    public BackgroundView(String backGroundBase, String backGroundWall, char characterWall, char characterBase, int lower){
         this.backGroundBase = stringToColor(backGroundBase);
         this.backGroundWall = stringToColor(backGroundWall);
         this.characterWall = characterWall;
@@ -28,7 +28,7 @@ public class BackgroundView extends View {
         return lower;
     }
 
-    private void drawBase(Position pos) {
+    private void drawBase(Position pos){
         graphics.setBackgroundColor(backGroundBase);
         graphics.fillRectangle(new TerminalPosition(pos.getX(), ROWS - pos.getY()), new TerminalSize(screen.getTerminalSize().getColumns(), lower), characterBase);
     }

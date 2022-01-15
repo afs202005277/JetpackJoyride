@@ -5,7 +5,7 @@ import ldts.model.Position;
 import java.io.IOException;
 
 public class MenuBackGround {
-    private static Position[] getCoins() {
+    private static Position[] getCoins(){
         Position pos1 = new Position(15, 17);
         Position pos2 = new Position(15, 16);
         Position pos3 = new Position(15, 15);
