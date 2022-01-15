@@ -35,9 +35,9 @@ public class Controller {
         boolean collision = false;
         if (object.isRocket() || object.isLaser())
         {
-            Obstacle obstacle = (Obstacle) object;
-            if (obstacle.isLaser()) {
+            if (object.isLaser()) {
                 // Laser Collision
+                Laser obstacle = (Laser) object;
                 if (object.getPosition().getX() <= player.getPosition().getX() && player.getPosition().getX() <= obstacle.getLastPosition().getX()) {
                     int m = 0;
                     if (object.getPosition().getX() == obstacle.getLastPosition().getX() && obstacle.getLastPosition().getY() <= player.getPosition().getY() && player.getPosition().getY() <= object.getPosition().getY())
@@ -110,7 +110,7 @@ public class Controller {
             if (element.isCoin() && !((Coin) element).isCollected())
                 coinView.draw(element.getPosition());
             else if (element.isLaser())
-                laserView.draw(element.getPosition(), ((Obstacle)element).getLastPosition());
+                laserView.draw(element.getPosition(), ((Laser)element).getLastPosition());
             else if (element.isRocket())
                 rocketView.draw(element.getPosition());
         }

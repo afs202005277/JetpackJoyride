@@ -1,7 +1,6 @@
 package ldts.view;
 
 import com.googlecode.lanterna.*;
-import ldts.model.Obstacle;
 import ldts.model.Position;
 
 import java.awt.*;

@@ -1,34 +1,12 @@
 package ldts.model;
 
-import com.googlecode.lanterna.graphics.TextGraphics;
+
 import ldts.view.View;
 
-import java.util.ArrayList;
-import java.util.List;
-
-public class Laser implements Obstacle {
-    private Position position;
+public class Laser extends Element  {
     private final int orient;  // 1. -  2. |  3. \  4.  /
     private final int size;
 
-    @Override
-    public int getX() {return position.getX();}
-
-    @Override
-    public void setX(int x) {position.setX(x);}
-
-    @Override
-    public int getY() {return position.getY();}
-
-    @Override
-    public void setY(int y) {position.setY(y);}
-
-    @Override
-    public Position getPosition() {
-        return position;
-    }
-
-    @Override
     public Position getLastPosition() {
         Position position1 = switch (orient) {
             case 1 -> new Position(position.getX() + size - 1, position.getY());
@@ -75,12 +53,6 @@ public class Laser implements Obstacle {
         this.position = position;
         this.orient = orient;
         this.size = size;
-    }
-
-    @Override
-    public void move(int x, int y) {
-        position.setX(position.getX()+x);
-        position.setY(position.getY()+y);
     }
 
     @Override
