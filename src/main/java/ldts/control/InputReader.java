@@ -49,19 +49,16 @@ public class InputReader extends Thread {
     @Override
     public void run() {
         while (true) {
-            System.out.println("Running");
             try {
                 inputReader(screen);
             } catch (IOException | URISyntaxException | InterruptedException | FontFormatException e) {
                 e.printStackTrace();
-                System.out.println("OUT OF LOOP");
             }
         }
     }
 
     public void inputReader(Screen screen) throws IOException, URISyntaxException, InterruptedException, FontFormatException {
         KeyStroke keyStroke = screen.readInput();
-        System.out.println("Received input");
         notify(keyStroke);
     }
 }
