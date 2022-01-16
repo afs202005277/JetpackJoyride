@@ -4,7 +4,9 @@ package ldts.control;
 import com.googlecode.lanterna.input.KeyStroke;
 import com.googlecode.lanterna.screen.Screen;
 
+import java.awt.*;
 import java.io.IOException;
+import java.net.URISyntaxException;
 import java.util.ArrayList;
 
 public class InputReader extends Thread {
@@ -25,7 +27,7 @@ public class InputReader extends Thread {
         observers.remove(obs);
     }
 
-    public synchronized void notify(KeyStroke c) {
+    public synchronized void notify(KeyStroke c) throws IOException, URISyntaxException, InterruptedException, FontFormatException {
         for (InputObserver observer : observers)
             observer.input(c);
     }
@@ -46,17 +48,20 @@ public class InputReader extends Thread {
 
     @Override
     public void run() {
-        while (!isInterrupted()) {
+        while (true) {
+            System.out.println("Running");
             try {
                 inputReader(screen);
-            } catch (IOException e) {
+            } catch (IOException | URISyntaxException | InterruptedException | FontFormatException e) {
                 e.printStackTrace();
+                System.out.println("OUT OF LOOP");
             }
         }
     }
 
-    public void inputReader(Screen screen) throws IOException {
+    public void inputReader(Screen screen) throws IOException, URISyntaxException, InterruptedException, FontFormatException {
         KeyStroke keyStroke = screen.readInput();
+        System.out.println("Received input");
         notify(keyStroke);
     }
 }

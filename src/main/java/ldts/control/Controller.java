@@ -22,9 +22,10 @@ public class Controller {
     private final RocketView rocketView;
     private final LaserView laserView;
     private final CoinView coinView;
+    private MenuController menuController;
     private Screen screen;
 
-    public Controller() {
+    public Controller() throws IOException, URISyntaxException, FontFormatException {
         String BACKGROUND = "#57AAF8";
         String WALLS = "#595959";
         playerController = new PlayerController(new Player(), new PlayerView(BACKGROUND, "#D5433C", "!"));
@@ -35,9 +36,15 @@ public class Controller {
         elements = new ArrayList<>();
         distanceCounterView = new CounterView(WALLS, "#000000", "meters");
         coinsCounterView = new CounterView(WALLS, "#DEAC4C", "coins");
+        screen = View.initScreen();
+        menuController = new MenuController(playerController.getPlayerView(), backgroundView, coinView, laserView);
     }
 
-    public static Controller getInstance() {
+    public InputReader getInputReader() {
+        return inputReader;
+    }
+
+    public static Controller getInstance() throws IOException, URISyntaxException, FontFormatException {
         if (singleton == null)
             singleton = new Controller();
         return singleton;
@@ -91,8 +98,7 @@ public class Controller {
     }
 
     public void runMenu() throws IOException {
-        MenuView menuView = new MenuView();
-        menuView.draw(playerController.getPlayerView(), backgroundView, laserView, coinView);
+        menuController.step();
     }
 
     public void drawElements(int xMin, int coins) throws IOException {
@@ -113,11 +119,10 @@ public class Controller {
 
     public void run() throws IOException, InterruptedException, URISyntaxException, FontFormatException {
         boolean gameOver;
-        screen = View.initScreen();
         inputReader = new InputReader(screen);
-        GameOverController gameOverController = new GameOverController(new GameOverView());
         inputReader.addObserver(playerController);
         inputReader.start();
+        GameOverController gameOverController = new GameOverController(new GameOverView());
 
         boolean f1, f2;
         do {
