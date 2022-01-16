@@ -32,20 +32,6 @@ public class InputReader extends Thread {
             observer.input(c);
     }
 
-    public synchronized Character getKey() {
-        return key;
-    }
-
-    public synchronized Character useKey() {
-        Character tmp = key;
-        key = '0';
-        return tmp;
-    }
-
-    public synchronized void changeKey(Character c) {
-        key = c;
-    }
-
     @Override
     public void run() {
         while (true) {
