@@ -1,7 +1,7 @@
 package ldts;
 
 import ldts.model.Position;
-import ldts.model.Obstacle.Rocket;
+import ldts.model.Rocket;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 

@@ -1,22 +1,11 @@
-package ldts.model.Obstacle;
+package ldts.model;
 
-import ldts.model.Position;
+
+import ldts.view.View;
 
 public class Laser extends Element  {
     private final int orient;  // 1. -  2. |  3. \  4.  /
     private final int size;
-
-    public int getX() {return position.getX();}
-
-    public void setX(int x) {position.setX(x);}
-
-    public int getY() {return position.getY();}
-
-    public void setY(int y) {position.setY(y);}
-
-    public Position getPosition() {
-        return position;
-    }
 
     public Position getLastPosition() {
         Position position1 = switch (orient) {
@@ -66,10 +55,17 @@ public class Laser extends Element  {
         this.size = size;
     }
 
-    public void move() {
-        position.setX(position.getX()-1);
+    @Override
+    public boolean isLaser() {return true;}
+
+    @Override
+    public boolean isRocket() {
+        return false;
     }
 
-    public boolean isLaser() {return true;}
+    @Override
+    public boolean isCoin() {
+        return false;
+    }
 }
 
