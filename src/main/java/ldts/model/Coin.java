@@ -8,7 +8,7 @@ public class Coin extends Element {
     public Coin() {
         collected = false;
         int y = (int) (Math.random() * (View.getRows() - 2)) + 2;
-        int x = View.getScreen().getTerminalSize().getColumns();
+        int x = 51;//View.getScreen().getTerminalSize().getColumns();
         position = new Position(x,y);
     }
 
