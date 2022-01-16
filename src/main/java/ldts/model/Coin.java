@@ -12,6 +12,11 @@ public class Coin extends Element {
         position = new Position(x,y);
     }
 
+    public Coin(int x, int y){
+        collected = false;
+        position = new Position(x, y);
+    }
+
     @Override
     public boolean isLaser() {
         return false;

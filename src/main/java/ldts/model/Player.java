@@ -6,6 +6,8 @@ public class Player extends Element {
         position = new Position(4, 2);
     }
 
+    public Player(int x, int y) {position = new Position(x, y);}
+
     public void goHigher(){
         position.setY(position.getY()+1);
     }

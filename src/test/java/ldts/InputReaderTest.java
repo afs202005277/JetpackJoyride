@@ -9,7 +9,9 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 
+import java.awt.*;
 import java.io.IOException;
+import java.net.URISyntaxException;
 
 public class InputReaderTest {
     private Screen screen;
@@ -41,7 +43,7 @@ public class InputReaderTest {
     }
 
     @Test
-    public void inputReaderTest() throws IOException {
+    public void inputReaderTest() throws IOException, URISyntaxException, InterruptedException, FontFormatException {
         KeyStroke k = Mockito.mock(KeyStroke.class);
         Mockito.when(k.getCharacter()).thenReturn(' ');
         Mockito.when(k.getKeyType()).thenReturn(KeyType.Character);

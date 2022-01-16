@@ -13,14 +13,14 @@ import java.util.ArrayList;
 public class Controller {
     private static final int LOWER_LIMIT = 1;
     private static Controller singleton = null;
-    private final CounterView distanceCounterView;
-    private final CounterView coinsCounterView;
+    private CounterView distanceCounterView;
+    private CounterView coinsCounterView;
     private final PlayerController playerController;
     private BackgroundView backgroundView;
     private ArrayList<Element> elements;
-    private final RocketView rocketView;
-    private final LaserView laserView;
-    private final CoinView coinView;
+    private RocketView rocketView;
+    private LaserView laserView;
+    private CoinView coinView;
     private MenuController menuController;
     private Screen screen;
 
@@ -35,10 +35,32 @@ public class Controller {
         elements = new ArrayList<>();
         distanceCounterView = new CounterView(WALLS, "#000000", "meters");
         coinsCounterView = new CounterView(WALLS, "#DEAC4C", "coins");
-        screen = View.initScreen();
         menuController = new MenuController(playerController.getPlayerView(), backgroundView, coinView, laserView);
     }
 
+    public ArrayList<Element> getElements() {
+        return elements;
+    }
+
+    public void setDistanceCounterView(CounterView distanceCounterView) {
+        this.distanceCounterView = distanceCounterView;
+    }
+
+    public void setCoinsCounterView(CounterView coinsCounterView) {
+        this.coinsCounterView = coinsCounterView;
+    }
+
+    public void setRocketView(RocketView rocketView) {
+        this.rocketView = rocketView;
+    }
+
+    public void setLaserView(LaserView laserView) {
+        this.laserView = laserView;
+    }
+
+    public void setCoinView(CoinView coinView) {
+        this.coinView = coinView;
+    }
 
     public static Controller getInstance() throws IOException, URISyntaxException, FontFormatException {
         if (singleton == null)
@@ -76,6 +98,9 @@ public class Controller {
                     collision = true;
             }
         }
+        else if (object.isCoin() && object.getPosition().equals(player.getPosition())){
+            collision = true;
+        }
         return collision;
     }
 
@@ -88,14 +113,27 @@ public class Controller {
         }
     }
 
+    public void setScreen(Screen screen) {
+        this.screen = screen;
+    }
+
     public void runInstructions() throws IOException {
         InstructionsView iView = new InstructionsView();
         iView.draw(playerController.getPlayerView(), backgroundView, laserView, coinView);
     }
 
-    public void runMenu() {
+    public void runMenu() throws IOException, URISyntaxException, FontFormatException {
+        screen = View.initScreen();
         while(!menuController.isEnterPressed())
             menuController.step();
+    }
+
+    public PlayerController getPlayerController() {
+        return playerController;
+    }
+
+    public void setElements(ArrayList<Element> elements) {
+        this.elements = elements;
     }
 
     public void drawElements(int xMin, int coins) throws IOException {
@@ -132,7 +170,7 @@ public class Controller {
                 playerController.step(LOWER_LIMIT);
 
                 for (Element element : elements) {
-                    if (element.isCoin() && element.getPosition().equals(playerController.getPlayer().getPosition())) {
+                    if (element.isCoin() && checkCollisions(element, playerController.getPlayer())) {
                         ((Coin) element).collect();
                         coinsCollected++;
                     } else if (checkCollisions(element, playerController.getPlayer())) {

@@ -21,10 +21,12 @@ import java.net.URL;
 public abstract class View {
     protected static final int COLUMNS = 51;
     protected static final int ROWS = 18;
-    static protected Screen screen;
+    static protected Screen screen = null;
     static protected TextGraphics graphics;
 
     public static Screen initScreen() throws IOException, FontFormatException, URISyntaxException {
+        if (screen != null)
+            return screen;
         URL resource = View.class.getClassLoader().getResource("player_new.ttf");
         File fontFile = new File(resource.toURI());
         Font font = Font.createFont(Font.TRUETYPE_FONT, fontFile);
