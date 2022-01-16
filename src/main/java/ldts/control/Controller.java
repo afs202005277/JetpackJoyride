@@ -16,7 +16,6 @@ public class Controller {
     private final CounterView distanceCounterView;
     private final CounterView coinsCounterView;
     private final PlayerController playerController;
-    private InputReader inputReader;
     private BackgroundView backgroundView;
     private ArrayList<Element> elements;
     private final RocketView rocketView;
@@ -40,9 +39,6 @@ public class Controller {
         menuController = new MenuController(playerController.getPlayerView(), backgroundView, coinView, laserView);
     }
 
-    public InputReader getInputReader() {
-        return inputReader;
-    }
 
     public static Controller getInstance() throws IOException, URISyntaxException, FontFormatException {
         if (singleton == null)
@@ -97,8 +93,9 @@ public class Controller {
         iView.draw(playerController.getPlayerView(), backgroundView, laserView, coinView);
     }
 
-    public void runMenu() throws IOException {
-        menuController.step();
+    public void runMenu() {
+        while(!menuController.isEnterPressed())
+            menuController.step();
     }
 
     public void drawElements(int xMin, int coins) throws IOException {
@@ -119,7 +116,7 @@ public class Controller {
 
     public void run() throws IOException, InterruptedException, URISyntaxException, FontFormatException {
         boolean gameOver;
-        inputReader = new InputReader(screen);
+        InputReader inputReader = new InputReader(screen);
         inputReader.addObserver(playerController);
         inputReader.start();
         GameOverController gameOverController = new GameOverController(new GameOverView());

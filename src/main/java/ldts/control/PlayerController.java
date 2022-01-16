@@ -23,7 +23,6 @@ public class PlayerController implements InputObserver {
             return;
         if (input.getCharacter() == ' ' && player.getPosition().getY() < View.getScreen().getTerminalSize().getRows()) {
             player.goHigher();
-            System.out.println("SPACE PRESSED");
         }
     }
 
