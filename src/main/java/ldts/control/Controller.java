@@ -2,6 +2,7 @@ package ldts.control;
 
 
 import ldts.model.*;
+import ldts.model.Obstacle.*;
 import ldts.view.*;
 
 
@@ -61,8 +62,14 @@ public class Controller {
     public void generateObstacles(int i){
         if (i % 15 == 0) {
             int random = (int) (Math.random() * (5 - 1)) + 1;
-            if (random < 4) obstacles.add(new Laser());
-            else obstacles.add(new Rocket());
+            if (random < 4) {
+                ObstacleFactory lasers = new LaserFactory();
+                obstacles.add(lasers.createObstacle());
+            }
+            else {
+                ObstacleFactory rockets = new RocketFactory();
+                obstacles.add(rockets.createObstacle());
+            }
         }
     }
 

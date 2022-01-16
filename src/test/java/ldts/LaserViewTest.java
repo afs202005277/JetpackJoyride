@@ -1,10 +1,9 @@
 package ldts;
 
-import com.googlecode.lanterna.TerminalPosition;
 import com.googlecode.lanterna.TextColor;
 import com.googlecode.lanterna.graphics.TextGraphics;
 import com.googlecode.lanterna.screen.Screen;
-import ldts.model.Laser;
+import ldts.model.Obstacle.Laser;
 import ldts.model.Position;
 import ldts.view.LaserView;
 import ldts.view.View;

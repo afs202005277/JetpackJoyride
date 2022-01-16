@@ -1,26 +1,22 @@
-package ldts.model;
+package ldts.model.Obstacle;
 
-public class Rocket implements Obstacle{
+import ldts.model.Position;
+
+public class Rocket implements Obstacle {
     private Position position;
 
-    @Override
     public Position getPosition() {
         return position;
     }
 
-    @Override
     public int getX() {return position.getX();}
 
-    @Override
     public void setX(int x) {position.setX(x);}
 
-    @Override
     public int getY() {return position.getY();}
 
-    @Override
     public void setY(int y) {position.setY(y);}
 
-    @Override
     public Position getLastPosition() {
         return null;
     }
@@ -33,14 +29,10 @@ public class Rocket implements Obstacle{
         position= new Position(x,y);
     }
 
-
-    @Override
     public void move() {
         position.setX(position.getX()-3);
     }
 
-
-    @Override
     public boolean isLaser() {
         return false;
     }

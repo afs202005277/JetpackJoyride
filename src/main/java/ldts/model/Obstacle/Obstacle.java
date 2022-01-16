@@ -1,5 +1,7 @@
-package ldts.model;
+package ldts.model.Obstacle;
 
+
+import ldts.model.Position;
 
 public interface Obstacle {
     void move();
