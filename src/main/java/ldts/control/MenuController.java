@@ -10,7 +10,7 @@ import java.io.IOException;
 import java.net.URISyntaxException;
 
 public class MenuController {
-    private final MenuView menuView;
+    private MenuView menuView;
     private final PlayerView playerView;
     private final BackgroundView backgroundView;
     private final CoinView coinView;
@@ -24,6 +24,10 @@ public class MenuController {
         this.laserView = laserView;
         this.menuView = new MenuView();
         enterPressed = false;
+    }
+
+    public void setMenuView(MenuView menuView) {
+        this.menuView = menuView;
     }
 
     public void step() {

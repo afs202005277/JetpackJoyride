@@ -24,6 +24,10 @@ public class Controller {
     private MenuController menuController;
     private Screen screen;
 
+    public static void setSingleton(Controller singleton) {
+        Controller.singleton = singleton;
+    }
+
     public Controller() throws IOException, URISyntaxException, FontFormatException {
         String BACKGROUND = "#57AAF8";
         String WALLS = "#595959";
