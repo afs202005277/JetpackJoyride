@@ -22,11 +22,11 @@ public class PlayerViewTest {
     private TextGraphics g;
 
     @BeforeEach
-    void setUp() throws IOException, URISyntaxException, FontFormatException {
+    void setUp() {
         player = new Player();
-        viewer = new PlayerView();
+        viewer = new PlayerView("#57AAF8", "#D5433C", "!");
         screen = Mockito.mock(Screen.class);
-        g = Mockito.mock(TextGraphics.class);
+        g = screen.newTextGraphics();
         View.setScreen(screen);
         View.setGraphics(g);
     }
@@ -34,10 +34,19 @@ public class PlayerViewTest {
     @Test
     void draw() throws IOException {
         viewer.draw(player.getPosition());
-        TextColor fore = TextColor.Factory.fromString("#FFFF33");
-        TextColor back = TextColor.Factory.fromString("#000C66");
-        Mockito.verify(g, Mockito.times(1)).setForegroundColor(fore);
-        Mockito.verify(g, Mockito.times(1)).setBackgroundColor(back);
-        Mockito.verify(g, Mockito.times(1)).putString(player.getPosition().getX(), View.getRows()-player.getPosition().getY(), "k");
+        Mockito.verify(g, Mockito.times(1)).setForegroundColor(viewer.getForeGround());
+        Mockito.verify(g, Mockito.times(1)).setBackgroundColor(viewer.getBackGround());
+        Mockito.verify(g, Mockito.times(1)).putString(player.getPosition().getX(), View.getRows() - player.getPosition().getY(), viewer.getString());
+    }
+
+    @Test
+    void drawLarge() {
+        player.setPosition(new Position(10, 10));
+        viewer.drawLarge(player.getPosition());
+        Mockito.verify(g, Mockito.times(1)).setForegroundColor(viewer.getForeGround());
+        Mockito.verify(g, Mockito.times(1)).setBackgroundColor(viewer.getBackGround());
+        Mockito.verify(g, Mockito.times(1)).putString(player.getPosition().getX(), View.getRows() - player.getPosition().getY(), "&?(");
+        Mockito.verify(g, Mockito.times(1)).putString(player.getPosition().getX(), View.getRows() - player.getPosition().getY() + 1, ")*+");
+        Mockito.verify(g, Mockito.times(1)).putString(player.getPosition().getX(), View.getRows() - player.getPosition().getY() + 2, ",;/");
     }
 }

@@ -8,14 +8,12 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 
-import java.io.IOException;
-
 public class ViewTest {
     private Screen screen;
     private TextGraphics graphics;
 
     @BeforeEach
-    void setUp(){
+    void setUp() {
         screen = Mockito.mock(Screen.class);
         graphics = Mockito.mock(TextGraphics.class);
         View.setScreen(screen);
@@ -23,12 +21,12 @@ public class ViewTest {
     }
 
     @Test
-    void getScreen(){
+    void getScreen() {
         Assertions.assertEquals(screen, View.getScreen());
     }
 
     @Test
-    void getGraphics(){
+    void getGraphics() {
         Assertions.assertEquals(graphics, View.getGraphics());
     }
 }

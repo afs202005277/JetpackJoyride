@@ -11,6 +11,18 @@ public class PlayerView extends View {
     private final TextColor foreGround;
     private final String string;
 
+    public TextColor getBackGround() {
+        return backGround;
+    }
+
+    public TextColor getForeGround() {
+        return foreGround;
+    }
+
+    public String getString() {
+        return string;
+    }
+
     public PlayerView(String backGround, String foreGround, String string) {
         this.backGround = stringToColor(backGround);
         this.foreGround = stringToColor(foreGround);

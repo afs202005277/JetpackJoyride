@@ -14,24 +14,26 @@ import java.io.IOException;
 public class InputReaderTest {
     private Screen screen;
     private InputReader inputReader;
+
     @BeforeEach
     public void getTestScreen() throws IOException {
         screen = Mockito.mock(Screen.class);
     }
 
     @BeforeEach
-    public void getTestCommand(){
-        inputReader = new InputReader(screen);}
+    public void getTestCommand() {
+        inputReader = new InputReader(screen);
+    }
 
     @Test
-    public void ChangeKeyTest(){
+    public void ChangeKeyTest() {
         Assertions.assertEquals('0', inputReader.getKey());
         inputReader.changeKey('A');
         Assertions.assertEquals('A', inputReader.getKey());
     }
 
     @Test
-    public void useKeyTest(){
+    public void useKeyTest() {
         Assertions.assertEquals('0', inputReader.getKey());
         inputReader.changeKey('A');
         Assertions.assertEquals('A', inputReader.useKey());

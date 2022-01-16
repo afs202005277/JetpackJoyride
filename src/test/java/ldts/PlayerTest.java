@@ -10,12 +10,12 @@ public class PlayerTest {
     private Player player;
 
     @BeforeEach
-    public void getTestPlayer(){
+    public void getTestPlayer() {
         player = new Player();
     }
 
     @Test
-    public void goHigherTest(){
+    public void goHigherTest() {
         int initX = player.getPosition().getX();
         int initY = player.getPosition().getY();
 
@@ -26,7 +26,7 @@ public class PlayerTest {
     }
 
     @Test
-    public void goLowerTest(){
+    public void goLowerTest() {
         int initX = player.getPosition().getX();
         int initY = player.getPosition().getY();
 
@@ -37,7 +37,7 @@ public class PlayerTest {
     }
 
     @Test
-    public void setTest(){
+    public void setTest() {
         Position pos = new Position(12, 33);
         player.setPosition(pos);
         Assertions.assertEquals(pos, player.getPosition());

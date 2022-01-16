@@ -38,7 +38,7 @@ public class ControllerTest {
     }
 
     @Test
-    void generateObjects(){
+    void generateObjects() {
         control.generateObjects(15);
         Assertions.assertEquals(1, control.getObstacles().size());
         control.setObstacles(new ArrayList<>());

@@ -12,10 +12,6 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 
-import java.awt.*;
-import java.io.IOException;
-import java.net.URISyntaxException;
-
 public class BackGroundViewTest {
     private BackgroundView viewer;
     private Screen screen;
@@ -23,22 +19,22 @@ public class BackGroundViewTest {
 
     @BeforeEach
     void setUp() {
-        viewer = new BackgroundView(3);
+        viewer = new BackgroundView("#595959", "#57AAF8", ' ', ' ', 1);
         screen = Mockito.mock(Screen.class);
-        g = Mockito.mock(TextGraphics.class);
+        g = screen.newTextGraphics();
         View.setScreen(screen);
         View.setGraphics(g);
     }
 
     @Test
-    void drawTest() throws IOException {
+    void drawTest() {
         Position pos = new Position(0, viewer.getLower());
-        viewer.draw(pos, 0);
-        TextColor backWall = TextColor.Factory.fromString("#000C66");
+        viewer.draw(pos);
+        TextColor backWall = TextColor.Factory.fromString("#57AAF8");
         Mockito.verify(g, Mockito.times(1)).fillRectangle(new TerminalPosition(pos.getX(), 0), screen.getTerminalSize(), ' ');
         Mockito.verify(g, Mockito.times(1)).setBackgroundColor(backWall);
 
-        TextColor backBase = TextColor.Factory.fromString("#808080");
+        TextColor backBase = TextColor.Factory.fromString("#595959");
         Mockito.verify(g, Mockito.times(1)).setBackgroundColor(backBase);
         Mockito.verify(g, Mockito.times(1)).fillRectangle(new TerminalPosition(pos.getX(), View.getRows() - pos.getY()), new TerminalSize(View.getCollumns(), viewer.getLower()), ' ');
     }

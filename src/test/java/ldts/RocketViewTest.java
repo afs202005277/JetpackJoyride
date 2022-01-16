@@ -1,13 +1,10 @@
 package ldts;
 
-import com.googlecode.lanterna.TerminalPosition;
 import com.googlecode.lanterna.TextColor;
 import com.googlecode.lanterna.graphics.TextGraphics;
 import com.googlecode.lanterna.screen.Screen;
-import ldts.model.Laser;
 import ldts.model.Position;
 import ldts.model.Rocket;
-import ldts.view.LaserView;
 import ldts.view.RocketView;
 import ldts.view.View;
 import org.junit.jupiter.api.BeforeEach;
@@ -24,9 +21,9 @@ public class RocketViewTest {
     private TextGraphics g;
 
     @BeforeEach
-    void setUp(){
+    void setUp() {
         rocket = new Rocket();
-        viewer = new RocketView();
+        viewer = new RocketView("#57AAF8", "#000000", "$%");
         pos = new Position(1, 2);
         screen = Mockito.mock(Screen.class);
         g = Mockito.mock(TextGraphics.class);
