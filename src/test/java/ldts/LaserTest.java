@@ -1,7 +1,6 @@
 package ldts;
 
-import ldts.model.Laser;
-import ldts.model.Position;
+import ldts.model.Obstacle.Laser;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 

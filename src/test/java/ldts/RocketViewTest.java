@@ -4,7 +4,7 @@ import com.googlecode.lanterna.TextColor;
 import com.googlecode.lanterna.graphics.TextGraphics;
 import com.googlecode.lanterna.screen.Screen;
 import ldts.model.Position;
-import ldts.model.Rocket;
+import ldts.model.Obstacle.Rocket;
 import ldts.view.RocketView;
 import ldts.view.View;
 import org.junit.jupiter.api.BeforeEach;

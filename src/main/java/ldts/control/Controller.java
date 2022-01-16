@@ -2,6 +2,7 @@ package ldts.control;
 
 import com.googlecode.lanterna.screen.Screen;
 import ldts.model.*;
+import ldts.model.Obstacle.*;
 import ldts.view.*;
 
 import java.awt.*;
@@ -104,6 +105,17 @@ public class Controller {
         }
         else if (object.isCoin() && object.getPosition().equals(player.getPosition())){
             collision = true;
+    public void generateObstacles(int i){
+        if (i % 15 == 0) {
+            int random = (int) (Math.random() * (5 - 1)) + 1;
+            if (random < 4) {
+                ObstacleFactory lasers = new LaserFactory();
+                obstacles.add(lasers.createObstacle());
+            }
+            else {
+                ObstacleFactory rockets = new RocketFactory();
+                obstacles.add(rockets.createObstacle());
+            }
         }
         return collision;
     }
