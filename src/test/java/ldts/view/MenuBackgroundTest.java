@@ -10,8 +10,9 @@ import org.mockito.Mockito;
 
 import java.io.IOException;
 
-public class InstructionsViewTest {
-    private InstructionsView instructionsView;
+
+public class MenuBackgroundTest {
+    private MenuBackGround menuBackGround;
     private TextGraphics graphics;
     private Screen screen;
     private PlayerView playerView;
@@ -21,7 +22,7 @@ public class InstructionsViewTest {
 
     @BeforeEach
     void setUp() {
-        instructionsView = new InstructionsView();
+        menuBackGround = new MenuBackGround();
         graphics = Mockito.mock(TextGraphics.class);
         screen = Mockito.mock(Screen.class);
         playerView = Mockito.mock(PlayerView.class);
@@ -36,17 +37,11 @@ public class InstructionsViewTest {
 
     @Test
     void draw() throws IOException {
-        TextColor bkColor = TextColor.Factory.fromString("#111111"), frColor = TextColor.Factory.fromString("#FFFFFF");
-        instructionsView.draw(playerView, backgroundView, laserView, coinView);
-
-        Mockito.verify(graphics, Mockito.times(1)).setBackgroundColor(bkColor);
-        Mockito.verify(graphics, Mockito.times(1)).setForegroundColor(frColor);
-
-        Mockito.verify(graphics, Mockito.times(5)).putString(Mockito.anyInt(), Mockito.anyInt(), Mockito.anyString());
-
-        bkColor = TextColor.Factory.fromString("#000000");
-        Mockito.verify(graphics, Mockito.times(1)).setBackgroundColor(bkColor);
-
-        Mockito.verify(screen, Mockito.times(1)).refresh();
+        MenuBackGround.draw(playerView, backgroundView, laserView, coinView);
+        Mockito.verify(screen, Mockito.times(1)).clear();
+        Mockito.verify(backgroundView, Mockito.times(1)).draw(new Position(0, 1));
+        Mockito.verify(laserView, Mockito.times(2)).draw(Mockito.any(Position.class), Mockito.any(Position.class));
+        Mockito.verify(coinView, Mockito.times(8)).draw(Mockito.any(Position.class));
+        Mockito.verify(playerView, Mockito.times(1)).drawLarge(new Position(10, 4));
     }
 }
