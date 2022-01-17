@@ -4,6 +4,7 @@ import com.googlecode.lanterna.TextColor;
 
 import java.io.IOException;
 
+import static java.lang.Math.abs;
 import static ldts.view.View.graphics;
 
 public class MenuView {
@@ -13,8 +14,7 @@ public class MenuView {
 
     public void moveSelected(int move) {
         selected += move;
-        if (selected < 0) selected = options - selected;
-        else if (selected >= options) selected -= options;
+        selected = abs(selected % options);
     }
 
     public int getSelected() {

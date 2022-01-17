@@ -6,6 +6,8 @@ import com.googlecode.lanterna.TextColor;
 
 import java.io.IOException;
 
+import static java.lang.Math.abs;
+
 public class GameOverView extends View
 {
     private int selected = 0; // 0 - Replay, 1 - QUIT
@@ -13,8 +15,7 @@ public class GameOverView extends View
 
     public void moveSelected(int move) {
         selected += move;
-        if (selected < 0) selected = options - selected;
-        else if (selected >= options) selected -= options;
+        selected = abs(selected % options);
     }
 
     public int getSelected() {
