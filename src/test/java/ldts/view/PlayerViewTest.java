@@ -1,4 +1,4 @@
-package ldts;
+package ldts.view;
 
 import com.googlecode.lanterna.TextColor;
 import com.googlecode.lanterna.graphics.TextGraphics;

@@ -1,4 +1,4 @@
-package ldts;
+package ldts.control;
 
 import com.googlecode.lanterna.input.KeyStroke;
 import com.googlecode.lanterna.input.KeyType;

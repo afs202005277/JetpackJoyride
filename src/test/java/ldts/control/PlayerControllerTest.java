@@ -1,4 +1,4 @@
-package ldts;
+package ldts.control;
 
 import com.googlecode.lanterna.TerminalSize;
 import com.googlecode.lanterna.input.KeyStroke;
@@ -13,6 +13,8 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
+
+import java.io.IOException;
 
 public class PlayerControllerTest {
     private PlayerController playerController;
@@ -72,5 +74,19 @@ public class PlayerControllerTest {
         playerController.input(k);
         Position after = playerController.getPlayer().getPosition();
         Assertions.assertEquals(prev, after);
+    }
+
+    @Test
+    void step() throws IOException {
+        playerController.getPlayer().setPosition(new Position(5, 4));
+        playerController.step(3);
+        Assertions.assertEquals(4, playerController.getPlayer().getPosition().getY());
+
+        playerController.step(6);
+        Assertions.assertEquals(4, playerController.getPlayer().getPosition().getY());
+
+        playerController.step(2);
+        Assertions.assertEquals(3, playerController.getPlayer().getPosition().getY());
+        Mockito.verify(playerView, Mockito.times(3)).draw(playerController.getPlayer().getPosition());
     }
 }

@@ -1,4 +1,4 @@
-package ldts;
+package ldts.view;
 
 import com.googlecode.lanterna.graphics.TextGraphics;
 import com.googlecode.lanterna.screen.Screen;

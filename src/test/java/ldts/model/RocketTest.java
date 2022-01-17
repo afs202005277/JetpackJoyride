@@ -1,4 +1,4 @@
-package ldts;
+package ldts.model;
 
 import ldts.model.Position;
 import ldts.model.Rocket;

@@ -1,4 +1,4 @@
-package ldts;
+package ldts.model;
 
 import ldts.model.Player;
 import ldts.model.Position;

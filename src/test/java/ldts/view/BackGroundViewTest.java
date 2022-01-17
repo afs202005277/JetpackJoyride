@@ -1,4 +1,4 @@
-package ldts;
+package ldts.view;
 
 import com.googlecode.lanterna.TerminalPosition;
 import com.googlecode.lanterna.TerminalSize;
