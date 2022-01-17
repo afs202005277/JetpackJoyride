@@ -193,7 +193,7 @@ public class Controller {
             f1 = gameOverController.isGameOver();
             f2 = gameOverController.isEnterPressed();
             inputReader.removeObserver(gameOverController);
-        } while (!(f1) && f2);
+        } while (!f1 && f2);
     }
 
     private void resetElements() {

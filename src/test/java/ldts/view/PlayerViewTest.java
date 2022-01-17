@@ -1,19 +1,14 @@
 package ldts.view;
 
-import com.googlecode.lanterna.TextColor;
 import com.googlecode.lanterna.graphics.TextGraphics;
 import com.googlecode.lanterna.screen.Screen;
 import ldts.model.Player;
 import ldts.model.Position;
-import ldts.view.PlayerView;
-import ldts.view.View;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 
-import java.awt.*;
 import java.io.IOException;
-import java.net.URISyntaxException;
 
 public class PlayerViewTest {
     private Player player;

@@ -1,8 +1,6 @@
 package ldts.model;
 
 import com.googlecode.lanterna.screen.Screen;
-import ldts.model.Laser;
-import ldts.model.Position;
 import ldts.view.View;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;

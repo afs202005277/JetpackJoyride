@@ -1,6 +1,5 @@
 package ldts.model;
 
-import ldts.model.Coin;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 

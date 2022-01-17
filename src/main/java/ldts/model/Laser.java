@@ -7,6 +7,7 @@ public class Laser extends Element  {
     private final int orient;  // 1. -  2. |  3. \  4.  /
     private final int size;
 
+    @SuppressWarnings("UnnecessaryParentheses")
     public Position getLastPosition() {
         Position position1 = switch (orient) {
             case 1 -> new Position(position.getX() + size - 1, position.getY());

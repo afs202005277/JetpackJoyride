@@ -12,7 +12,6 @@ import java.util.ArrayList;
 public class InputReader extends Thread {
     private final Screen screen;
     private final ArrayList<InputObserver> observers;
-    private Character key = '0';
 
     public InputReader(Screen screen) {
         this.screen = screen;
@@ -32,7 +31,7 @@ public class InputReader extends Thread {
             observer.input(c);
     }
 
-    @Override
+    @Override @SuppressWarnings("CatchAndPrintStackTrace")
     public void run() {
         while (true) {
             try {

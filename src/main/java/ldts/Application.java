@@ -1,8 +1,6 @@
 package ldts;
 
 import ldts.control.Controller;
-import ldts.control.MenuController;
-import ldts.view.*;
 
 import java.awt.*;
 import java.io.IOException;
