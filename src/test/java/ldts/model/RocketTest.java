@@ -1,25 +1,33 @@
 package ldts.model;
 
+import com.googlecode.lanterna.screen.Screen;
 import ldts.model.Position;
 import ldts.model.Rocket;
+import ldts.view.View;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
+
+import java.awt.*;
+import java.io.IOException;
+import java.net.URISyntaxException;
 
 public class RocketTest {
 
     @Test
-    public void moveRocket() {
+    public void moveRocket()  {
         Rocket rocket = new Rocket();
-        int x = rocket.getX() - 3;
+        int x = rocket.getX() - 1;
         int y = rocket.getY();
         rocket.move(-1, 0);
         Assertions.assertEquals(x, rocket.getX());
     }
 
     @Test
-    public void type() {
+    public void type()  {
         Rocket rocket = new Rocket();
         Assertions.assertFalse(rocket.isLaser());
+        Assertions.assertFalse(rocket.isCoin());
+        Assertions.assertTrue(rocket.isRocket());
     }
 
     @Test
@@ -32,10 +40,10 @@ public class RocketTest {
     }
 
     @Test
-    public void constructor() {
+    public void constructor()  {
         Rocket rocket = new Rocket();
         Assertions.assertTrue(rocket.getY() >= 2 && rocket.getY() <= 18);
-        Assertions.assertEquals(60, rocket.getX());
+        Assertions.assertEquals(51, rocket.getX());
     }
 
     @Test

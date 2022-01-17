@@ -1,17 +1,23 @@
 package ldts.model;
 
+import com.googlecode.lanterna.screen.Screen;
 import ldts.model.Laser;
 import ldts.model.Position;
+import ldts.view.View;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
+import java.awt.*;
+import java.io.IOException;
+import java.net.URISyntaxException;
 import java.util.ArrayList;
 import java.util.List;
 
 public class LaserTest {
 
     @Test
-    public void moveLaser() {
+    public void moveLaser() throws IOException, URISyntaxException, FontFormatException {
+        Screen screen = View.initScreen();
         Laser laser = new Laser();
         int x = laser.getX() - 1;
         int y = laser.getY();
@@ -20,7 +26,8 @@ public class LaserTest {
     }
 
     @Test
-    public void type() {
+    public void type() throws IOException, URISyntaxException, FontFormatException {
+        Screen screen = View.initScreen();
         Laser laser = new Laser();
         Assertions.assertTrue(laser.isLaser());
     }
@@ -61,16 +68,18 @@ public class LaserTest {
     }
 
     @Test
-    public void constructor() {
+    public void constructor() throws IOException, URISyntaxException, FontFormatException {
+        Screen screen = View.initScreen();
         Laser laser = new Laser();
         Assertions.assertTrue(laser.getY() >= 2 && laser.getY() <= 18);
         Assertions.assertTrue(laser.getOrient() >= 1 && laser.getOrient() <= 4);
         Assertions.assertTrue(laser.getSize() >= 1 && laser.getSize() <= 5);
-        Assertions.assertEquals(60, laser.getX());
+        Assertions.assertEquals(51, laser.getX());
     }
 
     @Test
-    public void sets() {
+    public void sets() throws IOException, URISyntaxException, FontFormatException {
+        Screen screen = View.initScreen();
         Laser laser = new Laser();
         int x = 10;
         int y = 10;
