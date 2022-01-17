@@ -14,8 +14,7 @@ public class GameOverView extends View
     private final int options = 2;
 
     public void moveSelected(int move) {
-        selected += move;
-        selected = abs(selected % options);
+        selected = move+selected<0 ? options-abs(selected+move) : move+selected>options-1 ? (selected+move)-options : selected+move;
     }
 
     public int getSelected() {
@@ -37,7 +36,7 @@ public class GameOverView extends View
 
         graphics.setBackgroundColor(TextColor.Factory.fromString(selected == 0 ? "#FFFFFF" : "#111111"));
         graphics.setForegroundColor(TextColor.Factory.fromString(selected == 0 ? "#000000" : "#FFFFFF"));
-        graphics.putString(new TerminalPosition(currentNCols/2-4, ROWS/2), "- QUIT");
+        graphics.putString(new TerminalPosition(currentNCols/2-4, ROWS/2), "- EXIT");
         screen.refresh();
     }
 }

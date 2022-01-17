@@ -10,6 +10,7 @@ public class GameOverController implements InputObserver {
     private GameOverView gameOverView;
     private boolean gameOver = true;
     private boolean enterPressed = false;
+    private boolean mainMenu = false;
 
     public GameOverController(GameOverView gameOverView) {
         this.gameOverView = gameOverView;
@@ -26,6 +27,10 @@ public class GameOverController implements InputObserver {
         enterPressed = false;
     }
 
+    public boolean isMainMenu() {
+        return mainMenu;
+    }
+
     @Override
     public void input(KeyStroke input) {
         if (input.getKeyType() == KeyType.ArrowUp) {
@@ -36,7 +41,7 @@ public class GameOverController implements InputObserver {
         this.step();
         if (input.getKeyType() == KeyType.Enter) {
             if (gameOverView.getSelected() == 1)
-                System.exit(0);
+                mainMenu = true;
             gameOver = false;
             enterPressed = true;
         }
