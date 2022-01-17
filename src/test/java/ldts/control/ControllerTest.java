@@ -114,12 +114,12 @@ public class ControllerTest {
     @Test
     void drawElements() throws IOException {
         ArrayList<Element> elements = new ArrayList<>();
-        elements.add(new Laser());
-        elements.add(new Laser());
-        elements.add(new Rocket());
-        elements.add(new Coin());
-        elements.add(new Coin());
-        elements.add(new Coin());
+        elements.add(new Laser(new Position(40, 3), 3, 2));
+        elements.add(new Laser(new Position(50, 15), 4, 3));
+        elements.add(new Rocket(70, 60));
+        elements.add(new Coin(4, 3));
+        elements.add(new Coin(10, 5));
+        elements.add(new Coin(11, 5));
         control.setElements(elements);
         CounterView coinCounter = Mockito.mock(CounterView.class), distanceCounter = Mockito.mock(CounterView.class);
         Mockito.when(coinCounter.getUnits()).thenReturn("coins");
@@ -134,7 +134,7 @@ public class ControllerTest {
         control.setRocketView(rView);
         control.setCoinView(coinView);
         control.setBackgroundView(backgroundView);
-
+        control.setScreen(screen);
         control.drawElements(2, 5);
         Mockito.verify(screen, Mockito.times(1)).clear();
 
