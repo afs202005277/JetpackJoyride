@@ -3,7 +3,6 @@ package ldts.control;
 import com.googlecode.lanterna.TerminalSize;
 import com.googlecode.lanterna.graphics.TextGraphics;
 import com.googlecode.lanterna.screen.Screen;
-import ldts.control.Controller;
 import ldts.model.*;
 import ldts.view.*;
 import org.junit.jupiter.api.Assertions;
@@ -105,6 +104,7 @@ public class ControllerTest {
 
     @Test
     void generateObjects() {
+        control.setElements(new ArrayList<>());
         for (int i=0;i<=30;i++){
             control.generateObjects(i);
         }

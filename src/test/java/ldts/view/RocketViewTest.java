@@ -34,10 +34,10 @@ public class RocketViewTest {
     @Test
     void drawTest() throws IOException {
         viewer.draw(pos);
-        TextColor back = TextColor.Factory.fromString("#000C66");
-        TextColor fore = TextColor.Factory.fromString("#FF1F1F");
+        TextColor back = TextColor.Factory.fromString("#57AAF8");
+        TextColor fore = TextColor.Factory.fromString("#000000");
         Mockito.verify(g, Mockito.times(1)).setBackgroundColor(back);
         Mockito.verify(g, Mockito.times(1)).setForegroundColor(fore);
-        Mockito.verify(g, Mockito.times(1)).putString(pos.getX(), View.getRows() - pos.getY(), "xX");
+        Mockito.verify(g, Mockito.times(1)).putString(pos.getX(), View.getRows() - pos.getY(), "$%");
     }
 }

@@ -26,7 +26,7 @@ public class PlayerViewTest {
         player = new Player();
         viewer = new PlayerView("#57AAF8", "#D5433C", "!");
         screen = Mockito.mock(Screen.class);
-        g = screen.newTextGraphics();
+        g = Mockito.mock(TextGraphics.class);
         View.setScreen(screen);
         View.setGraphics(g);
     }

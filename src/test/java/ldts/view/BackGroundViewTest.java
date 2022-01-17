@@ -6,8 +6,6 @@ import com.googlecode.lanterna.TextColor;
 import com.googlecode.lanterna.graphics.TextGraphics;
 import com.googlecode.lanterna.screen.Screen;
 import ldts.model.Position;
-import ldts.view.BackgroundView;
-import ldts.view.View;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
@@ -21,7 +19,8 @@ public class BackGroundViewTest {
     void setUp() {
         viewer = new BackgroundView("#595959", "#57AAF8", ' ', ' ', 1);
         screen = Mockito.mock(Screen.class);
-        g = screen.newTextGraphics();
+        Mockito.when(screen.getTerminalSize()).thenReturn(new TerminalSize(51, 18));
+        g = Mockito.mock(TextGraphics.class);
         View.setScreen(screen);
         View.setGraphics(g);
     }
