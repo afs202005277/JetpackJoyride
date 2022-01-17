@@ -26,6 +26,5 @@ public class MenuBackGround {
         for (Position p : getCoins())
             coinView.draw(p);
         playerView.drawLarge(new Position(10, 4));
-        View.screen.refresh();
     }
 }
