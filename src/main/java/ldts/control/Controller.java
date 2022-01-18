@@ -24,13 +24,7 @@ public class Controller {
     private MenuController menuController;
     private Screen screen;
 
-    public static void setSingleton(Controller singleton) {
-        Controller.singleton = singleton;
-    }
-
-
-
-    public Controller() throws IOException, URISyntaxException, FontFormatException {
+    public Controller() {
         String BACKGROUND = "#57AAF8";
         String WALLS = "#595959";
         playerController = new PlayerController(new Player(), new PlayerView(BACKGROUND, "#D5433C", "!"));
@@ -42,6 +36,16 @@ public class Controller {
         distanceCounterView = new CounterView(WALLS, "#000000", "meters");
         coinsCounterView = new CounterView(WALLS, "#DEAC4C", "coins");
         menuController = new MenuController(playerController.getPlayerView(), backgroundView, coinView, laserView);
+    }
+
+    public static Controller getInstance() throws IOException, URISyntaxException, FontFormatException {
+        if (singleton == null)
+            singleton = new Controller();
+        return singleton;
+    }
+
+    public static void setSingleton(Controller singleton) {
+        Controller.singleton = singleton;
     }
 
     public ArrayList<Element> getElements() {
@@ -68,41 +72,35 @@ public class Controller {
         this.coinView = coinView;
     }
 
-    public static Controller getInstance() throws IOException, URISyntaxException, FontFormatException {
-        if (singleton == null)
-            singleton = new Controller();
-        return singleton;
-    }
-
     public void setBackgroundView(BackgroundView backgroundView) {
         this.backgroundView = backgroundView;
     }
 
+    public void setScreen(Screen screen) {
+        this.screen = screen;
+    }
+
     public boolean checkCollisions(Element object, Player player) {
         boolean collision = false;
-        if (object.isRocket() || object.isLaser()) {
-            if (object.isLaser()) {
-                // Laser Collision
-                Laser obstacle = (Laser) object;
-                if (object.getPosition().getX() <= player.getPosition().getX() && player.getPosition().getX() <= obstacle.getLastPosition().getX()) {
-                    int m = 0;
-                    if (object.getPosition().getX() == obstacle.getLastPosition().getX() && obstacle.getLastPosition().getY() <= player.getPosition().getY() && player.getPosition().getY() <= object.getPosition().getY())
-                        collision = true;
-                    else {
-                        if (object.getPosition().getY() > obstacle.getLastPosition().getY()) m = -1;
-                        else if (object.getPosition().getY() < obstacle.getLastPosition().getY()) m = 1;
-
-                        int b = object.getPosition().getY() - m * object.getPosition().getX();
-
-                        if (player.getPosition().getX() * m + b == player.getPosition().getY()) collision = true;
-                    }
-                }
-            } else {
-                // Rocket Collision
-                Position temp = new Position(object.getX() + 1, object.getPosition().getY());
-                if (object.getPosition().equals(player.getPosition()) || temp.equals(player.getPosition()))
+        if (object.isLaser()) {
+            Laser obstacle = (Laser) object;
+            if (object.getPosition().getX() <= player.getPosition().getX() && player.getPosition().getX() <= obstacle.getLastPosition().getX()) {
+                int m = 0;
+                if (object.getPosition().getX() == obstacle.getLastPosition().getX() && obstacle.getLastPosition().getY() <= player.getPosition().getY() && player.getPosition().getY() <= object.getPosition().getY())
                     collision = true;
+                else {
+                    if (object.getPosition().getY() > obstacle.getLastPosition().getY()) m = -1;
+                    else if (object.getPosition().getY() < obstacle.getLastPosition().getY()) m = 1;
+
+                    int b = object.getPosition().getY() - m * object.getPosition().getX();
+
+                    if (player.getPosition().getX() * m + b == player.getPosition().getY()) collision = true;
+                }
             }
+        } else if (object.isRocket()){
+            Position temp = new Position(object.getX() + 1, object.getPosition().getY());
+            if (object.getPosition().equals(player.getPosition()) || temp.equals(player.getPosition()))
+                collision = true;
         }
         else if (object.isCoin() && object.getPosition().equals(player.getPosition())){
             collision = true;
@@ -119,10 +117,6 @@ public class Controller {
         }
     }
 
-    public void setScreen(Screen screen) {
-        this.screen = screen;
-    }
-
     public void runInstructions() throws IOException {
         InstructionsView iView = new InstructionsView();
         iView.draw(playerController.getPlayerView(), backgroundView, laserView, coinView);
@@ -130,12 +124,8 @@ public class Controller {
 
     public void runMenu() throws IOException, URISyntaxException, FontFormatException {
         screen = View.initScreen();
-        while(!menuController.isEnterPressed())
+        while(!menuController.isKeepRunning())
             menuController.step();
-    }
-
-    public PlayerController getPlayerController() {
-        return playerController;
     }
 
     public void setElements(ArrayList<Element> elements) {
@@ -158,6 +148,11 @@ public class Controller {
         coinsCounterView.draw(new Position(0, 0), coins);
     }
 
+    private void resetElements() {
+        playerController.setPlayer(new Player());
+        elements = new ArrayList<>();
+    }
+
     public void run() throws IOException, InterruptedException, URISyntaxException, FontFormatException {
         boolean gameOver;
         InputReader inputReader = new InputReader(screen);
@@ -165,7 +160,7 @@ public class Controller {
         inputReader.start();
         GameOverController gameOverController = new GameOverController(new GameOverView());
 
-        boolean f1, f2, f3;
+        boolean stopGame, enterPressed, goToMainMenu;
         do {
             gameOver = false;
             int xMin = 0, coinsCollected = 0;
@@ -192,17 +187,12 @@ public class Controller {
             gameOverController.step();
             resetElements();
             while (!gameOverController.isEnterPressed()) ;
-            f1 = gameOverController.isGameOver();
-            f2 = gameOverController.isEnterPressed();
-            f3 = gameOverController.isMainMenu();
+            stopGame = gameOverController.isGameOver();
+            enterPressed = gameOverController.isEnterPressed();
+            goToMainMenu = gameOverController.isMainMenu();
             inputReader.removeObserver(gameOverController);
-        } while (!f1 && f2 && !f3);
+        } while (!stopGame && enterPressed && !goToMainMenu);
         inputReader.clear();
         runMenu();
-    }
-
-    private void resetElements() {
-        playerController.setPlayer(new Player());
-        elements = new ArrayList<>();
     }
 }

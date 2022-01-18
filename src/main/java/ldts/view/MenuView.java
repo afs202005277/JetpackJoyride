@@ -13,7 +13,8 @@ public class MenuView {
 
 
     public void moveSelected(int move) {
-        selected = move+selected<0 ? options-abs(selected+move) : move+selected>options-1 ? (selected+move)-options : selected+move;
+        selected += move;
+        selected = abs(selected % options);
     }
 
     public int getSelected() {

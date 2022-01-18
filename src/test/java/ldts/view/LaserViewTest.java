@@ -1,5 +1,6 @@
 package ldts.view;
 
+import com.googlecode.lanterna.TerminalSize;
 import com.googlecode.lanterna.TextColor;
 import com.googlecode.lanterna.graphics.TextGraphics;
 import com.googlecode.lanterna.screen.Screen;
@@ -20,14 +21,15 @@ public class LaserViewTest {
 
     @BeforeEach
     void setUp() {
+        screen = Mockito.mock(Screen.class);
+        Mockito.when(screen.getTerminalSize()).thenReturn(new TerminalSize(51, 18));
+        g = Mockito.mock(TextGraphics.class);
+        View.setScreen(screen);
+        View.setGraphics(g);
         laser = new Laser();
         viewer = new LaserView("#FFFB54", ' ');
         p1 = new Position(1, 2);
         p2 = new Position(4, 5);
-        screen = Mockito.mock(Screen.class);
-        g = Mockito.mock(TextGraphics.class);
-        View.setScreen(screen);
-        View.setGraphics(g);
     }
 
     @Test

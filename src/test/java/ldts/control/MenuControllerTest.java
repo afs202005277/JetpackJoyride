@@ -40,7 +40,7 @@ public class MenuControllerTest {
         Mockito.when(screen.readInput()).thenReturn(new KeyStroke(KeyType.ArrowLeft));
         menuController.step();
         Mockito.verify(menuView, Mockito.times(2)).draw(playerView, backgroundView, laserView, coinView);
-        Assertions.assertFalse(menuController.isEnterPressed());
+        Assertions.assertFalse(menuController.isKeepRunning());
     }
 
     @Test
@@ -63,6 +63,6 @@ public class MenuControllerTest {
         Mockito.when(screen.readInput()).thenReturn(new KeyStroke(KeyType.Enter));
         menuController.input(new KeyStroke(KeyType.Enter));
         Mockito.verify(menuView, Mockito.times(0)).moveSelected(Mockito.anyInt());
-        Assertions.assertTrue(menuController.isEnterPressed());
+        Assertions.assertFalse(menuController.isKeepRunning());
     }
 }

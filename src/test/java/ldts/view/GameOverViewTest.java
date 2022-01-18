@@ -43,7 +43,7 @@ public class GameOverViewTest {
         gameOverView.draw();
         TextColor white = TextColor.Factory.fromString("#FFFFFF"), black = TextColor.Factory.fromString("#000000");
         Mockito.verify(graphics, Mockito.times(2)).setBackgroundColor(white);
-        Mockito.verify(graphics, Mockito.times(1)).fillRectangle(new TerminalPosition(19, 6), new TerminalSize(12, 6), ' ');
+        Mockito.verify(graphics, Mockito.times(1)).fillRectangle(new TerminalPosition(19, 6), new TerminalSize(14, 6), ' ');
 
         Mockito.verify(graphics, Mockito.times(2)).setForegroundColor(black);
         Mockito.verify(graphics, Mockito.times(1)).putString(new TerminalPosition(21, 7), "GAMEOVER");
@@ -52,7 +52,7 @@ public class GameOverViewTest {
         Mockito.verify(graphics, Mockito.times(1)).setForegroundColor(TextColor.Factory.fromString("#FFFFFF"));
         Mockito.verify(graphics, Mockito.times(1)).putString(new TerminalPosition(21, 8), "- REPLAY");
 
-        Mockito.verify(graphics, Mockito.times(1)).putString(new TerminalPosition(21, 9), "- QUIT");
+        Mockito.verify(graphics, Mockito.times(1)).putString(new TerminalPosition(21, 9), "- MAIN MENU");
 
         Mockito.verify(screen, Mockito.times(1)).refresh();
     }

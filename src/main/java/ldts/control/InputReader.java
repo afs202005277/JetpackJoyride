@@ -12,15 +12,6 @@ import java.util.ArrayList;
 public class InputReader extends Thread {
     private final Screen screen;
     private final ArrayList<InputObserver> observers;
-
-    public boolean isStopInputs() {
-        return stopInputs;
-    }
-
-    public void setStopInputs(boolean stopInputs) {
-        this.stopInputs = stopInputs;
-    }
-
     private boolean stopInputs;
 
     public InputReader(Screen screen) {

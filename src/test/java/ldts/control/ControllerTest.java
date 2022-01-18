@@ -24,15 +24,16 @@ public class ControllerTest {
 
     @BeforeEach
     void setUp() throws IOException, URISyntaxException, FontFormatException {
-        control = Controller.getInstance();
-        backViewer = Mockito.mock(BackgroundView.class);
-        playerViewer = Mockito.mock(PlayerView.class);
         screen = Mockito.mock(Screen.class);
         Mockito.when(screen.getTerminalSize()).thenReturn(new TerminalSize(51, 18));
-        graphics = Mockito.mock(TextGraphics.class);
         View.setScreen(screen);
-        control.setScreen(screen);
         View.setGraphics(graphics);
+
+        control = Controller.getInstance();
+        control.setScreen(screen);
+        backViewer = Mockito.mock(BackgroundView.class);
+        playerViewer = Mockito.mock(PlayerView.class);
+        graphics = Mockito.mock(TextGraphics.class);
         control.setBackgroundView(backViewer);
     }
 
@@ -134,7 +135,6 @@ public class ControllerTest {
         control.setRocketView(rView);
         control.setCoinView(coinView);
         control.setBackgroundView(backgroundView);
-        control.setScreen(screen);
         control.drawElements(2, 5);
         Mockito.verify(screen, Mockito.times(1)).clear();
 

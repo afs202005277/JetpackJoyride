@@ -1,5 +1,6 @@
 package ldts.view;
 
+import com.googlecode.lanterna.TerminalSize;
 import com.googlecode.lanterna.TextColor;
 import com.googlecode.lanterna.graphics.TextGraphics;
 import com.googlecode.lanterna.screen.Screen;
@@ -20,13 +21,15 @@ public class RocketViewTest {
 
     @BeforeEach
     void setUp() {
-        rocket = new Rocket();
-        viewer = new RocketView("#57AAF8", "#000000", "$%");
-        pos = new Position(1, 2);
         screen = Mockito.mock(Screen.class);
+        Mockito.when(screen.getTerminalSize()).thenReturn(new TerminalSize(51, 18));
         g = Mockito.mock(TextGraphics.class);
         View.setScreen(screen);
         View.setGraphics(g);
+
+        rocket = new Rocket();
+        viewer = new RocketView("#57AAF8", "#000000", "$%");
+        pos = new Position(1, 2);
     }
 
     @Test

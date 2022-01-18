@@ -7,7 +7,7 @@ import ldts.view.GameOverView;
 import java.io.IOException;
 
 public class GameOverController implements InputObserver {
-    private GameOverView gameOverView;
+    private final GameOverView gameOverView;
     private boolean gameOver = true;
     private boolean enterPressed = false;
     private boolean mainMenu = false;

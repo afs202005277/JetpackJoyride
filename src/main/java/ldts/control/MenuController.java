@@ -15,7 +15,7 @@ public class MenuController {
     private final BackgroundView backgroundView;
     private final CoinView coinView;
     private final LaserView laserView;
-    private boolean enterPressed;
+    private boolean keepRunning;
 
     public MenuController(PlayerView playerView, BackgroundView backgroundView, CoinView coinView, LaserView laserView) {
         this.playerView = playerView;
@@ -23,7 +23,7 @@ public class MenuController {
         this.coinView = coinView;
         this.laserView = laserView;
         this.menuView = new MenuView();
-        enterPressed = false;
+        keepRunning = false;
     }
 
     public void setMenuView(MenuView menuView) {
@@ -33,7 +33,7 @@ public class MenuController {
     @SuppressWarnings("CatchAndPrintStackTrace")
     public void step() {
         try {
-            enterPressed = false;
+            keepRunning = false;
             menuView.draw(playerView, backgroundView, laserView, coinView);
             this.input(View.getScreen().readInput());
         } catch (IOException | URISyntaxException | InterruptedException | FontFormatException e) {
@@ -41,8 +41,8 @@ public class MenuController {
         }
     }
 
-    public boolean isEnterPressed() {
-        return enterPressed;
+    public boolean isKeepRunning() {
+        return keepRunning;
     }
 
     public void input(KeyStroke input) throws IOException, URISyntaxException, InterruptedException, FontFormatException {
@@ -52,16 +52,16 @@ public class MenuController {
             menuView.moveSelected(1);
         }
         else if (input.getKeyType() == KeyType.Enter) {
-            enterPressed = true;
+            keepRunning = true;
             if (menuView.getSelected() == 0) {
-                enterPressed = false;
+                keepRunning = false;
                 Controller.getInstance().run();
             }
             else if (menuView.getSelected() == 1) {
                 do {
                     Controller.getInstance().runInstructions();
                 }while(View.getScreen().readInput().getKeyType() != KeyType.Enter);
-                enterPressed = false;
+                keepRunning = false;
             }
             else if (menuView.getSelected() == 2)
                 System.exit(0);
