@@ -111,8 +111,8 @@ public class Controller {
     public void generateObjects(int i) {
         if (i % 5 == 0) {
             int random = (int) (Math.random() * 6) + 1;
-            if (random <= 4) elements.add(new Laser());
-            else if (random <= 6) elements.add(new Coin());
+            if (random <= 3) elements.add(new Laser());
+            else if (random <= 5) elements.add(new Coin());
             else elements.add(new Rocket());
         }
     }
