@@ -19,10 +19,10 @@ public class MenuControllerTest {
     private MenuController menuController;
     private MenuView menuView;
     private Screen screen;
-    private PlayerView playerView = Mockito.mock(PlayerView.class);
-    private BackgroundView backgroundView = Mockito.mock(BackgroundView.class);
-    private CoinView coinView = Mockito.mock(CoinView.class);
-    private LaserView laserView = Mockito.mock(LaserView.class);
+    private final PlayerView playerView = Mockito.mock(PlayerView.class);
+    private final BackgroundView backgroundView = Mockito.mock(BackgroundView.class);
+    private final CoinView coinView = Mockito.mock(CoinView.class);
+    private final LaserView laserView = Mockito.mock(LaserView.class);
 
     @BeforeEach
     void setUp(){

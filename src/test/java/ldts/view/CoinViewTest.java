@@ -12,8 +12,8 @@ import java.io.IOException;
 public class CoinViewTest {
     private TextGraphics g;
     private CoinView coinView;
-    private TextColor backGround = TextColor.Factory.fromString("#57AAF8");
-    private TextColor foreGround = TextColor.Factory.fromString("#DEAC4C");
+    private final TextColor backGround = TextColor.Factory.fromString("#57AAF8");
+    private final TextColor foreGround = TextColor.Factory.fromString("#DEAC4C");
 
     @BeforeEach
     void setUp(){

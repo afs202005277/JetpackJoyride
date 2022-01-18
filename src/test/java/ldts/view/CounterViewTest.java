@@ -12,8 +12,8 @@ import java.io.IOException;
 public class CounterViewTest {
     private TextGraphics g;
     private CounterView counterView;
-    private TextColor backGround = TextColor.Factory.fromString("#595959");
-    private TextColor foreGround = TextColor.Factory.fromString("#DEAC4C");
+    private final TextColor backGround = TextColor.Factory.fromString("#595959");
+    private final TextColor foreGround = TextColor.Factory.fromString("#DEAC4C");
 
     @BeforeEach
     void setUp(){

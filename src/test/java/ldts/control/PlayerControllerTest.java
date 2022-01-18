@@ -17,12 +17,11 @@ import java.io.IOException;
 
 public class PlayerControllerTest {
     private PlayerController playerController;
-    private Player player;
     private PlayerView playerView;
 
     @BeforeEach
     void setUp() {
-        player = new Player();
+        Player player = new Player();
         playerView = Mockito.mock(PlayerView.class);
         playerController = new PlayerController(player, playerView);
         Screen screen = Mockito.mock(Screen.class);

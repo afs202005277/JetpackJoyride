@@ -13,21 +13,18 @@ import org.mockito.Mockito;
 import java.io.IOException;
 
 public class RocketViewTest {
-    private Rocket rocket;
     private RocketView viewer;
     private Position pos;
-    private Screen screen;
     private TextGraphics g;
 
     @BeforeEach
     void setUp() {
-        screen = Mockito.mock(Screen.class);
+        Screen screen = Mockito.mock(Screen.class);
         Mockito.when(screen.getTerminalSize()).thenReturn(new TerminalSize(51, 18));
         g = Mockito.mock(TextGraphics.class);
         View.setScreen(screen);
         View.setGraphics(g);
 
-        rocket = new Rocket();
         viewer = new RocketView("#57AAF8", "#000000", "$%");
         pos = new Position(1, 2);
     }

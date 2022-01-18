@@ -1,9 +1,12 @@
 package ldts.model;
 
+import com.googlecode.lanterna.TerminalSize;
 import com.googlecode.lanterna.screen.Screen;
 import ldts.view.View;
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.mockito.Mockito;
 
 import java.awt.*;
 import java.io.IOException;
@@ -12,20 +15,26 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class LaserTest {
+    @BeforeEach
+    void setUp() {
+        Screen screen = Mockito.mock(Screen.class);
+        Mockito.when(screen.getTerminalSize()).thenReturn(new TerminalSize(51, 18));
+        View.setScreen(screen);
+    }
+
 
     @Test
-    public void moveLaser() throws IOException, URISyntaxException, FontFormatException {
-        Screen screen = View.initScreen();
+    public void moveLaser() {
         Laser laser = new Laser();
         int x = laser.getX() - 1;
         int y = laser.getY();
         laser.move(-1, 0);
         Assertions.assertEquals(x, laser.getX());
+        Assertions.assertEquals(laser.getY(), y);
     }
 
     @Test
-    public void type() throws IOException, URISyntaxException, FontFormatException {
-        Screen screen = View.initScreen();
+    public void type() {
         Laser laser = new Laser();
         Assertions.assertTrue(laser.isLaser());
     }
@@ -66,8 +75,7 @@ public class LaserTest {
     }
 
     @Test
-    public void constructor() throws IOException, URISyntaxException, FontFormatException {
-        Screen screen = View.initScreen();
+    public void constructor() {
         Laser laser = new Laser();
         Assertions.assertTrue(laser.getY() >= 2 && laser.getY() <= 18);
         Assertions.assertTrue(laser.getOrient() >= 1 && laser.getOrient() <= 4);
@@ -76,8 +84,7 @@ public class LaserTest {
     }
 
     @Test
-    public void sets() throws IOException, URISyntaxException, FontFormatException {
-        Screen screen = View.initScreen();
+    public void sets() {
         Laser laser = new Laser();
         int x = 10;
         int y = 10;

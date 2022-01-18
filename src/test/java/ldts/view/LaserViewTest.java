@@ -13,20 +13,17 @@ import org.mockito.Mockito;
 import java.io.IOException;
 
 public class LaserViewTest {
-    private Laser laser;
     private LaserView viewer;
     private Position p1, p2;
-    private Screen screen;
     private TextGraphics g;
 
     @BeforeEach
     void setUp() {
-        screen = Mockito.mock(Screen.class);
+        Screen screen = Mockito.mock(Screen.class);
         Mockito.when(screen.getTerminalSize()).thenReturn(new TerminalSize(51, 18));
         g = Mockito.mock(TextGraphics.class);
         View.setScreen(screen);
         View.setGraphics(g);
-        laser = new Laser();
         viewer = new LaserView("#FFFB54", ' ');
         p1 = new Position(1, 2);
         p2 = new Position(4, 5);

@@ -16,7 +16,7 @@ public class InputReaderTest {
     private InputReader iReader;
 
     @BeforeEach
-    public void getTestScreen() throws IOException {
+    public void getTestScreen() {
         screen = Mockito.mock(Screen.class);
         iReader = new InputReader(screen);
     }

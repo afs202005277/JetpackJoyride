@@ -17,8 +17,6 @@ import java.util.ArrayList;
 
 public class ControllerTest {
     private Controller control;
-    private BackgroundView backViewer;
-    private PlayerView playerViewer;
     private Screen screen;
     private TextGraphics graphics;
 
@@ -31,8 +29,7 @@ public class ControllerTest {
 
         control = Controller.getInstance();
         control.setScreen(screen);
-        backViewer = Mockito.mock(BackgroundView.class);
-        playerViewer = Mockito.mock(PlayerView.class);
+        BackgroundView backViewer = Mockito.mock(BackgroundView.class);
         graphics = Mockito.mock(TextGraphics.class);
         control.setBackgroundView(backViewer);
     }

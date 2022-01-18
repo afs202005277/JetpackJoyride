@@ -13,14 +13,13 @@ import java.io.IOException;
 public class PlayerViewTest {
     private Player player;
     private PlayerView viewer;
-    private Screen screen;
     private TextGraphics g;
 
     @BeforeEach
     void setUp() {
         player = new Player();
         viewer = new PlayerView("#57AAF8", "#D5433C", "!");
-        screen = Mockito.mock(Screen.class);
+        Screen screen = Mockito.mock(Screen.class);
         g = Mockito.mock(TextGraphics.class);
         View.setScreen(screen);
         View.setGraphics(g);

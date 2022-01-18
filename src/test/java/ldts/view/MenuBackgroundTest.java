@@ -12,8 +12,6 @@ import java.io.IOException;
 
 
 public class MenuBackgroundTest {
-    private MenuBackGround menuBackGround;
-    private TextGraphics graphics;
     private Screen screen;
     private PlayerView playerView;
     private CoinView coinView;
@@ -22,8 +20,7 @@ public class MenuBackgroundTest {
 
     @BeforeEach
     void setUp() {
-        menuBackGround = new MenuBackGround();
-        graphics = Mockito.mock(TextGraphics.class);
+        TextGraphics graphics = Mockito.mock(TextGraphics.class);
         screen = Mockito.mock(Screen.class);
         playerView = Mockito.mock(PlayerView.class);
         coinView = Mockito.mock(CoinView.class);
