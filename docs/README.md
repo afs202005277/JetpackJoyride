@@ -2,35 +2,24 @@
 
 ## Game Description
 
-This project is based on the popular Android game Jetpack Joyride where the player, who has just stolen a jetpack, needs to escape from a laboratory. To achieve that, the player needs to dodge from obstacles like lasers and missiles. The game has no levels: the objective is to survive the longest distance.
+This project is based on the popular Android game Jetpack Joyride where the player, who has just stolen a jetpack, needs to escape from a laboratory. To achieve that, the player needs to dodge from obstacles like lasers and missiles. The game has no levels: the objective is to survive the longest distance and collect the largest amount of coins.
+
+This project was developed by André Sousa (up202005277@edu.fe.up.pt), Diogo Rodrigues (INSERIR EMAIL) and by Pedro Fonseca (INSERIR EMAIL) for LDTS 2021-22.
+
 
 ## Implemented Features
 
-- **Player movement**: when the space bar is pressed, the player moves to one unit higher and when there is no input from the user, the player starts to fall
-- **Obstacles**: As the game progresses, the obstacles (lasers and missiles) are generated randomly
+- **Player movement**: When the space bar is pressed, the player moves to one unit higher and when there is no input from the user, the player starts to fall.
+- **Collision detection**: While the game is running, the program checks for collisions of the player with the different elements of the game (obstacles and coins). 
+- **Obstacles**: As the game progresses, the obstacles (lasers and missiles) are generated randomly.
+- **Coins**: As the game progresses, the coins are generated randomly.
+- **Counters**: When the game is running, there are two counters in the screen telling the user how many coins it has collected and the travelled distance.
+- **Main Menu**: When the application starts, the Main Menu appears in the screen, with three options: play the game, show the instructions and exit the program.
+- **Game Over**: When the program detects a collision between the player and an obstacle, the game stops and it presents the user with the Game Over Menu where the user can choose to replay the game or to return to the Main Menu.
 
 ## Planned Features
-
-- **Coins**: The map will have coins spread through the map that can be caught by the player
-- **Menu**: A menu to start the game or to quit
-- **Reset**: The player will have a chance to replay the game when it looses
-- **Distance and Coins Counter**: There will be a counter to inform the player of the coins it has collected so far and the distance it has travelled
-
-## Mockups:
-Main Menu:
-![MainMenu](MainMenu.png)
-
-Ranking Menu:
-![RankingMenu](Ranking.png)
-
-Instructions Menu:
-![InstructionsMenu](InstructionsMenu.png)
-
-Game Running:
-![GameRunning](GameRunning.png)
-
-Game Over:
-![GameOver](GameOver.png)
+- **Ranking**: This feature wasn't implemented, because there was no point in increasing the complexity of the game, since that isn't the main focus of this project.
+All the remaining planned features were successfully implemented.
 
 ## Design
 
