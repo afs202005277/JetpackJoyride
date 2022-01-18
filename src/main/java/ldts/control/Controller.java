@@ -111,7 +111,7 @@ public class Controller {
     public void generateObjects(int i) {
         if (i % 5 == 0) {
             int random = (int) (Math.random() * 6) + 1;
-            if (random <= 3) elements.add(new Laser());
+            if (random <= 4) elements.add(new Laser());
             else if (random <= 5) elements.add(new Coin());
             else elements.add(new Rocket());
         }
@@ -141,8 +141,10 @@ public class Controller {
                 coinView.draw(element.getPosition());
             else if (element.isLaser())
                 laserView.draw(element.getPosition(), ((Laser) element).getLastPosition());
-            else if (element.isRocket())
+            else if (element.isRocket()) {
+                element.move(-1, 0);
                 rocketView.draw(element.getPosition());
+            }
         }
         distanceCounterView.draw(new Position(screen.getTerminalSize().getColumns() - distanceCounterView.getUnits().length() - 10, 0), xMin);
         coinsCounterView.draw(new Position(0, 0), coins);
