@@ -13,8 +13,7 @@ public class MenuView {
 
 
     public void moveSelected(int move) {
-        selected += move;
-        selected = abs(selected % options);
+        selected = move+selected<0 ? options-abs(selected+move) : move+selected>options-1 ? (selected+move)-options : selected+move;
     }
 
     public int getSelected() {
@@ -41,7 +40,7 @@ public class MenuView {
 
 
         graphics.setBackgroundColor(TextColor.Factory.fromString(selected == 2 ? "#000000" : "#57AAF8"));
-        graphics.putString(28, 10, "-exit");
+        graphics.putString(28, 10, "-quit");
 
         View.screen.refresh();
     }

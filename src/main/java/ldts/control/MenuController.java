@@ -54,6 +54,7 @@ public class MenuController {
         else if (input.getKeyType() == KeyType.Enter) {
             enterPressed = true;
             if (menuView.getSelected() == 0) {
+                enterPressed = false;
                 Controller.getInstance().run();
             }
             else if (menuView.getSelected() == 1) {

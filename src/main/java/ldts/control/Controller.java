@@ -165,7 +165,7 @@ public class Controller {
         inputReader.start();
         GameOverController gameOverController = new GameOverController(new GameOverView());
 
-        boolean f1, f2;
+        boolean f1, f2, f3;
         do {
             gameOver = false;
             int xMin = 0, coinsCollected = 0;
@@ -194,8 +194,11 @@ public class Controller {
             while (!gameOverController.isEnterPressed()) ;
             f1 = gameOverController.isGameOver();
             f2 = gameOverController.isEnterPressed();
+            f3 = gameOverController.isMainMenu();
             inputReader.removeObserver(gameOverController);
-        } while (!f1 && f2);
+        } while (!f1 && f2 && !f3);
+        inputReader.clear();
+        runMenu();
     }
 
     private void resetElements() {

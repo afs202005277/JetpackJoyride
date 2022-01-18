@@ -13,13 +13,25 @@ public class InputReader extends Thread {
     private final Screen screen;
     private final ArrayList<InputObserver> observers;
 
+    public boolean isStopInputs() {
+        return stopInputs;
+    }
+
+    public void setStopInputs(boolean stopInputs) {
+        this.stopInputs = stopInputs;
+    }
+
+    private boolean stopInputs;
+
     public InputReader(Screen screen) {
         this.screen = screen;
         observers = new ArrayList<>();
+        stopInputs = false;
     }
 
     public synchronized void addObserver(InputObserver obs) {
         observers.add(obs);
+        stopInputs = false;
     }
 
     public synchronized void removeObserver(InputObserver obs) {
@@ -33,7 +45,7 @@ public class InputReader extends Thread {
 
     @Override @SuppressWarnings("CatchAndPrintStackTrace")
     public void run() {
-        while (true) {
+        while (!stopInputs) {
             try {
                 inputReader(screen);
             } catch (IOException | URISyntaxException | InterruptedException | FontFormatException e) {
@@ -45,5 +57,10 @@ public class InputReader extends Thread {
     public void inputReader(Screen screen) throws IOException, URISyntaxException, InterruptedException, FontFormatException {
         KeyStroke keyStroke = screen.readInput();
         notify(keyStroke);
+    }
+
+    public void clear() {
+        stopInputs = true;
+        observers.clear();
     }
 }

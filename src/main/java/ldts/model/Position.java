@@ -30,6 +30,12 @@ public class Position {
     }
 
     @Override
+    public int hashCode()
+    {
+        return 1;
+    }
+
+    @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null) return false;
