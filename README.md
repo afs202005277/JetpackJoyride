@@ -11,14 +11,14 @@ For a more detailed version of this description click [here](./docs/README.md).
 
 ## Screenshots
 
-# Main Menu:
+### Main Menu:
 ![MainMenu](./docs/Images/FinalReport/MainMenu.PNG)
 
-# Instructions:
+### Instructions:
 ![Instructions](./docs/Images/FinalReport/Instructions.PNG)
 
-# Game Over Menu:
+### Game Over Menu:
 ![GameOverMenu](./docs/Images/FinalReport/GameOverMenu.PNG)
 
-# Game running:
+### Game running:
 ![GameRunning](./docs/Images/FinalReport/GameRunning.PNG)
