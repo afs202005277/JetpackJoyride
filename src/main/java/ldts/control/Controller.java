@@ -94,7 +94,16 @@ public class Controller {
 
                     if (m == 0 && object.getPosition().getY() == player.getPosition().getY()) collision = true;
 
+                    if (m != 0)
+                    {
+                        if (m == -1)
+                        {
+                            Position secondPos1 = new Position(obstacle.getPosition().getX(), obstacle.getPosition().getY()-1);
+                            Position secondPos2 = new Position(obstacle.getLastPosition().getX()-1, obstacle.getLastPosition().getY());
 
+
+                        }
+                    }
                 }
             }
         } else if (object.isRocket()){
