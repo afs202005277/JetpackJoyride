@@ -74,6 +74,7 @@ The controller class is part of the MVC pattern and is responsible for putting t
 The singleton pattern aims to fix this issue by insuring that a class has only one instance, while providing a global access point to this instance. Making the controller constructor private and creating a static creation method that acts as a constructor solves this problem, because the static method calls the private constructor and every time it is called again, it returns the cached object.
 
 **Implementation**
+
 Implemented on the Controller class (the constructor is private, so the only way to instantiate a controller is through the getInstance method)
 
 **Consequences**
