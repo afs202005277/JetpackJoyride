@@ -141,7 +141,7 @@ The class Laser to exist requires a size and orientation of the laser. To do the
 
 #### View Coverage
 
-![View Coverage](view.PNG)
+![View Coverage](./Images/Coverage/view.PNG)
 
 ### Link to mutation testing report
 
