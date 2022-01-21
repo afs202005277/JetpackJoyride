@@ -85,6 +85,7 @@ Implemented on the Controller class (the constructor is private, so the only way
 - Violates the Single Responsibility Principle. The pattern solves two problems at a time.
 
 ### General Structure
+
 ![UML Diagram](UML.png)
 
 ## Known Code Smells And Refactoring Suggestions
