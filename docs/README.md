@@ -109,7 +109,8 @@ The draw methods of PlayerView, RocketView and LaserView may be considered ident
 All the classes of the Model package only have constructors, getters and setters (dumb classes) but this isn't an indication of a problem since we chose to use the MVC architectural pattern which puts the responsibility of handling the game's logic on the Controller class.
 
 ### Alternative Classes with different Interfaces
-Two classes perform identical functions but have different method names. This code smell can be seen in our project on the element class and obstacle interface, in which their shared attribute (Position) can be same by making the obstacle an extension of the element class.
+
+Two classes perform identical functions but have different method names. This code smell can be seen in our project on the element class and obstacle interface, in which their shared attribute (Position)
 
 ### Switch statements
 The methods of the class Laser are legislated by the orientation of the laser and these to be longer and full of the switch statements, which can be hard to work on the future. This situation asks for polymorphism to simplify new implementations.
