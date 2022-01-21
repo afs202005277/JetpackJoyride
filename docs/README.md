@@ -90,6 +90,8 @@ Implemented on the Controller class (the constructor is private, so the only way
 
 ## Known Code Smells And Refactoring Suggestions
 
+These are the smells we have either not found a solution for or fixing them would result in unreadable code.
+
 ### Large Class
 The Controller class contains many attributes, however, since this is the main class of the game makes sense that the class has all these attributes.
 
