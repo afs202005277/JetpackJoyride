@@ -121,18 +121,23 @@ The class Laser to exist requires a size and orientation of the laser. To do the
 ![Global Coverage](coverage.PNG)
 
 #### Control Coverage
+
 ![Control Coverage](control.PNG)
 
 #### Model Coverage
+
 ![Model Coverage](model.PNG)
 
-View Coverage:
+#### View Coverage
+
 ![View Coverage](view.PNG)
 
 ### Link to mutation testing report
+
 [Mutation Test](https://github.com/FEUP-LDTS-2021/ldts-project-assignment-g0807/tree/main/build/reports/pitest/202201082341)
 
 ## Self-evaluation
+
 André Sousa: 33%
 Diogo Rodrigues: 33%
 Pedro Fonseca: 33%
