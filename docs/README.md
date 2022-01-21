@@ -97,7 +97,7 @@ These are the smells we have either not found a solution for or fixing them woul
 The Controller class contains many attributes, however, since this is the class the client it makes sense for the existent of these attributes.
 
 ### Parallel Inheritance Hierarchies
-Every time there is the need to add a new Element object to the game (if we wanted to add monsters, for instance) we are forced to create a sub class of Element and a sub class of View, but this is needed to keep both the model and the view independent of each other, following the MVC design pattern.
+Every time a new Element object is added to the game, whether it be an obstacle (monsters) or collectible (power-ups), we are forced to create a subclass of Element and a subclass of View. Even though this is considered a smell, since we are following the MVC design pattern, it needs to happen in order to keep the model and the view independent of each other.
 
 ### Duplicate Code
 The draw methods of PlayerView, RocketView and LaserView may be considered identical, however, correcting this smell would make the code less obvious and harder to read.
