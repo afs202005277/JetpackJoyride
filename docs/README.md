@@ -110,7 +110,7 @@ All the classes of the Model package only have constructors, getters and setters
 
 ### Switch statements
 
-The methods of the class Laser are legislated by the orientation of the laser and these to be longer and full of the switch statements, which can be hard to work on the future. This situation asks for polymorphism to simplify new implementations.
+The class Laser to exist requires a size and orientation of the laser. To do the orientation, the program is using a random number and switch statements to decide what that number means in terms of orientation. This smell should be ignored though because the switch performs a simple action.
 
 ### Messages Chains
 This code smell happens when methods rely on the other methods of other classes repeatedly. As stated before, if the obstacles were a subclass of element this wouldn't happen because this can fix the need to call numerous methods just to get a position of an element in the game.
