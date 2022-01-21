@@ -108,7 +108,6 @@ The draw methods of PlayerView, RocketView and LaserView may be considered ident
 
 All the classes of the Model package only have constructors, getters and setters (dumb classes) but this isn't an indication of a problem since we chose to use the MVC architectural pattern which puts the responsibility of handling the game's logic on the Controller class.
 
-### Alternative Classes with
 
 ### Switch statements
 The methods of the class Laser are legislated by the orientation of the laser and these to be longer and full of the switch statements, which can be hard to work on the future. This situation asks for polymorphism to simplify new implementations.
