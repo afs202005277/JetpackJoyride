@@ -15,7 +15,7 @@ This project was developed by André Sousa (up202005277@edu.fe.up.pt), Diogo Rod
 - **Coins**: As the game progresses coins are generated randomly.
 - **Counters**: While the game is running, two counters are presented on screen. One contains the distance the player has moved and the other the coins that the player has collected.
 - **Main Menu**: When the application starts the Main Menu screen appears and the player is presented with three options: Play - play the game, Instructions - show the instructions, Exit - exit the program.
-- **Game Over**: When the program detects a collision between the player and an obstacle, the game stops and it presents the user with the Game Over Menu where the user can choose to replay the game or to return to the Main Menu.
+- **Game Over**: When the program detects a collision between the player and an obstacle, the game stops and the user is presented with the Game Over screen over the previously running game where the user can choose to either replay the game or return to the Main Menu.
 
 ## Planned Features
 - **Ranking**: This feature wasn't implemented, because there was no point in increasing the complexity of the game, since that isn't the main focus of this project.

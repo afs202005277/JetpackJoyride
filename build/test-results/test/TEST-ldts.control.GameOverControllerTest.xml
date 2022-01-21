@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="ldts.control.GameOverControllerTest" tests="4" skipped="0" failures="0" errors="0" timestamp="2022-01-21T18:39:10" hostname="Pedros-MacBook-Pro-2.local" time="0.015">
+  <properties/>
+  <testcase name="step()" classname="ldts.control.GameOverControllerTest" time="0.011"/>
+  <testcase name="inputArrowUp()" classname="ldts.control.GameOverControllerTest" time="0.001"/>
+  <testcase name="inputEnter()" classname="ldts.control.GameOverControllerTest" time="0.001"/>
+  <testcase name="inputArrowDown()" classname="ldts.control.GameOverControllerTest" time="0.001"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>
