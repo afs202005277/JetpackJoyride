@@ -95,7 +95,7 @@ By using the MVC pattern, we use a view class to produce the result that the pla
 The Template Method pattern suggests that you break down an algorithm into a series of steps, turn these steps into methods, and put a series of calls to these methods inside a single template method. The steps may either be abstract, or have some default implementation. To use the algorithm, the program provides the different view subclasses, implements all abstract steps, and overrides some of the optional ones if needed (but not the template method itself).
 
 **Implementation**
-To be implemented.
+
 
 **Consequences**
 
