@@ -112,8 +112,6 @@ All the classes of the Model package only have constructors, getters and setters
 
 The class Laser to exist requires a size and orientation of the laser. To do the orientation, the program is using a random number and switch statements to decide what that number means in terms of orientation. This smell should be ignored though because the switch performs a simple action.
 
-### Messages Chains
-This code smell happens when methods rely on the other
 
 ## Testing
 
