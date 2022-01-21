@@ -63,9 +63,11 @@ To be implemented.
 - Avoid tight coupling between the creator and the concrete products.
 - Make it possible to introduce new types of products into the program without breaking existing client code.
 
+### Single Controller
+
 **Problem in context**
 
-The controller class is part of the MVC pattern and is responsible for putting our game together. It acts on both model and view and controls the data flow into model object and updates the view whenever data changes. It also is responsible for keeping the view and the model separate. Since our game should only run once at a time, it shouldn’t be possible to have multiple controller classes.
+The controller class is part of the MVC pattern and is responsible for putting the game together. It acts on both model and view and controls the data flow into model object and updates the view whenever data changes. It also is responsible for keeping the view and the model separate. Since our game should only run once at a time, it shouldn’t be possible to have multiple controller classes.
 
 **The Pattern**
 
