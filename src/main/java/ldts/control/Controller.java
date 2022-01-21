@@ -96,17 +96,15 @@ public class Controller {
 
                     if (m != 0)
                     {
-                        if (m == -1)
-                        {
-                            Position secondPos = new Position(obstacle.getPosition().getX(), obstacle.getPosition().getY()-1);
-                            Position thirdPos = new Position(obstacle.getPosition().getX()+1, obstacle.getPosition().getY());
 
-                            int b = object.getPosition().getY() - m * object.getPosition().getX();
-                            int secondB = secondPos.getY() - m * secondPos.getX();
-                            int thirdB = thirdPos.getY() - m*thirdPos.getX();
+                        Position secondPos = new Position(obstacle.getPosition().getX(), obstacle.getPosition().getY()+(m < 0 ? -1 : 1));
+                        Position thirdPos = new Position(obstacle.getPosition().getX()+1, obstacle.getPosition().getY());
 
-                            if (player.getPosition().getX() * m + b == player.getPosition().getY() || player.getPosition().getX() * m + secondB == player.getPosition().getY() || player.getPosition().getX() * m + thirdB == player.getPosition().getY()) collision = true;
-                        }
+                        int b = object.getPosition().getY() - m * object.getPosition().getX();
+                        int secondB = secondPos.getY() - m * secondPos.getX();
+                        int thirdB = thirdPos.getY() - m*thirdPos.getX();
+
+                        if (player.getPosition().getX() * m + b == player.getPosition().getY() || player.getPosition().getX() * m + secondB == player.getPosition().getY() || player.getPosition().getX() * m + thirdB == player.getPosition().getY()) collision = true;
                     }
                 }
             }
