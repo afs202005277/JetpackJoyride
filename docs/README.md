@@ -85,13 +85,6 @@ Implemented on the Controller class (the constructor is private, so the only way
 - Violates the Single Responsibility Principle. The pattern solves two problems at a time.
 
 
-To be implemented.
-
-**Consequences**
-
-- You have a more efficient use of memory.
-- Code becomes much more complicated.
-
 **Problem in context**
 
 By using the MVC pattern, we use a view class to produce the result that the player sees on screen, but because of the amount of objects that need to be drawn, the view class quickly grew into different classes that differ only a little. If no design pattern is used, there will be a lot of repeated methods in these view classes.
