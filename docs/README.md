@@ -96,7 +96,7 @@ The Template Method pattern suggests that you break down an algorithm into a ser
 
 **Implementation**
 
-
+By creating a superclass View with common methods and attributes this problem was solved.
 **Consequences**
 
 - Removes duplicate code into a superclass
