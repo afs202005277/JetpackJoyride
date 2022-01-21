@@ -87,8 +87,6 @@ Implemented on the Controller class (the constructor is private, so the only way
 ### Template in View
 
 
-**Consequences**
-
 - Removes duplicate code into a superclass
 - The program can override only certain parts of the main class, making them less affected by changes that happen to other parts of the algorithm.
 
