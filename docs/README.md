@@ -23,6 +23,8 @@ All the remaining planned features were successfully implemented.
 
 ## Design
 
+### MVC
+
 **Problem in context**
 
 Since we are developing a game, we had to think about how to set up the structure and the logic of each component, while keeping in mind the need to make the code modular and easy to reuse. 
