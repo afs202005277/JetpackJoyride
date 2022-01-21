@@ -77,6 +77,8 @@ The singleton pattern aims to fix this issue by insuring that a class has only o
 
 Implemented on the Controller class (the constructor is private, so the only way to instantiate a controller is through the getInstance method)
 
+![SINGLETON UML](./Images/UMLs/SINGLETON_UML.pn)
+
 **Consequences**
 
 - Only one instance and global access point of the class Controller
