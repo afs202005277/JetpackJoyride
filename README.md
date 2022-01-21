@@ -9,7 +9,7 @@ This project was developed by André Sousa (up202005277@edu.fe.up.pt), Diogo Rod
 For a more detailed version of this description click [here](./docs/README.md).
 
 
-## Screenshots
+## Images
 
 ### Main Menu:
 ![MainMenu](./docs/Images/FinalReport/MainMenu.PNG)
