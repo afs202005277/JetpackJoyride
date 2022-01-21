@@ -9,7 +9,7 @@ This project was developed by André Sousa (up202005277@edu.fe.up.pt), Diogo Rod
 
 ## Implemented Features
 
-- **Player movement**: When the space bar is pressed, the player moves to one unit higher and when there is no input from the user, the player starts to fall.
+- **Player movement**: While the space bar is begin pressed, the player moves up (one unit at a time) until hitting the upper limit of the screen. Releasing the space bar, the player starts to fall (move down) until the ground is reached.
 - **Collision detection**: While the game is running, the program checks for collisions of the player with the different elements of the game (obstacles and coins). 
 - **Obstacles**: As the game progresses, the obstacles (lasers and missiles) are generated randomly.
 - **Coins**: As the game progresses, the coins are generated randomly.
