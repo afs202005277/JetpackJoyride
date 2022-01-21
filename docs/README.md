@@ -137,7 +137,7 @@ The class Laser to exist requires a size and orientation of the laser. To do the
 
 #### Model Coverage
 
-![Model Coverage](model.PNG)
+![Model Coverage](./Images/Coverage/model.PNG)
 
 #### View Coverage
 
