@@ -18,7 +18,7 @@ This project was developed by André Sousa (up202005277@edu.fe.up.pt), Diogo Rod
 - **Game Over**: When the program detects a collision between the player and an obstacle, the game stops and the user is presented with the Game Over screen over the previously running game where the user can choose to either replay the game or return to the Main Menu.
 
 ## Planned Features
-- **Ranking**: This feature wasn't implemented, because there was no point in increasing the complexity of the game, since that isn't the main focus of this project.
+- **Ranking**: Since complexity isn't the main focus of this project, this feature was not implemented because it would not allow to use more design patterns than we already use.
 All the remaining planned features were successfully implemented.
 
 ## Design
