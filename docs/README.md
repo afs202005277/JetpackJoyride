@@ -14,7 +14,7 @@ This project was developed by André Sousa (up202005277@edu.fe.up.pt), Diogo Rod
 - **Obstacles**: As the game progresses obstacles (lasers and rockets) are generated randomly on the far right of the game screen.
 - **Coins**: As the game progresses coins are generated randomly.
 - **Counters**: While the game is running, two counters are presented on screen. One contains the distance the player has moved and the other the coins that the player has collected.
-- **Main Menu**: When the application starts, the Main Menu appears in the screen, with three options: play the game, show the instructions and exit the program.
+- **Main Menu**: When the application starts the Main Menu screen appears and the player is presented with three options: Play - play the game, Instructions - show the instructions, Exit - exit the program.
 - **Game Over**: When the program detects a collision between the player and an obstacle, the game stops and it presents the user with the Game Over Menu where the user can choose to replay the game or to return to the Main Menu.
 
 ## Planned Features
