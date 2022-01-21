@@ -84,11 +84,6 @@ Implemented on the Controller class (the constructor is private, so the only way
 - Only one instance and global access point of the class Controller
 - Violates the Single Responsibility Principle. The pattern solves two problems at a time.
 
-**The Pattern**
-
-The flyweight pattern aims to solve this by storing the extrinsic state, meaning the inconstant data of an object, outside of the object. Instead, this state should be passed to specific methods which rely on it. Only the intrinsic state stays within the object, letting you reuse it in different contexts. As a result, you’d need fewer of the objects since they only differ in the intrinsic state, which has much fewer variations than the extrinsic.
-
-**Implementation**
 
 To be implemented.
 
