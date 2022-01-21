@@ -86,7 +86,7 @@ Implemented on the Controller class (the constructor is private, so the only way
 
 ### General Structure
 
-![UML Diagram](UML.png)
+![UML Diagram](./Images/UMLs/UML.png)
 
 ## Known Code Smells And Refactoring Suggestions
 
