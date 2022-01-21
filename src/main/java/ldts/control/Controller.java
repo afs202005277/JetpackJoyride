@@ -104,7 +104,7 @@ public class Controller {
                         int secondB = secondPos.getY() - m * secondPos.getX();
                         int thirdB = thirdPos.getY() - m*thirdPos.getX();
 
-                        if (player.getPosition().getX() * m + b == player.getPosition().getY() || player.getPosition().getX() * m + secondB == player.getPosition().getY() || player.getPosition().getX() * m + thirdB == player.getPosition().getY()) collision = true;
+                        if (player.getPosition().getX() * m + b == player.getPosition().getY() || player.getPosition().getX() * m + secondB == player.getPosition().getY() && player.getPosition().getX() <= obstacle.getLastPosition().getX()-1 || player.getPosition().getX() * m + thirdB == player.getPosition().getY() && player.getPosition().getX() >= obstacle.getPosition().getX()+1) collision = true;
                     }
                 }
             }
