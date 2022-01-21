@@ -84,10 +84,6 @@ Implemented on the Controller class (the constructor is private, so the only way
 - Only one instance and global access point of the class Controller
 - Violates the Single Responsibility Principle. The pattern solves two problems at a time.
 
-### Template in View
-
-e program can override only certain parts of the main class, making them less affected by changes that happen to other parts of the algorithm.
-
 
 ### General Structure
 ![UML Diagram](UML.png)
