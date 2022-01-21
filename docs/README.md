@@ -12,8 +12,8 @@ This project was developed by André Sousa (up202005277@edu.fe.up.pt), Diogo Rod
 - **Player movement**: While the space bar is begin pressed, the player moves up (one unit at a time) until hitting the upper limit of the screen. Releasing the space bar, the player starts to fall (move down) until the ground is reached.
 - **Collision detection**: When playing, the program is constatly checking for collisions between the player and every object, such as, coins and obstacles, and runs the appropriate method depending on the object.
 - **Obstacles**: As the game progresses obstacles (lasers and rockets) are generated randomly on the far right of the game screen.
-- **Coins**: As the game progresses, the coins are generated randomly.
-- **Counters**: When the game is running, there are two counters in the screen telling the user how many coins it has collected and the travelled distance.
+- **Coins**: As the game progresses coins are generated randomly.
+- **Counters**: While the game is running, two counters are presented on screen. One contains the distance the player has moved and the other the coins that the player has collected.
 - **Main Menu**: When the application starts, the Main Menu appears in the screen, with three options: play the game, show the instructions and exit the program.
 - **Game Over**: When the program detects a collision between the player and an obstacle, the game stops and it presents the user with the Game Over Menu where the user can choose to replay the game or to return to the Main Menu.
 
