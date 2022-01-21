@@ -87,8 +87,6 @@ Implemented on the Controller class (the constructor is private, so the only way
 ### Template in View
 
 
-
-
 **Consequences**
 
 - Removes duplicate code into a superclass
