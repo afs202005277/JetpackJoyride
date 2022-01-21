@@ -1,10 +1,12 @@
 # LDTS_T08_G07 - Jetpack Joyride
 
+
 ## Game Description
 
 This project consists of the popular mobile game Jetpack Joyride. Despite the original being played on a touch screen, this new version requires you to play with your keyboard. The game is a side-scrolling endless runner action video game in which the player must use his jetpack to dodge obstacles, such as, rockets and lasers, as well as, catch coins. The longer you survive the bigger your score.
 
 This project was developed by André Sousa (up202005277@edu.fe.up.pt), Diogo Rodrigues (INSERIR EMAIL) and by Pedro Fonseca (up202008307@fe.up.pt) for LDTS 2021-22.
+
 
 
 ## Implemented Features
@@ -17,10 +19,14 @@ This project was developed by André Sousa (up202005277@edu.fe.up.pt), Diogo Rod
 - **Main Menu**: When the application starts the Main Menu screen appears and the player is presented with three options: Play - play the game, Instructions - show the instructions, Exit - exit the program.
 - **Game Over**: When the program detects a collision between the player and an obstacle, the game stops and the user is presented with the Game Over screen over the previously running game where the user can choose to either replay the game or return to the Main Menu.
 
+
+
 ## Planned Features
 
 - **Ranking**: Since complexity isn't the main focus of this project, this feature was not implemented because it would not allow to use more design patterns than we already use.
 All the remaining planned features were successfully implemented.
+
+
 
 ## Design
 
@@ -89,6 +95,8 @@ Implemented on the Controller class (the constructor is private, so the only way
 
 ![UML Diagram](./Images/UMLs/UML.png)
 
+
+
 ## Known Code Smells And Refactoring Suggestions
 
 These are the smells we have either not found a solution for or fixing them would result in unreadable code.
@@ -113,6 +121,8 @@ All the classes of the Model package only have constructors, getters and setters
 
 The class Laser to exist requires a size and orientation of the laser. To do the orientation, the program is using a random number and switch statements to decide what that number means in terms of orientation. This smell should be ignored though because the switch performs a simple action.
 
+
+
 ## Testing
 
 ### Coverages
@@ -136,6 +146,8 @@ The class Laser to exist requires a size and orientation of the laser. To do the
 ### Link to mutation testing report
 
 [Mutation Test](https://github.com/FEUP-LDTS-2021/ldts-project-assignment-g0807/tree/main/build/reports/pitest/202201082341)
+
+
 
 ## Self-evaluation
 
