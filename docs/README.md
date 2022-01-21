@@ -133,7 +133,7 @@ The class Laser to exist requires a size and orientation of the laser. To do the
 
 #### Control Coverage
 
-![Control Coverage](control.PNG)
+![Control Coverage](./Images/Coverage/control.PNG)
 
 #### Model Coverage
 
