@@ -48,7 +48,7 @@ The usage of the MVC pattern is evident in the structure of the packages, since 
 
 **Problem in context**
 
-When running our game, there is the constant need of creating obstacles and these,for the time being, are Lasers and Rockets. By not implementing the factory pattern, if we decide to remove, change or add a different type of obstacle, it will be required to change the bulk of our code, making our program highly unhandy.
+When running our game, there is the constant need of creating obstacles and these, for the time being, are Lasers and Rockets. By not implementing the factory pattern, removing, changing or adding a different type of obstacle will require to change the bulk of our code, making our program highly unhandy.
 
 **The Pattern**
 
