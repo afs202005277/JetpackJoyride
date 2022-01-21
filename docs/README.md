@@ -110,7 +110,7 @@ All the classes of the Model package only have constructors, getters and setters
 
 ### Alternative Classes with different Interfaces
 
-Two classes perform identical functions but have different method names. This code smell can be seen in our project on the element class and obstacle interface, in
+Two classes perform identical functions but have different method names.
 
 ### Switch statements
 The methods of the class Laser are legislated by the orientation of the laser and these to be longer and full of the switch statements, which can be hard to work on the future. This situation asks for polymorphism to simplify new implementations.
