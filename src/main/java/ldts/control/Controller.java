@@ -101,6 +101,9 @@ public class Controller {
                             Position secondPos1 = new Position(obstacle.getPosition().getX(), obstacle.getPosition().getY()-1);
                             Position secondPos2 = new Position(obstacle.getLastPosition().getX()-1, obstacle.getLastPosition().getY());
 
+                            int b = object.getPosition().getY() - m * object.getPosition().getX();
+                            int secondB = secondPos1.getY() - m * secondPos1.getX();
+
 
                         }
                     }
