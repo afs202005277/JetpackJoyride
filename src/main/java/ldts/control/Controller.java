@@ -98,13 +98,12 @@ public class Controller {
                     {
                         if (m == -1)
                         {
-                            Position secondPos1 = new Position(obstacle.getPosition().getX(), obstacle.getPosition().getY()-1);
-                            Position secondPos2 = new Position(obstacle.getLastPosition().getX()-1, obstacle.getLastPosition().getY());
+                            Position secondPos = new Position(obstacle.getPosition().getX(), obstacle.getPosition().getY()-1);
 
                             int b = object.getPosition().getY() - m * object.getPosition().getX();
-                            int secondB = secondPos1.getY() - m * secondPos1.getX();
+                            int secondB = secondPos.getY() - m * secondPos.getX();
 
-
+                            if (player.getPosition().getX() * m + b == player.getPosition().getY() || player.getPosition().getX() * m + secondB == player.getPosition().getY()) collision = true;
                         }
                     }
                 }
