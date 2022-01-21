@@ -115,15 +115,15 @@ The class Laser to exist requires a size and orientation of the laser. To do the
 
 ## Testing
 
-### Coverage
+### Coverages
 
-Global Coverage:
+#### Global Coverage
 ![Global Coverage](coverage.PNG)
 
-Control Coverage:
+#### Control Coverage
 ![Control Coverage](control.PNG)
 
-Model Coverage:
+#### Model Coverage
 ![Model Coverage](model.PNG)
 
 View Coverage:
