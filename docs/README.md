@@ -27,7 +27,7 @@ All the remaining planned features were successfully implemented.
 
 **Problem in context**
 
-Since we are developing a game, we had to think about how to set up the structure and the logic of each component, while keeping in mind the need to make the code modular and easy to reuse. 
+Since we are developing a game, we had to think about how to set up the structure and the logic of each component, while keeping in mind the need to separate the data, interface and control to be able to reuse the code and make it more organized and easy to implement.
 
 **The Pattern**
 
@@ -39,7 +39,7 @@ The usage of the MVC pattern is evident in the structure of the packages, since 
 
 **Consequences:**
 - Multiple students can work at the same time on the three main components of the project (model, view and control).
-- Code becomes more modular, more readable, easier to extend and reuse. 
+- Code becomes more modular, more readable, easier to extend and reuse.
 
 
 **Problem in context**
