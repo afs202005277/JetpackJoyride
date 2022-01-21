@@ -2,7 +2,7 @@
 
 ## Game Description
 
-This project is based on the popular Android game Jetpack Joyride where the player, who has just stolen a jetpack, needs to escape from a laboratory. To achieve that, the player needs to dodge from obstacles like lasers and missiles. The game has no levels: the objective is to survive the longest distance and collect the largest amount of coins.
+This project consists of the popular mobile game Jetpack Joyride. Despite the original being played on a touch screen, this new version requires you to play with your keyboard. The game is a side-scrolling endless runner action video game in which the player must use his jetpack to dodge obstacles, such as, rockets and lasers, as well as, catch coins. The longer you survive the bigger your score.
 
 This project was developed by André Sousa (up202005277@edu.fe.up.pt), Diogo Rodrigues (INSERIR EMAIL) and by Pedro Fonseca (INSERIR EMAIL) for LDTS 2021-22.
 
