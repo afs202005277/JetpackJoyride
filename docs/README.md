@@ -118,6 +118,7 @@ The class Laser to exist requires a size and orientation of the laser. To do the
 ### Coverages
 
 #### Global Coverage
+
 ![Global Coverage](coverage.PNG)
 
 #### Control Coverage
