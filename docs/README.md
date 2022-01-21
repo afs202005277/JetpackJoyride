@@ -98,13 +98,14 @@ The Controller class contains many attributes, however, since this is the class 
 
 ### Parallel Inheritance Hierarchies
 
-Every time a new Element object is added to the game, whether it be an obstacle (monsters) or collectible (power-ups), we are forced to create a subclass of Element and a subclass of View. Even though this is considered a smell, since we are following the MVC design pattern, it needs to happen in order to keep the model and the view independent of each other.
+Every time a new Element object is added to the game, whether it be an obstacle (monsters) or collectible (power-ups), we are forced to create a subclass of Element and a subclass of View. Even though this is considered a smell, since we are following the MVC architectural pattern, it needs to happen in order to keep the model and the view independent of each other.
 
 ### Duplicate Code
 
 The draw methods of PlayerView, RocketView and LaserView may be considered identical, however, correcting this smell would make the code less obvious and harder to read.
 
 ### Data Classes
+
 All the classes of the Model package only have constructors, getters and setters (dumb classes) but this isn't an indication of a problem since we chose to use the MVC architectural pattern which puts the responsibility of handling the game's logic on the Controller class.
 
 ### Alternative Classes with different Interfaces
