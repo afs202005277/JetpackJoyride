@@ -93,7 +93,7 @@ Implemented on the Controller class (the constructor is private, so the only way
 These are the smells we have either not found a solution for or fixing them would result in unreadable code.
 
 ### Large Class
-The Controller class contains many attributes, however, since this is the main class of the game makes sense that the class has all these attributes.
+The Controller class contains many attributes, however, since this is the class the client it makes sense for the existent of these attributes.
 
 ### Parallel Inheritance Hierarchies
 Every time there is the need to add a new Element object to the game (if we wanted to add monsters, for instance) we are forced to create a sub class of Element and a sub class of View, but this is needed to keep both the model and the view independent of each other, following the MVC design pattern.
