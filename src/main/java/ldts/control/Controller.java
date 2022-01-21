@@ -92,9 +92,9 @@ public class Controller {
                     if (object.getPosition().getY() > obstacle.getLastPosition().getY()) m = -1;
                     else if (object.getPosition().getY() < obstacle.getLastPosition().getY()) m = 1;
 
-                    int b = object.getPosition().getY() - m * object.getPosition().getX();
+                    if (m == 0 && object.getPosition().getY() == player.getPosition().getY()) collision = true;
 
-                    if (player.getPosition().getX() * m + b == player.getPosition().getY()) collision = true;
+
                 }
             }
         } else if (object.isRocket()){
