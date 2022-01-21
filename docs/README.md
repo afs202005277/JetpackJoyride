@@ -87,7 +87,7 @@ Implemented on the Controller class (the constructor is private, so the only way
 ### Template in View
 
 
-**Implementation**
+
 
 By creating a superclass View with common methods and attributes this problem was solved. Each subclass of View implements these and then implements custom methods if necessary.
 
