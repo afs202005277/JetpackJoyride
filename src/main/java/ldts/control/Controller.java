@@ -2,6 +2,10 @@ package ldts.control;
 
 import com.googlecode.lanterna.screen.Screen;
 import ldts.model.*;
+import ldts.model.ElementCreator.CoinCreator;
+import ldts.model.ElementCreator.ElementCreator;
+import ldts.model.ElementCreator.LaserCreator;
+import ldts.model.ElementCreator.RocketCreator;
 import ldts.view.*;
 
 import java.awt.*;
@@ -120,12 +124,21 @@ public class Controller {
     }
 
     public void generateObjects(int i) {
-        if (i % 5 == 0) {
+        if (i % 10 == 0) {
             elements.add(new Laser());
             int random = (int) (Math.random() * 6) + 1;
-            if (random <= 4) elements.add(new Laser());
-            else if (random <= 5) elements.add(new Coin());
-            else elements.add(new Rocket());
+            if (random <= 4) {
+                ElementCreator creator = new LaserCreator();
+                elements.add(creator.createElement());
+            }
+            else if (random <= 5) {
+                ElementCreator creator = new CoinCreator();
+                elements.add(creator.createElement());
+            }
+            else {
+                ElementCreator creator = new RocketCreator();
+                elements.add(creator.createElement());
+            }
         }
     }
 
