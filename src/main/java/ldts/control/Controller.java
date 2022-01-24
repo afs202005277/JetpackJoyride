@@ -2,10 +2,7 @@ package ldts.control;
 
 import com.googlecode.lanterna.screen.Screen;
 import ldts.model.*;
-import ldts.model.ElementCreator.CoinCreator;
-import ldts.model.ElementCreator.ElementCreator;
-import ldts.model.ElementCreator.LaserCreator;
-import ldts.model.ElementCreator.RocketCreator;
+import ldts.model.ElementCreator;
 import ldts.view.*;
 
 import java.awt.*;
@@ -27,6 +24,8 @@ public class Controller {
     private CoinView coinView;
     private MenuController menuController;
     private Screen screen;
+    private ElementCreator elementCreator;
+
 
     public Controller() {
         String BACKGROUND = "#57AAF8";
@@ -40,6 +39,7 @@ public class Controller {
         distanceCounterView = new CounterView(WALLS, "#000000", "meters");
         coinsCounterView = new CounterView(WALLS, "#DEAC4C", "coins");
         menuController = new MenuController(playerController.getPlayerView(), backgroundView, coinView, laserView);
+        elementCreator = new ElementCreator();
     }
 
     public static Controller getInstance() throws IOException, URISyntaxException, FontFormatException {
@@ -124,23 +124,10 @@ public class Controller {
     }
 
     public void generateObjects(int i) {
-        if (i % 10 == 0) {
-            elements.add(new Laser());
-            int random = (int) (Math.random() * 6) + 1;
-            if (random <= 4) {
-                ElementCreator creator = new LaserCreator();
-                elements.add(creator.createElement());
-            }
-            else if (random <= 5) {
-                ElementCreator creator = new CoinCreator();
-                elements.add(creator.createElement());
-            }
-            else {
-                ElementCreator creator = new RocketCreator();
-                elements.add(creator.createElement());
-            }
-        }
+        if (elementCreator.generateElements(i) != null)
+            elements.add(elementCreator.generateElements(i));
     }
+
 
     public void runInstructions() throws IOException {
         InstructionsView iView = new InstructionsView();

@@ -19,6 +19,7 @@ public class ControllerTest {
     private Controller control;
     private Screen screen;
     private TextGraphics graphics;
+    private ElementCreator creator;
 
     @BeforeEach
     void setUp() throws IOException, URISyntaxException, FontFormatException {
@@ -32,6 +33,7 @@ public class ControllerTest {
         BackgroundView backViewer = Mockito.mock(BackgroundView.class);
         graphics = Mockito.mock(TextGraphics.class);
         control.setBackgroundView(backViewer);
+        creator = new ElementCreator();
     }
 
     @Test
@@ -100,14 +102,6 @@ public class ControllerTest {
         Assertions.assertFalse(control.checkCollisions(coin, players.get(1)));
     }
 
-    @Test
-    void generateObjects() {
-        control.setElements(new ArrayList<>());
-        for (int i=0;i<=30;i++){
-            control.generateObjects(i);
-        }
-        Assertions.assertEquals(7, control.getElements().size());
-    }
 
     @Test
     void drawElements() throws IOException {
