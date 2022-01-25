@@ -26,26 +26,30 @@ public class CollisionChecker {
             if (laser.getPosition().getX() == laser.getLastPosition().getX() && laser.getLastPosition().getY() <= player.getPosition().getY() && player.getPosition().getY() <= laser.getPosition().getY())
                 collision = true;
             else {
-                if (laser.getPosition().getY() > laser.getLastPosition().getY()) m = -1;
-                else if (laser.getPosition().getY() < laser.getLastPosition().getY()) m = 1;
+                if (laser.getPosition().getY() > laser.getLastPosition().getY())
+                    m = -1;
+                else if (laser.getPosition().getY() < laser.getLastPosition().getY())
+                    m = 1;
 
-                if (m == 0 && laser.getPosition().getY() == player.getPosition().getY()) collision = true;
+                if (m == 0 && laser.getPosition().getY() == player.getPosition().getY())
+                    collision = true;
 
                 if (m != 0) {
-
-                    Position secondPos = new Position(laser.getPosition().getX(), laser.getPosition().getY() + (m < 0 ? -1 : 1));
-                    Position thirdPos = new Position(laser.getPosition().getX() + 1, laser.getPosition().getY());
-
-                    int b = laser.getPosition().getY() - m * laser.getPosition().getX();
-                    int secondB = secondPos.getY() - m * secondPos.getX();
-                    int thirdB = thirdPos.getY() - m * thirdPos.getX();
-
-                    if (player.getPosition().getX() * m + b == player.getPosition().getY() || player.getPosition().getX() * m + secondB == player.getPosition().getY() && player.getPosition().getX() <= laser.getLastPosition().getX() - 1 || player.getPosition().getX() * m + thirdB == player.getPosition().getY() && player.getPosition().getX() >= laser.getPosition().getX() + 1)
-                        collision = true;
+                    collision = checkCollisionInclinedLaser(m, laser, player);
                 }
             }
         }
         return collision;
+    }
+
+    private boolean checkCollisionInclinedLaser(int m, Laser laser, Player player) {
+        Position secondPos = new Position(laser.getPosition().getX(), laser.getPosition().getY() + (m < 0 ? -1 : 1));
+        Position thirdPos = new Position(laser.getPosition().getX() + 1, laser.getPosition().getY());
+
+        int b = laser.getPosition().getY() - m * laser.getPosition().getX();
+        int secondB = secondPos.getY() - m * secondPos.getX();
+        int thirdB = thirdPos.getY() - m * thirdPos.getX();
+        return player.getPosition().getX() * m + b == player.getPosition().getY() || player.getPosition().getX() * m + secondB == player.getPosition().getY() && player.getPosition().getX() <= laser.getLastPosition().getX() - 1 || player.getPosition().getX() * m + thirdB == player.getPosition().getY() && player.getPosition().getX() >= laser.getPosition().getX() + 1;
     }
 
     public boolean checkCollisionsRocket(Rocket rocket, Player player) {
