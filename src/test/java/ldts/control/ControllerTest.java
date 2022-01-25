@@ -5,7 +5,6 @@ import com.googlecode.lanterna.graphics.TextGraphics;
 import com.googlecode.lanterna.screen.Screen;
 import ldts.model.*;
 import ldts.view.*;
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
@@ -19,7 +18,6 @@ public class ControllerTest {
     private Controller control;
     private Screen screen;
     private TextGraphics graphics;
-    private ElementCreator creator;
 
     @BeforeEach
     void setUp() throws IOException, URISyntaxException, FontFormatException {
@@ -33,7 +31,6 @@ public class ControllerTest {
         BackgroundView backViewer = Mockito.mock(BackgroundView.class);
         graphics = Mockito.mock(TextGraphics.class);
         control.setBackgroundView(backViewer);
-        creator = new ElementCreator(5);
     }
 
     @Test

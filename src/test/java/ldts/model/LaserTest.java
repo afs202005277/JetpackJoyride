@@ -8,9 +8,6 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 
-import java.awt.*;
-import java.io.IOException;
-import java.net.URISyntaxException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -51,25 +48,23 @@ public class LaserTest {
             int size = laser.getSize();
             int orient = laser.getOrient();
             switch (orient) {
-                case 1:
+                case 1 -> {
                     Assertions.assertEquals(laser.getX() + size - 1, laser.getLastPosition().getX());
                     Assertions.assertEquals(laser.getY(), laser.getLastPosition().getY());
-                    break;
-                case 2:
+                }
+                case 2 -> {
                     Assertions.assertEquals(laser.getX(), laser.getLastPosition().getX());
                     Assertions.assertEquals(laser.getY() - size + 1, laser.getLastPosition().getY());
-                    break;
-                case 3:
+                }
+                case 3 -> {
                     Assertions.assertEquals(laser.getX() + size - 1, laser.getLastPosition().getX());
                     Assertions.assertEquals(laser.getY() - size + 1, laser.getLastPosition().getY());
-                    break;
-                case 4:
+                }
+                case 4 -> {
                     Assertions.assertEquals(laser.getX() + size - 1, laser.getLastPosition().getX());
                     Assertions.assertEquals(laser.getY() + size - 1, laser.getLastPosition().getY());
-                    break;
-                default:
-                    Assertions.fail();
-                    break;
+                }
+                default -> Assertions.fail();
             }
         }
     }
