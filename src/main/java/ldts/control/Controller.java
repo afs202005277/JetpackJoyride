@@ -135,7 +135,6 @@ public class Controller {
         do {
             gameOver = false;
             int xMin = 0, coinsCollected = 0;
-            elements.add(new Rocket(View.getNumberColumns(), 2));
             while (!gameOver) {
                 long startTime = System.currentTimeMillis();
                 generateObjects(xMin);
