@@ -23,7 +23,7 @@ public class Controller {
     private CoinView coinView;
     private final MenuController menuController;
     private Screen screen;
-    private final ElementCreator elementCreator;
+    private final ElementFactory elementFactory;
     private final CollisionChecker collisionChecker;
 
 
@@ -39,7 +39,7 @@ public class Controller {
         distanceCounterView = new CounterView(WALLS, "#000000", "meters");
         coinsCounterView = new CounterView(WALLS, "#DEAC4C", "coins");
         menuController = new MenuController(playerController.getPlayerView(), backgroundView, coinView, laserView);
-        elementCreator = new ElementCreator(5);
+        elementFactory = new ElementFactory(5);
         collisionChecker = new CollisionChecker();
     }
 
@@ -82,8 +82,8 @@ public class Controller {
     }
 
     public void generateObjects(int i) {
-        if (elementCreator.generateElements(i) != null)
-            elements.add(elementCreator.generateElements(i));
+        if (elementFactory.generateElements(i) != null)
+            elements.add(elementFactory.generateElements(i));
     }
 
     public void runInstructions() throws IOException {

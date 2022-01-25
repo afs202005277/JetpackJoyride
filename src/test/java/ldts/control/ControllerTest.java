@@ -33,8 +33,7 @@ public class ControllerTest {
         control.setBackgroundView(backViewer);
     }
 
-    @Test
-    void drawElements() throws IOException {
+    ArrayList<Element> setElements(){
         ArrayList<Element> elements = new ArrayList<>();
         elements.add(new Laser(new Position(40, 3), 3, 2));
         elements.add(new Laser(new Position(50, 15), 4, 3));
@@ -43,6 +42,14 @@ public class ControllerTest {
         elements.add(new Coin(10, 5));
         elements.add(new Coin(11, 5));
         control.setElements(elements);
+        return elements;
+    }
+
+    @Test
+    void drawElements() throws IOException {
+        ArrayList<Element> elements = setElements();
+
+        //SET UP MOCKS
         CounterView coinCounter = Mockito.mock(CounterView.class), distanceCounter = Mockito.mock(CounterView.class);
         Mockito.when(coinCounter.getUnits()).thenReturn("coins");
         Mockito.when(distanceCounter.getUnits()).thenReturn("metros");
@@ -56,7 +63,11 @@ public class ControllerTest {
         control.setRocketView(rView);
         control.setCoinView(coinView);
         control.setBackgroundView(backgroundView);
+
+        //CALL THE METHOD
         control.drawElements(2, 5);
+
+        //VERIFICATIONS
         Mockito.verify(screen, Mockito.times(1)).clear();
 
         Mockito.verify(backgroundView, Mockito.times(1)).draw(new Position(0, 1));

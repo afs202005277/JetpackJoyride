@@ -6,10 +6,10 @@ import ldts.model.Element;
 import ldts.model.Laser;
 import ldts.model.Rocket;
 
-public class ElementCreator {
+public class ElementFactory {
     private final int delta;
 
-    public ElementCreator(int delta) {
+    public ElementFactory(int delta) {
         this.delta = delta;
     }
 
