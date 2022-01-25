@@ -1,5 +1,10 @@
-package ldts.model;
+package ldts.control;
 
+
+import ldts.model.Coin;
+import ldts.model.Element;
+import ldts.model.Laser;
+import ldts.model.Rocket;
 
 public class ElementCreator {
     private final int delta;
