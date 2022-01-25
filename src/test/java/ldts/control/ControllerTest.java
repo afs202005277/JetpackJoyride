@@ -33,7 +33,7 @@ public class ControllerTest {
         BackgroundView backViewer = Mockito.mock(BackgroundView.class);
         graphics = Mockito.mock(TextGraphics.class);
         control.setBackgroundView(backViewer);
-        creator = new ElementCreator();
+        creator = new ElementCreator(5);
     }
 
     @Test

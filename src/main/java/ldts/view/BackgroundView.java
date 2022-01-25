@@ -30,7 +30,7 @@ public class BackgroundView extends View{
 
     private void drawBase(Position pos){
         graphics.setBackgroundColor(backGroundBase);
-        graphics.fillRectangle(new TerminalPosition(pos.getX(), ROWS - pos.getY()), new TerminalSize(screen.getTerminalSize().getColumns(), lower), characterBase);
+        graphics.fillRectangle(new TerminalPosition(pos.getX(), numberRows - pos.getY()), new TerminalSize(numberCols, lower), characterBase);
     }
 
     private void drawWall(Position pos) {

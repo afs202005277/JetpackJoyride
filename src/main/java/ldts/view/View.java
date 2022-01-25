@@ -19,8 +19,8 @@ import java.net.URISyntaxException;
 import java.net.URL;
 
 public abstract class View {
-    protected static final int COLUMNS = 51;
-    protected static final int ROWS = 18;
+    protected static int numberCols = 51;
+    protected static int numberRows = 18;
     static protected Screen screen = null;
     static protected TextGraphics graphics;
 
@@ -40,7 +40,7 @@ public abstract class View {
         AWTTerminalFontConfiguration fontConfig = AWTTerminalFontConfiguration.newInstance(loadedFont);
         factory.setTerminalEmulatorFontConfiguration(fontConfig);
         factory.setForceAWTOverSwing(true);
-        factory.setInitialTerminalSize(new TerminalSize(COLUMNS, ROWS));
+        factory.setInitialTerminalSize(new TerminalSize(numberCols, numberRows));
         Terminal terminal = factory.createTerminal();
         ((AWTTerminalFrame) terminal).addWindowListener(new WindowAdapter() {
             @Override
@@ -53,6 +53,8 @@ public abstract class View {
         screen.setCursorPosition(null);   // we don't need a cursor
         screen.startScreen();             // screens must be started
         screen.doResizeIfNecessary();     // resize screen if necessary
+        numberCols = screen.getTerminalSize().getColumns();
+        numberRows = screen.getTerminalSize().getRows();
         graphics = screen.newTextGraphics();
         return screen;
     }
@@ -73,12 +75,12 @@ public abstract class View {
         View.graphics = graphics;
     }
 
-    public static int getRows() {
-        return ROWS;
+    public static int getNumberRows() {
+        return numberRows;
     }
 
-    public static int getCollumns() {
-        return COLUMNS;
+    public static int getNumberColumns() {
+        return numberCols;
     }
 
     protected TextColor stringToColor(String s) {

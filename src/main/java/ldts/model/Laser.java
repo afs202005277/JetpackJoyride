@@ -24,8 +24,8 @@ public class Laser extends Element  {
     public int getSize() {return size;}
 
     public Laser() {
-        int y = (int) (Math.random() * (View.getRows() - 2)) + 2;
-        int x = View.getScreen().getTerminalSize().getColumns();
+        int y = (int) (Math.random() * (View.getNumberRows() - 2)) + 2;
+        int x = View.getNumberColumns();
         position = new Position(x,y);
         int ori = (int) (Math.random() * (10 - 1)) + 1;
         if (ori <= 2) {

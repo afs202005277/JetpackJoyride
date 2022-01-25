@@ -4,7 +4,6 @@ import com.googlecode.lanterna.TerminalSize;
 import com.googlecode.lanterna.TextColor;
 import com.googlecode.lanterna.graphics.TextGraphics;
 import com.googlecode.lanterna.screen.Screen;
-import ldts.model.Laser;
 import ldts.model.Position;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -34,6 +33,6 @@ public class LaserViewTest {
         viewer.draw(p1, p2);
         TextColor back = TextColor.Factory.fromString("#FFFB54");
         Mockito.verify(g, Mockito.times(1)).setBackgroundColor(back);
-        Mockito.verify(g, Mockito.times(1)).drawLine(p1.getX(), View.getRows() - p1.getY(), p2.getX(), View.getRows() - p2.getY(), ' ');
+        Mockito.verify(g, Mockito.times(1)).drawLine(p1.getX(), View.getNumberRows() - p1.getY(), p2.getX(), View.getNumberRows() - p2.getY(), ' ');
     }
 }

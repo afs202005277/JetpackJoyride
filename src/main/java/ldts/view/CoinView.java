@@ -19,6 +19,6 @@ public class CoinView extends View {
     public void draw(Position pos) throws IOException {
         graphics.setBackgroundColor(backGround);
         graphics.setForegroundColor(foreGround);
-        graphics.putString(pos.getX(), ROWS - pos.getY(), string);
+        graphics.putString(pos.getX(), numberRows - pos.getY(), string);
     }
 }

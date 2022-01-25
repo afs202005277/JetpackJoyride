@@ -5,8 +5,8 @@ import ldts.view.View;
 public class Rocket extends Element {
 
     public Rocket() {
-        int y = (int) (Math.random() * (View.getRows() - 2)) + 2;
-        position = new Position(View.getScreen().getTerminalSize().getColumns(),y);
+        int y = (int) (Math.random() * (View.getNumberRows() - 2)) + 2;
+        position = new Position(View.getNumberColumns(),y);
     }
     public Rocket(int x, int y) {
         position= new Position(x,y);

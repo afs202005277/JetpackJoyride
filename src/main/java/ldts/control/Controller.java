@@ -39,7 +39,7 @@ public class Controller {
         distanceCounterView = new CounterView(WALLS, "#000000", "meters");
         coinsCounterView = new CounterView(WALLS, "#DEAC4C", "coins");
         menuController = new MenuController(playerController.getPlayerView(), backgroundView, coinView, laserView);
-        elementCreator = new ElementCreator();
+        elementCreator = new ElementCreator(5);
     }
 
     public static Controller getInstance() throws IOException, URISyntaxException, FontFormatException {

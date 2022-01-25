@@ -35,6 +35,6 @@ public class BackGroundViewTest {
 
         TextColor backBase = TextColor.Factory.fromString("#595959");
         Mockito.verify(g, Mockito.times(1)).setBackgroundColor(backBase);
-        Mockito.verify(g, Mockito.times(1)).fillRectangle(new TerminalPosition(pos.getX(), View.getRows() - pos.getY()), new TerminalSize(View.getCollumns(), viewer.getLower()), ' ');
+        Mockito.verify(g, Mockito.times(1)).fillRectangle(new TerminalPosition(pos.getX(), View.getNumberRows() - pos.getY()), new TerminalSize(View.getNumberColumns(), viewer.getLower()), ' ');
     }
 }

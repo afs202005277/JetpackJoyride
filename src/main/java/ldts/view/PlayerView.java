@@ -32,15 +32,15 @@ public class PlayerView extends View {
     public void draw(Position pos) throws IOException {
         graphics.setBackgroundColor(backGround);
         graphics.setForegroundColor(foreGround);
-        graphics.putString(pos.getX(), ROWS - pos.getY(), string);
+        graphics.putString(pos.getX(), numberRows - pos.getY(), string);
         screen.refresh();
     }
 
     public void drawLarge(Position pos) {
         graphics.setBackgroundColor(backGround);
         graphics.setForegroundColor(foreGround);
-        graphics.putString(pos.getX(), ROWS - pos.getY(), "&?(");
-        graphics.putString(pos.getX(), ROWS - pos.getY() + 1, ")*+");
-        graphics.putString(pos.getX(), ROWS - pos.getY() + 2, ",;/");
+        graphics.putString(pos.getX(), numberRows - pos.getY(), "&?(");
+        graphics.putString(pos.getX(), numberRows - pos.getY() + 1, ")*+");
+        graphics.putString(pos.getX(), numberRows - pos.getY() + 2, ",;/");
     }
 }

@@ -5,7 +5,6 @@ import com.googlecode.lanterna.TextColor;
 import com.googlecode.lanterna.graphics.TextGraphics;
 import com.googlecode.lanterna.screen.Screen;
 import ldts.model.Position;
-import ldts.model.Rocket;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
@@ -36,6 +35,6 @@ public class RocketViewTest {
         TextColor fore = TextColor.Factory.fromString("#000000");
         Mockito.verify(g, Mockito.times(1)).setBackgroundColor(back);
         Mockito.verify(g, Mockito.times(1)).setForegroundColor(fore);
-        Mockito.verify(g, Mockito.times(1)).putString(pos.getX(), View.getRows() - pos.getY(), "$%");
+        Mockito.verify(g, Mockito.times(1)).putString(pos.getX(), View.getNumberRows() - pos.getY(), "$%");
     }
 }

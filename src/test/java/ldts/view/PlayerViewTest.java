@@ -30,7 +30,7 @@ public class PlayerViewTest {
         viewer.draw(player.getPosition());
         Mockito.verify(g, Mockito.times(1)).setForegroundColor(viewer.getForeGround());
         Mockito.verify(g, Mockito.times(1)).setBackgroundColor(viewer.getBackGround());
-        Mockito.verify(g, Mockito.times(1)).putString(player.getPosition().getX(), View.getRows() - player.getPosition().getY(), viewer.getString());
+        Mockito.verify(g, Mockito.times(1)).putString(player.getPosition().getX(), View.getNumberRows() - player.getPosition().getY(), viewer.getString());
     }
 
     @Test
@@ -39,8 +39,8 @@ public class PlayerViewTest {
         viewer.drawLarge(player.getPosition());
         Mockito.verify(g, Mockito.times(1)).setForegroundColor(viewer.getForeGround());
         Mockito.verify(g, Mockito.times(1)).setBackgroundColor(viewer.getBackGround());
-        Mockito.verify(g, Mockito.times(1)).putString(player.getPosition().getX(), View.getRows() - player.getPosition().getY(), "&?(");
-        Mockito.verify(g, Mockito.times(1)).putString(player.getPosition().getX(), View.getRows() - player.getPosition().getY() + 1, ")*+");
-        Mockito.verify(g, Mockito.times(1)).putString(player.getPosition().getX(), View.getRows() - player.getPosition().getY() + 2, ",;/");
+        Mockito.verify(g, Mockito.times(1)).putString(player.getPosition().getX(), View.getNumberRows() - player.getPosition().getY(), "&?(");
+        Mockito.verify(g, Mockito.times(1)).putString(player.getPosition().getX(), View.getNumberRows() - player.getPosition().getY() + 1, ")*+");
+        Mockito.verify(g, Mockito.times(1)).putString(player.getPosition().getX(), View.getNumberRows() - player.getPosition().getY() + 2, ",;/");
     }
 }
