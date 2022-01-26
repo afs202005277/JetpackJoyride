@@ -56,12 +56,21 @@ The usage of the MVC pattern is evident in the structure of the packages, since 
 
 **Problem in context**
 
+At any given moment, there is a finite number of states which our game can be in. Withing any unique state (Running, GameOver, MainMenu, etc.), the game behaves differently, and through the input of the player can be switched from one state to another. However, depending on the current state, the game can only switch to certain other states. These switching rules, called transitions, are also finite and predetermined. Not applying the State Pattern would result in difficult to maintain code because any change to the transition logic may require changing state conditionals in every method.
+
 **The Pattern**
+
+The State Pattern aims to solve this problem by creating new classes for all possible states and extract all specific behaviours into these classes. By using this pattern we can add new states or change existing ones independently of each other, reducing the maintenance cost.
 
 **Implementation**
 
+Creating a main class called State with an abstract method step allows us to create subclasses for each game state (InstructionsState, RunningState, etc) with their specific state behaviours implemented in the step method. With this configuration we are able to easily set the state and run the step method in our Controller class.
+
 **Consequences**
 
+- Single Responsibility Principle. Separate classes for separate states.
+- Open/Closed Principle. Ability to add new states without changing existing states.
+- Simplifies the code.
 
 ### Creating elements
 
