@@ -103,8 +103,8 @@ Implemented on the Controller class (the constructor is private, so the only way
 
 **Consequences**
 
-- Only one instance and global access point of the class Controller
-- Violates the Single Responsibility Principle. The pattern solves two problems at a time.
+- Only one instance and global access point to the class Controller. In other words, solves two problems at the same time.
+- Violates the Single Responsibility Principle.
 
 ### General Structure
 
