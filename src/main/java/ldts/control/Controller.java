@@ -20,7 +20,6 @@ public class Controller {
 
     public Controller() {
         String BACKGROUND = "#57AAF8";
-        String WALLS = "#595959";
         playerController = new PlayerController(new Player(), new PlayerView(BACKGROUND, "#D5433C", "!"));
         menuState = new MenuState(playerController.getPlayerView());
         state = new MenuState(playerController.getPlayerView());

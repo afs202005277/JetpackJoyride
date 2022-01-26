@@ -66,6 +66,8 @@ The State Pattern aims to solve this problem by creating new classes for all pos
 
 Creating a main class called State with an abstract method step allows us to create subclasses for each game state (InstructionsState, RunningState, etc) with their specific state behaviours implemented in the step method. With this configuration we are able to easily set the state and run the step method in our Controller class.
 
+![STATES UML](./Images/UMLs/STATES_UML.png)
+
 **Consequences**
 
 - Single Responsibility Principle. Separate classes for separate states.
