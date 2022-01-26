@@ -30,7 +30,6 @@ public class MenuController {
         this.menuView = menuView;
     }
 
-    @SuppressWarnings("CatchAndPrintStackTrace")
     public void step() {
         try {
             keepRunning = false;

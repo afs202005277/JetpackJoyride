@@ -16,7 +16,6 @@ public class GameOverController implements InputObserver {
         this.gameOverView = gameOverView;
     }
 
-    @SuppressWarnings("CatchAndPrintStackTrace")
     public void step() {
         try {
             gameOverView.draw();

@@ -82,8 +82,9 @@ public class Controller {
     }
 
     public void generateObjects(int i) {
-        if (elementFactory.generateElements(i) != null)
-            elements.add(elementFactory.generateElements(i));
+        Element tmp = elementFactory.generateElements(i);
+        if (tmp != null)
+            elements.add(tmp);
     }
 
     public void runInstructions() throws IOException {
@@ -101,7 +102,7 @@ public class Controller {
         this.elements = elements;
     }
 
-    public void drawElements(int xMin, int coins) throws IOException {
+    public void drawElements(int xMin) throws IOException {
         screen.clear();
         backgroundView.draw(new Position(0, LOWER_LIMIT));
         for (Element element : elements) {
@@ -116,7 +117,7 @@ public class Controller {
             }
         }
         distanceCounterView.draw(new Position(screen.getTerminalSize().getColumns() - distanceCounterView.getUnits().length() - 10, 0), xMin);
-        coinsCounterView.draw(new Position(0, 0), coins);
+        coinsCounterView.draw(new Position(0, 0), coinsCollected);
     }
 
     public static void incrementCoinsCollected(){
@@ -147,7 +148,7 @@ public class Controller {
             while (!gameOver) {
                 long startTime = System.currentTimeMillis();
                 generateObjects(xMin);
-                drawElements(xMin, coinsCollected);
+                drawElements(xMin);
                 playerController.step(LOWER_LIMIT);
                 for (Element element : elements) {
                     element.checkCollision(playerController.getPlayer().getPosition());

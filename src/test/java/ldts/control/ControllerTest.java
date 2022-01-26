@@ -65,7 +65,7 @@ public class ControllerTest {
         control.setBackgroundView(backgroundView);
 
         //CALL THE METHOD
-        control.drawElements(2, 5);
+        control.drawElements(2);
 
         //VERIFICATIONS
         Mockito.verify(screen, Mockito.times(1)).clear();
