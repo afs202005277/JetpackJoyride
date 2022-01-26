@@ -77,12 +77,13 @@ The factory pattern replaces the direct object construction calls (using the new
 
 By creating a new class named ElementFactory with a generateElements method we were able to simplify the code on the client side and facilitate the addition and removal of elements, such as, coins, rockets, lasers, etc.
 
+![FACTORY UML](./Images/UMLs/FACTORY_UML.png)
+
 **Consequences**
 
 - Avoid tight coupling between the creator and the concrete products.
 - Make it possible to introduce new types of products into the program without breaking existing client code.
 
-![FACTORY UML](./Images/UMLs/FACTORY_UML.png)
 
 ### Single Controller
 
