@@ -87,6 +87,10 @@ public class Controller {
             elements.add(tmp);
     }
 
+    public static void setCoinsCollected(int coinsCollected) {
+        Controller.coinsCollected = coinsCollected;
+    }
+
     public void runInstructions() throws IOException {
         InstructionsView iView = new InstructionsView();
         iView.draw(playerController.getPlayerView(), backgroundView, laserView, coinView);

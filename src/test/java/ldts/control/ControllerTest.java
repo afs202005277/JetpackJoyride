@@ -65,6 +65,7 @@ public class ControllerTest {
         control.setBackgroundView(backgroundView);
 
         //CALL THE METHOD
+        Controller.setCoinsCollected(5);
         control.drawElements(2);
 
         //VERIFICATIONS
