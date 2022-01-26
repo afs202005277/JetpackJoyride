@@ -134,7 +134,7 @@ Most of the classes in the Model package only have constructors, getters and set
 
 ### Switch statements
 
-Both the Laser and Controller class suffer from this smell. On the laser class for there to exist orientation, the program is using a random number and if statements to decide what that number means in terms of orientation. This smell should be ignored though because these if statements perform a simple action. Regarding the controller class, the method drawElements when iterating through the elements runs if statements to dermine the type of element. To fix this smell it would be required to use Polymorphism but by doing this the models would become dependent of the view, which would go against the MVC architectural pattern.
+Both the Laser and Controller class suffer from this smell. On the Laser class for there to exist orientation, the program is using a random number and if statements to decide what that number means in terms of orientation. This smell should be ignored though because these if statements perform a simple action. Regarding the Controller class, when the method drawElements is iterating through the elements, if statements are used to determine its type. To fix this smell Polymorphism would be required but fixing this would make the models dependent of the view, which would go against the MVC architectural pattern.
 
 
 
