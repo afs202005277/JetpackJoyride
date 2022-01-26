@@ -15,7 +15,7 @@ public class InstructionsState extends State {
     private BackgroundView backgroundView;
     private final CoinView coinView;
     private final LaserView laserView;
-    private final InstructionsView instructionsView;
+    private InstructionsView instructionsView;
 
     public InstructionsState(PlayerController playerController) {
         this.playerController = playerController;
@@ -24,7 +24,9 @@ public class InstructionsState extends State {
         this.laserView = new LaserView("#fffb54", ' ');
         this.instructionsView = new InstructionsView();
     }
-
+    public void setInstructionsView(InstructionsView instructionsView) {
+        this.instructionsView = instructionsView;
+    }
     public void setBackgroundView(BackgroundView backgroundView) {
         this.backgroundView = backgroundView;
     }

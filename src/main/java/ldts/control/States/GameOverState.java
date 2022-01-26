@@ -14,7 +14,9 @@ import java.io.IOException;
 import java.net.URISyntaxException;
 
 public class GameOverState extends State implements InputObserver {
-    private final GameOverView gameOverView;
+
+
+    private GameOverView gameOverView;
     private boolean enterPressed = false;
     private boolean mainMenu = false;
 
@@ -27,6 +29,9 @@ public class GameOverState extends State implements InputObserver {
     }
 
     public GameOverState(GameOverView gameOverView) {
+        this.gameOverView = gameOverView;
+    }
+    public void setGameOverView(GameOverView gameOverView) {
         this.gameOverView = gameOverView;
     }
 
