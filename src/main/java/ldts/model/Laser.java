@@ -81,7 +81,6 @@ public class Laser extends Element  {
         if (collision)
         {
             RunningState.endGame();
-            System.out.println(("morreu"));
         }
         return collision;
     }
