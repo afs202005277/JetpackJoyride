@@ -46,7 +46,8 @@ The usage of the MVC pattern is evident in the structure of the packages, since 
 
 ![MVC UML](./Images/UMLs/MVC_UML.png)
 
-**Consequences:**
+**Consequences**
+
 - Multiple students can work at the same time on the three main components of the project (model, view and control).
 - Code becomes more modular, more readable, easier to extend and reuse.
 - Helps avoid breaking the Single Principle Responsability.
