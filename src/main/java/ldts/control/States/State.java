@@ -8,9 +8,6 @@ import java.net.URISyntaxException;
 
 public abstract class State {
 
-
-
     public abstract void step() throws IOException, URISyntaxException, FontFormatException, InterruptedException;
-
 
 }
