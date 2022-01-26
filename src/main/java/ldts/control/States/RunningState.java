@@ -61,6 +61,36 @@ public class RunningState extends State {
         distanceCounterView.draw(new Position(screen.getTerminalSize().getColumns() - distanceCounterView.getUnits().length() - 10, 0), xMin);
         coinsCounterView.draw(new Position(0, 0), coins);
     }
+    public void setDistanceCounterView(CounterView distanceCounterView) {
+        this.distanceCounterView = distanceCounterView;
+    }
+
+    public void setCoinsCounterView(CounterView coinsCounterView) {
+        this.coinsCounterView = coinsCounterView;
+    }
+
+    public void setRocketView(RocketView rocketView) {
+        this.rocketView = rocketView;
+    }
+
+    public void setLaserView(LaserView laserView) {
+        this.laserView = laserView;
+    }
+
+    public void setCoinView(CoinView coinView) {
+        this.coinView = coinView;
+    }
+
+    public void setBackgroundView(BackgroundView backgroundView) {
+        this.backgroundView = backgroundView;
+    }
+
+    public void setScreen(Screen screen) {
+        this.screen = screen;
+    }
+    public void setElements(ArrayList<Element> elements) {
+        this.elements = elements;
+    }
 
     private void resetElements() {
         playerController.setPlayer(new Player());

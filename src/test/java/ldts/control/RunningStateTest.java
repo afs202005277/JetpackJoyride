@@ -3,6 +3,8 @@ package ldts.control;
 import com.googlecode.lanterna.TerminalSize;
 import com.googlecode.lanterna.graphics.TextGraphics;
 import com.googlecode.lanterna.screen.Screen;
+import ldts.control.PlayerController;
+import ldts.control.States.RunningState;
 import ldts.model.*;
 import ldts.view.*;
 import org.junit.jupiter.api.BeforeEach;
@@ -14,8 +16,8 @@ import java.io.IOException;
 import java.net.URISyntaxException;
 import java.util.ArrayList;
 
-public class ControllerTest {
-    private Controller control;
+public class RunningStateTest {
+    private RunningState state;
     private Screen screen;
     private TextGraphics graphics;
 
@@ -26,11 +28,11 @@ public class ControllerTest {
         View.setScreen(screen);
         View.setGraphics(graphics);
 
-        control = Controller.getInstance();
-        control.setScreen(screen);
+        state = new RunningState(screen,new PlayerController(new Player(), new PlayerView("#57AAF8", "#D5433C", "!")));
+        state.setScreen(screen);
         BackgroundView backViewer = Mockito.mock(BackgroundView.class);
         graphics = Mockito.mock(TextGraphics.class);
-        control.setBackgroundView(backViewer);
+        state.setBackgroundView(backViewer);
     }
 
     ArrayList<Element> setElements(){
@@ -41,7 +43,7 @@ public class ControllerTest {
         elements.add(new Coin(4, 3));
         elements.add(new Coin(10, 5));
         elements.add(new Coin(11, 5));
-        control.setElements(elements);
+        state.setElements(elements);
         return elements;
     }
 
@@ -57,9 +59,15 @@ public class ControllerTest {
         RocketView rView = Mockito.mock(RocketView.class);
         CoinView coinView = Mockito.mock(CoinView.class);
         BackgroundView backgroundView = Mockito.mock(BackgroundView.class);
+        state.setCoinsCounterView(coinCounter);
+        state.setDistanceCounterView(distanceCounter);
+        state.setLaserView(lView);
+        state.setRocketView(rView);
+        state.setCoinView(coinView);
+        state.setBackgroundView(backgroundView);
 
         //CALL THE METHOD
-        control.drawElements(2, 5);
+        state.drawElements(2, 5);
 
         //VERIFICATIONS
         Mockito.verify(screen, Mockito.times(1)).clear();
