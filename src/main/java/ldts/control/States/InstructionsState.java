@@ -12,7 +12,7 @@ import java.net.URISyntaxException;
 
 public class InstructionsState extends State {
     private final PlayerController playerController;
-    private final BackgroundView backgroundView;
+    private BackgroundView backgroundView;
     private final CoinView coinView;
     private final LaserView laserView;
     private final InstructionsView instructionsView;
@@ -24,6 +24,11 @@ public class InstructionsState extends State {
         this.laserView = new LaserView("#fffb54", ' ');
         this.instructionsView = new InstructionsView();
     }
+
+    public void setBackgroundView(BackgroundView backgroundView) {
+        this.backgroundView = backgroundView;
+    }
+
     @Override
     public void step() throws IOException, URISyntaxException, FontFormatException, InterruptedException {
         try {
@@ -38,6 +43,5 @@ public class InstructionsState extends State {
             }
         }
         Controller.getInstance().runMenu();
-
     }
 }

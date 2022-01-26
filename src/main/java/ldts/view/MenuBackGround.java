@@ -14,8 +14,7 @@ public class MenuBackGround {
         Position pos5 = new Position(16, 16);
         Position pos6 = new Position(16, 15);
         Position pos8 = new Position(16, 14);
-        Position[] positions = {pos1, pos2, pos3, pos4, pos5, pos6, pos7, pos8};
-        return positions;
+        return new Position[]{pos1, pos2, pos3, pos4, pos5, pos6, pos7, pos8};
     }
 
     public static void draw(PlayerView playerView, BackgroundView backgroundView, LaserView laserView, CoinView coinView) throws IOException {

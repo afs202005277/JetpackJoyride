@@ -1,7 +1,6 @@
 package ldts.model;
 
 
-import ldts.control.Controller;
 import ldts.control.States.RunningState;
 import ldts.view.View;
 
@@ -82,7 +81,6 @@ public class Laser extends Element  {
         if (collision)
         {
             RunningState.endGame();
-            System.out.println(("morreu"));
         }
         return collision;
     }

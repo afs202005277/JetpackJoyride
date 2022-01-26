@@ -12,10 +12,10 @@ import java.net.URISyntaxException;
 
 public class MenuState extends State {
     private MenuView menuView;
-    private final PlayerView playerView;
-    private final BackgroundView backgroundView;
-    private final CoinView coinView;
-    private final LaserView laserView;
+    private PlayerView playerView;
+    private BackgroundView backgroundView;
+    private CoinView coinView;
+    private LaserView laserView;
     private boolean keepRunning;
 
     public MenuState(PlayerView playerView) {
@@ -25,6 +25,18 @@ public class MenuState extends State {
         this.laserView = new LaserView("#fffb54", ' ');
         this.menuView = new MenuView();
         keepRunning = false;
+    }
+
+    public void setBackgroundView(BackgroundView backgroundView) {
+        this.backgroundView = backgroundView;
+    }
+
+    public void setCoinView(CoinView coinView) {
+        this.coinView = coinView;
+    }
+
+    public void setLaserView(LaserView laserView) {
+        this.laserView = laserView;
     }
 
     public void setMenuView(MenuView menuView) {
