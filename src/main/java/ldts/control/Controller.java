@@ -160,7 +160,7 @@ public class Controller {
             inputReader.addObserver(gameOverController);
             gameOverController.step();
             resetElements();
-            while (!gameOverController.isEnterPressed()) ;
+            while (!gameOverController.isEnterPressed());
             stopGame = gameOverController.isGameOver();
             enterPressed = gameOverController.isEnterPressed();
             goToMainMenu = gameOverController.isMainMenu();
