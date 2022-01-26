@@ -31,11 +31,7 @@ public class InstructionsState extends State {
 
     @Override
     public void step() throws IOException, URISyntaxException, FontFormatException, InterruptedException {
-        try {
-            instructionsView.draw(playerController.getPlayerView(), backgroundView, laserView, coinView);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        instructionsView.draw(playerController.getPlayerView(), backgroundView, laserView, coinView);
         while (true) {
             KeyStroke k = View.getScreen().readInput();
             if (k.getKeyType() == KeyType.Enter) {

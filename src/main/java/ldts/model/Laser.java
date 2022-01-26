@@ -93,7 +93,7 @@ public class Laser extends Element  {
         int b = laserY - m * laserX;
         int secondB = secondPos.getY() - m * secondPos.getX();
         int thirdB = thirdPos.getY() - m * thirdPos.getX();
-        return targetX * m + b == targetY || targetX * m + secondB == targetY && targetX <= getLastPosition().getX() - 1 || targetX * m + thirdB == targetY && targetX >= laserX + 1;
+        return (targetX * m + b == targetY) || (targetX * m + secondB == targetY && targetX <= getLastPosition().getX() - 1) || (targetX * m + thirdB == targetY && targetX >= laserX + 1);
     }
     
     @Override

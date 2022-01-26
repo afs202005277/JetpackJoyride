@@ -33,7 +33,6 @@ public class InstructionStateTest {
         View.setScreen(screen);
         View.setGraphics(graphics);
         controller = Mockito.mock(Controller.class);
-        BackgroundView backgroundView = Mockito.mock(BackgroundView.class);
         Controller.setSingleton(controller);
         state = new InstructionsState(new PlayerController(new Player(), new PlayerView("#57AAF8", "#D5433C", "!")));
     }

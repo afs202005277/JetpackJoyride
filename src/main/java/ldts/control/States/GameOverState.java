@@ -30,6 +30,7 @@ public class GameOverState extends State implements InputObserver {
         this.gameOverView = gameOverView;
     }
 
+    @Override
     public void step() throws IOException, URISyntaxException, FontFormatException, InterruptedException {
         gameOverView.draw();
         while(!enterPressed) {

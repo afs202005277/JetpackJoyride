@@ -43,14 +43,11 @@ public class MenuState extends State {
         this.menuView = menuView;
     }
 
-    public void step() {
-        try {
-            keepRunning = false;
-            menuView.draw(playerView, backgroundView, laserView, coinView);
-            this.input(View.getScreen().readInput());
-        } catch (IOException | URISyntaxException | InterruptedException | FontFormatException e) {
-            e.printStackTrace();
-        }
+    @Override
+    public void step() throws IOException, URISyntaxException, InterruptedException, FontFormatException {
+        keepRunning = false;
+        menuView.draw(playerView, backgroundView, laserView, coinView);
+        this.input(View.getScreen().readInput());
     }
 
     public boolean isKeepRunning() {
