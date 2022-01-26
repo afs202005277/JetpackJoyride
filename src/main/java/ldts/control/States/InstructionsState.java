@@ -24,6 +24,7 @@ public class InstructionsState extends State {
         this.laserView = new LaserView("#fffb54", ' ');
         this.instructionsView = new InstructionsView();
     }
+
     public void setBackgroundView(BackgroundView backgroundView) {
         this.backgroundView = backgroundView;
     }
@@ -42,6 +43,5 @@ public class InstructionsState extends State {
             }
         }
         Controller.getInstance().runMenu();
-
     }
 }
