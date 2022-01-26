@@ -82,6 +82,8 @@ By creating a new class named ElementFactory with a generateElements method we w
 - Avoid tight coupling between the creator and the concrete products.
 - Make it possible to introduce new types of products into the program without breaking existing client code.
 
+![FACTORY UML](./Images/UMLs/FACTORY_UML.png)
+
 ### Single Controller
 
 **Problem in context**
