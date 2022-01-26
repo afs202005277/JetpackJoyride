@@ -36,6 +36,10 @@ public abstract class Element {
         position.setY(y);
     }
 
+    public boolean checkCollision(Position pos) {
+        return false;
+    }
+
     public abstract boolean isLaser();
     public abstract boolean isRocket();
     public abstract boolean isCoin();

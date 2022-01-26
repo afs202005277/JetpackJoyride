@@ -1,6 +1,8 @@
 package ldts.model;
 
+import ldts.control.Controller;
 import ldts.view.View;
+
 
 public class Rocket extends Element {
 
@@ -10,6 +12,15 @@ public class Rocket extends Element {
     }
     public Rocket(int x, int y) {
         position= new Position(x,y);
+    }
+
+    @Override
+    public boolean checkCollision(Position pos) {
+        Position temp = new Position(this.getX() + 1, this.getPosition().getY());
+        boolean collision = this.getPosition().equals(pos) || temp.equals(pos);
+        if (collision)
+            Controller.endGame();
+        return collision;
     }
 
     @Override

@@ -1,6 +1,7 @@
 package ldts.model;
 
 
+import ldts.control.Controller;
 import ldts.view.View;
 
 public class Laser extends Element  {
@@ -56,6 +57,43 @@ public class Laser extends Element  {
         this.size = size;
     }
 
+    @Override
+    public boolean checkCollision(Position pos) {
+        int targetY = pos.getY(), targetX = pos.getX(), laserX = this.getX(), laserY = this.getY(), laserLastX = this.getLastPosition().getX(), laserLastY = this.getLastPosition().getY();
+        boolean collision = false;
+        if (laserX <= targetX && targetX <= laserLastX) {
+            int m = 0;
+            if (laserX == laserLastX && laserLastY <= targetY && targetY <= laserY)
+                collision = true;
+            else {
+                if (laserY > laserLastY)
+                    m = -1;
+                else if (laserY < laserLastY)
+                    m = 1;
+                if (m == 0 && laserY == targetY)
+                    collision = true;
+
+                if (m != 0) {
+                    collision = checkCollisionInclinedLaser(m, pos);
+                }
+            }
+        }
+        if (collision)
+            Controller.endGame();
+        return collision;
+    }
+
+    private boolean checkCollisionInclinedLaser(int m, Position pos) {
+        int targetX = pos.getX(), targetY = pos.getY(), laserX = this.getX(), laserY = this.getY();
+        Position secondPos = new Position(laserX, laserY + (m < 0 ? -1 : 1));
+        Position thirdPos = new Position(laserX + 1, laserY);
+
+        int b = laserY - m * laserX;
+        int secondB = secondPos.getY() - m * secondPos.getX();
+        int thirdB = thirdPos.getY() - m * thirdPos.getX();
+        return targetX * m + b == targetY || targetX * m + secondB == targetY && targetX <= getLastPosition().getX() - 1 || targetX * m + thirdB == targetY && targetX >= laserX + 1;
+    }
+    
     @Override
     public boolean isLaser() {return true;}
 

@@ -24,7 +24,8 @@ public class Controller {
     private final MenuController menuController;
     private Screen screen;
     private final ElementFactory elementFactory;
-    private final CollisionChecker collisionChecker;
+    private static int coinsCollected = 0;
+    private static boolean gameOver = false;
 
 
     public Controller() {
@@ -40,7 +41,6 @@ public class Controller {
         coinsCounterView = new CounterView(WALLS, "#DEAC4C", "coins");
         menuController = new MenuController(playerController.getPlayerView(), backgroundView, coinView, laserView);
         elementFactory = new ElementFactory(5);
-        collisionChecker = new CollisionChecker();
     }
 
     public static Controller getInstance() throws IOException, URISyntaxException, FontFormatException {
@@ -119,13 +119,22 @@ public class Controller {
         coinsCounterView.draw(new Position(0, 0), coins);
     }
 
+    public static void incrementCoinsCollected(){
+        coinsCollected++;
+    }
+
+    public static void endGame() {
+        gameOver = true;
+    }
+
     private void resetElements() {
         playerController.setPlayer(new Player());
         elements = new ArrayList<>();
+        coinsCollected = 0;
+        gameOver = false;
     }
 
     public void run() throws IOException, InterruptedException, URISyntaxException, FontFormatException {
-        boolean gameOver;
         InputReader inputReader = new InputReader(screen);
         inputReader.addObserver(playerController);
         inputReader.start();
@@ -134,19 +143,14 @@ public class Controller {
         boolean stopGame, enterPressed, goToMainMenu;
         do {
             gameOver = false;
-            int xMin = 0, coinsCollected = 0;
+            int xMin = 0;
             while (!gameOver) {
                 long startTime = System.currentTimeMillis();
                 generateObjects(xMin);
                 drawElements(xMin, coinsCollected);
                 playerController.step(LOWER_LIMIT);
                 for (Element element : elements) {
-                    if (element.isCoin() && collisionChecker.checkCollision(element, playerController.getPlayer())) {
-                        ((Coin) element).collect();
-                        coinsCollected++;
-                    } else if (collisionChecker.checkCollision(element, playerController.getPlayer())) {
-                        gameOver = true;
-                    }
+                    element.checkCollision(playerController.getPlayer().getPosition());
                 }
                 xMin++;
                 long finalTime = System.currentTimeMillis();

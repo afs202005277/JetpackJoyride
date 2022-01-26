@@ -1,5 +1,6 @@
 package ldts.model;
 
+import ldts.control.Controller;
 import ldts.view.View;
 
 public class Coin extends Element {
@@ -15,6 +16,16 @@ public class Coin extends Element {
     public Coin(int x, int y){
         collected = false;
         position = new Position(x, y);
+    }
+
+    @Override
+    public boolean checkCollision(Position pos) {
+        if (position.equals(pos)){
+            collected = true;
+            Controller.incrementCoinsCollected();
+            return true;
+        }
+        return false;
     }
 
     @Override
