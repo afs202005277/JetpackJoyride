@@ -34,6 +34,14 @@ public class InputReader extends Thread {
             observer.input(c);
     }
 
+    public boolean getStopInputs() {
+        return stopInputs;
+    }
+
+    public ArrayList<InputObserver> getObservers() {
+        return observers;
+    }
+
     @Override
     public void run() {
         while (!stopInputs) {

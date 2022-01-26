@@ -75,6 +75,18 @@ public class PlayerControllerTest {
     }
 
     @Test
+    void inputCharacterSpaceNormal() {
+        KeyStroke k = Mockito.mock(KeyStroke.class);
+        Mockito.when(k.getKeyType()).thenReturn(KeyType.Character);
+        Mockito.when(k.getCharacter()).thenReturn(' ');
+        playerController.setPlayer(new Player(1, View.getScreen().getTerminalSize().getRows()-5));
+        Position prev = new Position(playerController.getPlayer().getPosition());
+        playerController.input(k);
+        Position after = playerController.getPlayer().getPosition();
+        Assertions.assertTrue(prev.equals(new Position(after.getX(), after.getY()-1)));
+    }
+
+    @Test
     void step() throws IOException {
         playerController.getPlayer().setPosition(new Position(5, 4));
         playerController.step(3);

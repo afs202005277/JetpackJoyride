@@ -3,6 +3,7 @@ package ldts.control;
 import com.googlecode.lanterna.input.KeyStroke;
 import com.googlecode.lanterna.input.KeyType;
 import com.googlecode.lanterna.screen.Screen;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
@@ -28,5 +29,13 @@ public class InputReaderTest {
         Mockito.when(screen.readInput()).thenReturn(new KeyStroke(KeyType.Enter));
         iReader.inputReader(screen);
         Mockito.verify(inputObserver, Mockito.times(1)).input(new KeyStroke(KeyType.Enter));
+    }
+
+    @Test
+    void clear() {
+        Assertions.assertFalse(iReader.getStopInputs());
+        iReader.clear();
+        Assertions.assertTrue(iReader.getStopInputs());
+        Assertions.assertTrue(iReader.getObservers().isEmpty());
     }
 }
