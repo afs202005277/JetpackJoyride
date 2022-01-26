@@ -1,15 +1,16 @@
-package ldts.control;
+package ldts.control.States;
 
 
 import com.googlecode.lanterna.input.KeyStroke;
 import com.googlecode.lanterna.input.KeyType;
+import ldts.control.Controller;
 import ldts.view.*;
 
 import java.awt.*;
 import java.io.IOException;
 import java.net.URISyntaxException;
 
-public class MenuController {
+public class MenuState extends State {
     private MenuView menuView;
     private final PlayerView playerView;
     private final BackgroundView backgroundView;
@@ -17,11 +18,11 @@ public class MenuController {
     private final LaserView laserView;
     private boolean keepRunning;
 
-    public MenuController(PlayerView playerView, BackgroundView backgroundView, CoinView coinView, LaserView laserView) {
+    public MenuState(PlayerView playerView) {
         this.playerView = playerView;
-        this.backgroundView = backgroundView;
-        this.coinView = coinView;
-        this.laserView = laserView;
+        this.backgroundView = new BackgroundView("#595959", "#57AAF8", ' ', ' ', 1);
+        this.coinView = new CoinView("#57AAF8", "#DEAC4C", "#");
+        this.laserView = new LaserView("#fffb54", ' ');
         this.menuView = new MenuView();
         keepRunning = false;
     }

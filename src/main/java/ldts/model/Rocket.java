@@ -1,6 +1,7 @@
 package ldts.model;
 
 import ldts.control.Controller;
+import ldts.control.States.RunningState;
 import ldts.view.View;
 
 
@@ -19,7 +20,7 @@ public class Rocket extends Element {
         Position temp = new Position(this.getX() + 1, this.getPosition().getY());
         boolean collision = this.getPosition().equals(pos) || temp.equals(pos);
         if (collision)
-            Controller.endGame();
+            RunningState.endGame();
         return collision;
     }
 

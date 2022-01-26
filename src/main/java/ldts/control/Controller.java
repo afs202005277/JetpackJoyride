@@ -1,46 +1,29 @@
 package ldts.control;
 
 import com.googlecode.lanterna.screen.Screen;
+import ldts.control.States.*;
 import ldts.model.*;
 import ldts.view.*;
 
 import java.awt.*;
 import java.io.IOException;
 import java.net.URISyntaxException;
-import java.util.ArrayList;
 
 
 public class Controller {
-    private static final int LOWER_LIMIT = 1;
     private static Controller singleton = null;
-    private CounterView distanceCounterView;
-    private CounterView coinsCounterView;
     private final PlayerController playerController;
-    private BackgroundView backgroundView;
-    private ArrayList<Element> elements;
-    private RocketView rocketView;
-    private LaserView laserView;
-    private CoinView coinView;
-    private final MenuController menuController;
+    private final MenuState menuState;
     private Screen screen;
-    private final ElementFactory elementFactory;
-    private static int coinsCollected = 0;
-    private static boolean gameOver = false;
+    private State state;
 
 
     public Controller() {
         String BACKGROUND = "#57AAF8";
         String WALLS = "#595959";
         playerController = new PlayerController(new Player(), new PlayerView(BACKGROUND, "#D5433C", "!"));
-        backgroundView = new BackgroundView(WALLS, BACKGROUND, ' ', ' ', LOWER_LIMIT);
-        rocketView = new RocketView(BACKGROUND, "#000000", "$%");
-        laserView = new LaserView("#fffb54", ' ');
-        coinView = new CoinView(BACKGROUND, "#DEAC4C", "#");
-        elements = new ArrayList<>();
-        distanceCounterView = new CounterView(WALLS, "#000000", "meters");
-        coinsCounterView = new CounterView(WALLS, "#DEAC4C", "coins");
-        menuController = new MenuController(playerController.getPlayerView(), backgroundView, coinView, laserView);
-        elementFactory = new ElementFactory(5);
+        menuState = new MenuState(playerController.getPlayerView());
+        state = new MenuState(playerController.getPlayerView());
     }
 
     public static Controller getInstance() throws IOException, URISyntaxException, FontFormatException {
@@ -53,120 +36,30 @@ public class Controller {
         Controller.singleton = singleton;
     }
 
-    public void setDistanceCounterView(CounterView distanceCounterView) {
-        this.distanceCounterView = distanceCounterView;
-    }
-
-    public void setCoinsCounterView(CounterView coinsCounterView) {
-        this.coinsCounterView = coinsCounterView;
-    }
-
-    public void setRocketView(RocketView rocketView) {
-        this.rocketView = rocketView;
-    }
-
-    public void setLaserView(LaserView laserView) {
-        this.laserView = laserView;
-    }
-
-    public void setCoinView(CoinView coinView) {
-        this.coinView = coinView;
-    }
-
-    public void setBackgroundView(BackgroundView backgroundView) {
-        this.backgroundView = backgroundView;
-    }
-
     public void setScreen(Screen screen) {
         this.screen = screen;
     }
 
-    public void generateObjects(int i) {
-        if (elementFactory.generateElements(i) != null)
-            elements.add(elementFactory.generateElements(i));
+    public void runInstructions() throws IOException, URISyntaxException, FontFormatException, InterruptedException {
+        state = new InstructionsState(playerController);
+        state.step();
     }
 
-    public void runInstructions() throws IOException {
-        InstructionsView iView = new InstructionsView();
-        iView.draw(playerController.getPlayerView(), backgroundView, laserView, coinView);
-    }
-
-    public void runMenu() throws IOException, URISyntaxException, FontFormatException {
+    public void runMenu() throws IOException, URISyntaxException, FontFormatException, InterruptedException {
+        state = new MenuState(playerController.getPlayerView());
         screen = View.initScreen();
-        while(!menuController.isKeepRunning())
-            menuController.step();
+        while(!menuState.isKeepRunning())
+            state.step();
     }
 
-    public void setElements(ArrayList<Element> elements) {
-        this.elements = elements;
+    public void runGameOver () throws IOException, URISyntaxException, FontFormatException, InterruptedException {
+        state = new GameOverState(new GameOverView());
+        state.step();
     }
-
-    public void drawElements(int xMin, int coins) throws IOException {
-        screen.clear();
-        backgroundView.draw(new Position(0, LOWER_LIMIT));
-        for (Element element : elements) {
-            element.move(-1, 0);
-            if (element.isCoin() && !((Coin) element).isCollected())
-                coinView.draw(element.getPosition());
-            else if (element.isLaser())
-                laserView.draw(element.getPosition(), ((Laser) element).getLastPosition());
-            else if (element.isRocket()) {
-                element.move(-1, 0);
-                rocketView.draw(element.getPosition());
-            }
-        }
-        distanceCounterView.draw(new Position(screen.getTerminalSize().getColumns() - distanceCounterView.getUnits().length() - 10, 0), xMin);
-        coinsCounterView.draw(new Position(0, 0), coins);
-    }
-
-    public static void incrementCoinsCollected(){
-        coinsCollected++;
-    }
-
-    public static void endGame() {
-        gameOver = true;
-    }
-
-    private void resetElements() {
-        playerController.setPlayer(new Player());
-        elements = new ArrayList<>();
-        coinsCollected = 0;
-        gameOver = false;
-    }
-
     public void run() throws IOException, InterruptedException, URISyntaxException, FontFormatException {
-        InputReader inputReader = new InputReader(screen);
-        inputReader.addObserver(playerController);
-        inputReader.start();
-        GameOverController gameOverController = new GameOverController(new GameOverView());
+        state = new RunningState(screen, playerController);
+        while (true)
+            state.step();
 
-        boolean stopGame, enterPressed, goToMainMenu;
-        do {
-            gameOver = false;
-            int xMin = 0;
-            while (!gameOver) {
-                long startTime = System.currentTimeMillis();
-                generateObjects(xMin);
-                drawElements(xMin, coinsCollected);
-                playerController.step(LOWER_LIMIT);
-                for (Element element : elements) {
-                    element.checkCollision(playerController.getPlayer().getPosition());
-                }
-                xMin++;
-                long finalTime = System.currentTimeMillis();
-                int timePerFrame = 1000 / 15;
-                Thread.sleep(timePerFrame - (finalTime - startTime));
-            }
-            inputReader.addObserver(gameOverController);
-            gameOverController.step();
-            resetElements();
-            while (!gameOverController.isEnterPressed());
-            stopGame = gameOverController.isGameOver();
-            enterPressed = gameOverController.isEnterPressed();
-            goToMainMenu = gameOverController.isMainMenu();
-            inputReader.removeObserver(gameOverController);
-        } while (!stopGame && enterPressed && !goToMainMenu);
-        inputReader.clear();
-        runMenu();
     }
 }

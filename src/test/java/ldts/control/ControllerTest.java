@@ -57,12 +57,6 @@ public class ControllerTest {
         RocketView rView = Mockito.mock(RocketView.class);
         CoinView coinView = Mockito.mock(CoinView.class);
         BackgroundView backgroundView = Mockito.mock(BackgroundView.class);
-        control.setCoinsCounterView(coinCounter);
-        control.setDistanceCounterView(distanceCounter);
-        control.setLaserView(lView);
-        control.setRocketView(rView);
-        control.setCoinView(coinView);
-        control.setBackgroundView(backgroundView);
 
         //CALL THE METHOD
         control.drawElements(2, 5);
