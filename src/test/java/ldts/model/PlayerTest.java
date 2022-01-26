@@ -41,5 +41,12 @@ public class PlayerTest {
         Assertions.assertEquals(pos, player.getPosition());
     }
 
+    @Test
+    void isTest(){
+        Assertions.assertFalse(player.isCoin());
+        Assertions.assertFalse(player.isLaser());
+        Assertions.assertFalse(player.isRocket());
+    }
+
 
 }
