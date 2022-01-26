@@ -51,6 +51,17 @@ The usage of the MVC pattern is evident in the structure of the packages, since 
 - Code becomes more modular, more readable, easier to extend and reuse.
 - Helps avoid breaking the Single Principle Responsability.
 
+### States
+
+**Problem in context**
+
+**The Pattern**
+
+**Implementation**
+
+**Consequences**
+
+
 ### Creating obstacles
 
 **Problem in context**
