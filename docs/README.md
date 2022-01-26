@@ -130,7 +130,7 @@ The draw methods of PlayerView, RocketView and LaserView may be considered ident
 
 ### Data Classes
 
-All the classes of the Model package only have constructors, getters and setters (dumb classes) but this isn't an indication of a problem since we chose to use the MVC architectural pattern which puts the responsibility of handling the game's logic on the Controller class.
+Most of the classes in the Model package only have constructors, getters and setters (dumb classes), however the obstacles and collectible classes are also able to detect collisions, making them less of a data class. This isn't an indication of a problem since we chose to use the MVC architectural pattern which puts the responsibility of handling the game's logic on the Controller class.
 
 ### Switch statements
 
