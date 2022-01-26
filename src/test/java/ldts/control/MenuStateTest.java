@@ -31,9 +31,13 @@ public class MenuStateTest {
         Mockito.when(screen.getTerminalSize()).thenReturn(new TerminalSize(50, 30));
         View.setScreen(screen);
         View.setGraphics(Mockito.mock(TextGraphics.class));
+
         menuView = Mockito.mock(MenuView.class);
         menuState = new MenuState(playerView);
         menuState.setMenuView(menuView);
+        menuState.setBackgroundView(backgroundView);
+        menuState.setLaserView(laserView);
+        menuState.setCoinView(coinView);
     }
 
     @Test

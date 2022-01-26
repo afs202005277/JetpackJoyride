@@ -7,6 +7,7 @@ import ldts.control.PlayerController;
 import ldts.control.States.RunningState;
 import ldts.model.*;
 import ldts.view.*;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
@@ -22,7 +23,7 @@ public class RunningStateTest {
     private TextGraphics graphics;
 
     @BeforeEach
-    void setUp() throws IOException, URISyntaxException, FontFormatException {
+    void setUp() {
         screen = Mockito.mock(Screen.class);
         Mockito.when(screen.getTerminalSize()).thenReturn(new TerminalSize(51, 18));
         View.setScreen(screen);
@@ -85,5 +86,23 @@ public class RunningStateTest {
 
         Mockito.verify(distanceCounter, Mockito.times(1)).draw(new Position(screen.getTerminalSize().getColumns() - "metros".length() - 10, 0), 2);
         Mockito.verify(coinCounter, Mockito.times(1)).draw(new Position(0, 0), 5);
+    }
+
+    @Test
+    void resetElements() {
+        PlayerController playerController = Mockito.mock(PlayerController.class);
+        ArrayList<Element> elements = new ArrayList<>();
+        elements.add(new Coin());
+        state.setElements(elements);
+        RunningState.setCoinsCollected(5);
+        RunningState.setGameOver(true);
+        state.setPlayerController(playerController);
+
+        state.resetElements();
+
+        Mockito.verify(playerController, Mockito.times(1)).setPlayer(Mockito.any(Player.class));
+        Assertions.assertTrue(state.getElements().isEmpty());
+        Assertions.assertEquals(RunningState.getCoinsCollected(), 0);
+        Assertions.assertFalse(RunningState.isGameOver());
     }
 }

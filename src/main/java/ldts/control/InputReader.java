@@ -34,7 +34,7 @@ public class InputReader extends Thread {
             observer.input(c);
     }
 
-    @Override @SuppressWarnings("CatchAndPrintStackTrace")
+    @Override
     public void run() {
         while (!stopInputs) {
             try {

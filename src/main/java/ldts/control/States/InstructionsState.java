@@ -24,6 +24,7 @@ public class InstructionsState extends State {
         this.laserView = new LaserView("#fffb54", ' ');
         this.instructionsView = new InstructionsView();
     }
+
     @Override
     public void step() throws IOException, URISyntaxException, FontFormatException, InterruptedException {
         try {
@@ -38,6 +39,5 @@ public class InstructionsState extends State {
             }
         }
         Controller.getInstance().runMenu();
-
     }
 }

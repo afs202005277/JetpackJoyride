@@ -25,6 +25,10 @@ public class RunningState extends State {
     private CounterView distanceCounterView;
     private CounterView coinsCounterView;
 
+    public void setPlayerController(PlayerController playerController) {
+        this.playerController = playerController;
+    }
+
     public RunningState(Screen screen, PlayerController playerController) {
         String BACKGROUND = "#57AAF8";
         String WALLS = "#595959";
@@ -92,7 +96,27 @@ public class RunningState extends State {
         this.elements = elements;
     }
 
-    private void resetElements() {
+    public static void setCoinsCollected(int coinsCollected) {
+        RunningState.coinsCollected = coinsCollected;
+    }
+
+    public static void setGameOver(boolean gameOver) {
+        RunningState.gameOver = gameOver;
+    }
+
+    public static int getCoinsCollected() {
+        return coinsCollected;
+    }
+
+    public static boolean isGameOver() {
+        return gameOver;
+    }
+
+    public ArrayList<Element> getElements() {
+        return elements;
+    }
+
+    public void resetElements() {
         playerController.setPlayer(new Player());
         elements = new ArrayList<>();
         coinsCollected = 0;

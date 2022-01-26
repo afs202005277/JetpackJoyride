@@ -18,18 +18,20 @@ public class GameOverState extends State implements InputObserver {
     private boolean enterPressed = false;
     private boolean mainMenu = false;
 
+    public void setEnterPressed(boolean enterPressed) {
+        this.enterPressed = enterPressed;
+    }
+
+    public void setMainMenu(boolean mainMenu) {
+        this.mainMenu = mainMenu;
+    }
 
     public GameOverState(GameOverView gameOverView) {
         this.gameOverView = gameOverView;
     }
 
-    @SuppressWarnings("CatchAndPrintStackTrace")
     public void step() throws IOException, URISyntaxException, FontFormatException, InterruptedException {
-        try {
-            gameOverView.draw();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        gameOverView.draw();
         while(!enterPressed) {
             this.input(View.getScreen().readInput());
         }
