@@ -63,7 +63,7 @@ The usage of the MVC pattern is evident in the structure of the packages, since 
 **Consequences**
 
 
-### Creating obstacles
+### Creating elements
 
 **Problem in context**
 
@@ -75,7 +75,7 @@ The factory pattern replaces the direct object construction calls (using the new
 
 **Implementation**
 
-To be implemented.
+By creating a new class named ElementFactory with a generateElements method we were able to simplify the code on the client side and facilitate the addition and removal of elements, such as, coins, rockets, lasers, etc.
 
 **Consequences**
 
