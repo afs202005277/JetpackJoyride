@@ -5,6 +5,7 @@ import com.googlecode.lanterna.graphics.TextGraphics;
 import com.googlecode.lanterna.input.KeyStroke;
 import com.googlecode.lanterna.input.KeyType;
 import com.googlecode.lanterna.screen.Screen;
+import ldts.control.States.MenuState;
 import ldts.view.*;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
@@ -15,8 +16,8 @@ import java.awt.*;
 import java.io.IOException;
 import java.net.URISyntaxException;
 
-public class MenuControllerTest {
-    private MenuController menuController;
+public class MenuStateTest {
+    private MenuState menuState;
     private MenuView menuView;
     private Screen screen;
     private final PlayerView playerView = Mockito.mock(PlayerView.class);
@@ -31,29 +32,29 @@ public class MenuControllerTest {
         View.setScreen(screen);
         View.setGraphics(Mockito.mock(TextGraphics.class));
         menuView = Mockito.mock(MenuView.class);
-        menuController = new MenuController(playerView, backgroundView, coinView, laserView);
-        menuController.setMenuView(menuView);
+        menuState = new MenuState(playerView);
+        menuState.setMenuView(menuView);
     }
 
     @Test
     void step() throws IOException {
         Mockito.when(screen.readInput()).thenReturn(new KeyStroke(KeyType.ArrowLeft));
-        menuController.step();
+        menuState.step();
         Mockito.verify(menuView, Mockito.times(2)).draw(playerView, backgroundView, laserView, coinView);
-        Assertions.assertFalse(menuController.isKeepRunning());
+        Assertions.assertFalse(menuState.isKeepRunning());
     }
 
     @Test
     void inputArrowUp() throws IOException, URISyntaxException, InterruptedException, FontFormatException {
         Mockito.when(screen.readInput()).thenReturn(new KeyStroke(KeyType.ArrowUp));
-        menuController.input(new KeyStroke(KeyType.ArrowUp));
+        menuState.input(new KeyStroke(KeyType.ArrowUp));
         Mockito.verify(menuView, Mockito.times(1)).moveSelected(-1);
     }
 
     @Test
     void inputArrowDown() throws IOException, URISyntaxException, InterruptedException, FontFormatException {
         Mockito.when(screen.readInput()).thenReturn(new KeyStroke(KeyType.ArrowDown));
-        menuController.input(new KeyStroke(KeyType.ArrowDown));
+        menuState.input(new KeyStroke(KeyType.ArrowDown));
         Mockito.verify(menuView, Mockito.times(1)).moveSelected(1);
     }
 
@@ -61,8 +62,8 @@ public class MenuControllerTest {
     void inputEnter() throws IOException, URISyntaxException, InterruptedException, FontFormatException {
         Controller.setSingleton(Mockito.mock(Controller.class));
         Mockito.when(screen.readInput()).thenReturn(new KeyStroke(KeyType.Enter));
-        menuController.input(new KeyStroke(KeyType.Enter));
+        menuState.input(new KeyStroke(KeyType.Enter));
         Mockito.verify(menuView, Mockito.times(0)).moveSelected(Mockito.anyInt());
-        Assertions.assertFalse(menuController.isKeepRunning());
+        Assertions.assertFalse(menuState.isKeepRunning());
     }
 }

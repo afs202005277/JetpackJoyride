@@ -1,6 +1,7 @@
 package ldts.model;
 
 import ldts.control.Controller;
+import ldts.control.States.RunningState;
 import ldts.view.View;
 
 public class Coin extends Element {
@@ -22,7 +23,7 @@ public class Coin extends Element {
     public boolean checkCollision(Position pos) {
         if (position.equals(pos)){
             collected = true;
-            Controller.incrementCoinsCollected();
+            RunningState.incrementCoinsCollected();
             return true;
         }
         return false;
