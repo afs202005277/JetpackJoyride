@@ -11,19 +11,18 @@ This project was developed by André Sousa (up202005277@edu.fe.up.pt), Diogo Rod
 
 ## Implemented Features
 
-- **Player movement**: While the space bar is begin pressed, the player moves up (one unit at a time) until hitting the upper limit of the screen. Releasing the space bar, the player starts to fall (move down) until the ground is reached.
+- **Player movement**: While the space bar is begin pressed, the player moves up (one unit at a time) until hitting the upper limit of the screen. Releasing the space bar makes the player fall (move down) until the ground is reached.
 - **Collision detection**: When playing, the program is constatly checking for collisions between the player and every object, such as, coins and obstacles, and runs the appropriate method depending on the object.
-- **Obstacles**: As the game progresses obstacles (lasers and rockets) are generated randomly on the far right of the game screen.
+- **Obstacles**: As the game progresses, obstacles (lasers and rockets) are generated randomly on the far right of the game screen.
 - **Coins**: As the game progresses coins are generated randomly.
-- **Counters**: While the game is running, two counters are presented on screen. One contains the distance the player has moved and the other the coins that the player has collected.
+- **Counters**: While the game is running, two counters are presented on the screen. One contains the distance the player has moved and the other the coins that the player has collected.
 - **Main Menu**: When the application starts the Main Menu screen appears and the player is presented with three options: Play - play the game, Instructions - show the instructions, Exit - exit the program.
 - **Game Over**: When the program detects a collision between the player and an obstacle, the game stops and the user is presented with the Game Over screen over the previously running game where the user can choose to either replay the game or return to the Main Menu.
 
 
-
 ## Planned Features
 
-- **Ranking**: Since complexity isn't the main focus of this project, this feature was not implemented because it would not allow to use more design patterns than we already use.
+- **Ranking**: Since complexity isn't the main focus of this project, this feature was not implemented because it would not allow to use more design patterns than the ones we already use.
 All the remaining planned features were successfully implemented.
 
 
@@ -42,7 +41,7 @@ One common approach to this type of problem is using the Model-View-Controller a
 
 **Implementation**
 
-The usage of the MVC pattern is evident in the structure of the packages, since there are 3 packages: Control, Model and View. The classes in Control are responsible for enforcing the game logic; the ones in Model are just data classes used by the controllers to manage the different objects of the game; the ones in View have the responsability to show the game to the user.
+The usage of the MVC pattern is evident in the structure of the packages, since there are 3 packages: ldts.control, ldts.model and ldts.view. The classes in Control are responsible for enforcing the game logic; the ones in Model are just data classes used by the controllers to manage the different objects of the game; the ones in View have the responsability to show the game to the user.
 
 ![MVC UML](./Images/UMLs/MVC_UML.png)
 
@@ -56,7 +55,7 @@ The usage of the MVC pattern is evident in the structure of the packages, since 
 
 **Problem in context**
 
-At any given moment, there is a finite number of states which our game can be in. Withing any unique state (Running, GameOver, MainMenu, etc.), the game behaves differently, and through the input of the player can be switched from one state to another. However, depending on the current state, the game can only switch to certain other states. These switching rules, called transitions, are also finite and predetermined. Not applying the State Pattern would result in difficult to maintain code because any change to the transition logic may require changing state conditionals in every method.
+At any given moment, there is a finite number of states in which our game can be. Within any unique state (Running, GameOver, MainMenu, etc.), the game behaves differently, and by using the input of the player, the currrent state can be switched from one state to another. However, depending on the current state, the game can only switch to certain other states. These switching rules, called transitions, are also finite and predetermined. Not applying the State Pattern would result in code which is difficult to maintain, because any change to the transition logic may require changing state conditionals in every method.
 
 **The Pattern**
 
@@ -64,14 +63,14 @@ The State Pattern aims to solve this problem by creating new classes for all pos
 
 **Implementation**
 
-Creating a main class called State with an abstract method step allows us to create subclasses for each game state (InstructionsState, RunningState, etc) with their specific state behaviours implemented in the step method. With this configuration we are able to easily set the state and run the step method in our Controller class.
+Creating a main interface called State with an abstract method step allows us to create subclasses for each game state (InstructionsState, RunningState, etc) with their specific state behaviours implemented in the step method. With this configuration we are able to easily set the state and run the step method in our Controller class.
 
 ![STATES UML](./Images/UMLs/STATES_UML.png)
 
 **Consequences**
 
-- Single Responsibility Principle. Separate classes for separate states.
-- Open/Closed Principle. Ability to add new states without changing existing states.
+- Single Responsibility Principle: Separate classes for separate states.
+- Open/Closed Principle: Ability to add new states without changing existing states.
 - Simplifies the code.
 
 ### Creating elements
@@ -86,14 +85,14 @@ The factory pattern replaces the direct object construction calls (using the new
 
 **Implementation**
 
-By creating a new class named ElementFactory with a generateElements method we were able to simplify the code on the client side and facilitate the addition and removal of elements, such as, coins, rockets, lasers, etc.
+By creating a new class named ElementFactory with a generateElements method we were able to simplify the code on the client side and facilitate the addition of elements, such as, coins, rockets, lasers, etc.
 
 ![FACTORY UML](./Images/UMLs/FACTORY_UML.png)
 
 **Consequences**
 
 - Avoid tight coupling between the creator and the concrete products.
-- Make it possible to introduce new types of products into the program without breaking existing client code.
+- Makes it possible to introduce new types of products into the program without breaking existing client code.
 
 
 ### Single Controller
@@ -104,7 +103,7 @@ The controller class is part of the MVC pattern and is responsible for putting t
 
 **The Pattern**
 
-The singleton pattern aims to fix this issue by insuring that a class has only one instance, while providing a global access point to this instance. Making the controller constructor private and creating a static creation method that acts as a constructor solves this problem, because the static method calls the private constructor and every time it is called again, it returns the cached object.
+The singleton pattern aims to fix this issue by insuring that a class has only one instance, while providing a global access point to this instance. Making the controller's constructor private and creating a static creation method that acts as a constructor solves this problem, because the static method calls the private constructor and every time it is called again, it returns the stored object.
 
 **Implementation**
 
