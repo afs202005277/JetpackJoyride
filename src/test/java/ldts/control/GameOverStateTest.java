@@ -66,4 +66,9 @@ public class GameOverStateTest {
         Mockito.verify(gameOverView, Mockito.times(0)).moveSelected(Mockito.anyInt());
         Assertions.assertTrue(gameOverState.isEnterPressed());
     }
+
+    @Test
+    void enterPressedTest() {
+        Assertions.assertFalse(gameOverState.isEnterPressed());
+    }
 }

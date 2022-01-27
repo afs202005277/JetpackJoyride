@@ -67,12 +67,12 @@ public class RunningStateTest {
         state.setCoinView(coinView);
         state.setBackgroundView(backgroundView);
 
+
         //CALL THE METHOD
         state.drawElements(2, 5);
 
         //VERIFICATIONS
         Mockito.verify(screen, Mockito.times(1)).clear();
-
         Mockito.verify(backgroundView, Mockito.times(1)).draw(new Position(0, 1));
 
         Mockito.verify(coinView, Mockito.times(1)).draw(elements.get(3).getPosition());
@@ -104,5 +104,21 @@ public class RunningStateTest {
         Assertions.assertTrue(state.getElements().isEmpty());
         Assertions.assertEquals(RunningState.getCoinsCollected(), 0);
         Assertions.assertFalse(RunningState.isGameOver());
+    }
+
+    @Test
+    void getCoinsCollected() {
+        Assertions.assertEquals(0, RunningState.getCoinsCollected());
+    }
+
+    @Test
+    void isGameOver() {
+        Assertions.assertFalse(RunningState.isGameOver());
+    }
+
+    @Test
+    void incrementCoins() {
+        RunningState.incrementCoinsCollected();
+        Assertions.assertEquals(1, RunningState.getCoinsCollected());
     }
 }

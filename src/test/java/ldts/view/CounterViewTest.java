@@ -3,6 +3,7 @@ package ldts.view;
 import com.googlecode.lanterna.TextColor;
 import com.googlecode.lanterna.graphics.TextGraphics;
 import ldts.model.Position;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
@@ -28,5 +29,10 @@ public class CounterViewTest {
         Mockito.verify(g, Mockito.times(1)).setBackgroundColor(backGround);
         Mockito.verify(g, Mockito.times(1)).setForegroundColor(foreGround);
         Mockito.verify(g, Mockito.times(1)).putString(5, 7, "56 coins");
+    }
+
+    @Test
+    void getUnits() {
+        Assertions.assertEquals("coins", counterView.getUnits());
     }
 }

@@ -30,6 +30,15 @@ public class menuViewTest {
 
         menuView.moveSelected(1);
         Assertions.assertEquals(0, menuView.getSelected());
+
+        menuView.moveSelected(-1);
+        Assertions.assertEquals(2, menuView.getSelected());
+
+        menuView.moveSelected(-1);
+        Assertions.assertEquals(1, menuView.getSelected());
+
+        menuView.moveSelected(-1);
+        Assertions.assertEquals(0, menuView.getSelected());
     }
 
     @Test

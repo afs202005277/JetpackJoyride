@@ -34,6 +34,7 @@ public class LaserTest {
     public void type() {
         Laser laser = new Laser();
         Assertions.assertTrue(laser.isLaser());
+        Assertions.assertFalse(laser.isRocket());
     }
 
     @Test

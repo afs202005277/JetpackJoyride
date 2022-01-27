@@ -63,11 +63,33 @@ public class MenuStateTest {
     }
 
     @Test
-    void inputEnter() throws IOException, URISyntaxException, InterruptedException, FontFormatException {
-        Controller.setSingleton(Mockito.mock(Controller.class));
+    void inputEnter0() throws IOException, URISyntaxException, InterruptedException, FontFormatException {
         Mockito.when(screen.readInput()).thenReturn(new KeyStroke(KeyType.Enter));
+        Controller control = Mockito.mock(Controller.class);
+        Controller.setSingleton(control);
+
         menuState.input(new KeyStroke(KeyType.Enter));
+
         Mockito.verify(menuView, Mockito.times(0)).moveSelected(Mockito.anyInt());
+        Mockito.verify(control, Mockito.times(1)).run();
+        Assertions.assertFalse(menuState.isKeepRunning());
+    }
+
+    @Test
+    void inputEnter1() throws IOException, URISyntaxException, InterruptedException, FontFormatException {
+        Mockito.when(screen.readInput()).thenReturn(new KeyStroke(KeyType.Enter));
+        Controller control = Mockito.mock(Controller.class);
+        Controller.setSingleton(control);
+
+        Mockito.when(menuView.getSelected()).thenReturn(1);
+        menuState.input(new KeyStroke(KeyType.Enter));
+
+        Mockito.verify(control, Mockito.times(1)).runInstructions();
+        Assertions.assertFalse(menuState.isKeepRunning());
+    }
+
+    @Test
+    void enterPressedTest() {
         Assertions.assertFalse(menuState.isKeepRunning());
     }
 }

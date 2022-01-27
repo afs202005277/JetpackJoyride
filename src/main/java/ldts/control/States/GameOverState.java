@@ -45,10 +45,6 @@ public class GameOverState extends State implements InputObserver {
         else Controller.getInstance().run();
     }
 
-    public boolean isMainMenu() {
-        return mainMenu;
-    }
-
     @Override
     public void input(KeyStroke input) throws IOException, URISyntaxException, FontFormatException, InterruptedException {
         if (input.getKeyType() == KeyType.ArrowUp) {
@@ -63,7 +59,6 @@ public class GameOverState extends State implements InputObserver {
             enterPressed = true;
         }
     }
-
 
     public synchronized boolean isEnterPressed() {
         return enterPressed;
