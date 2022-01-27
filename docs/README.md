@@ -175,7 +175,7 @@ Both the Laser and Controller class suffer from this smell. On the Laser class f
 
 ### Link to mutation testing report
 
-[Mutation Test](https://github.com/FEUP-LDTS-2021/ldts-project-assignment-g0807/tree/main/build/reports/pitest/202201082341)
+[Mutation Test](./docs/pitest/202201271101)
 
 
 
