@@ -10,7 +10,7 @@ import java.awt.*;
 import java.io.IOException;
 import java.net.URISyntaxException;
 
-public class InstructionsState extends State {
+public class InstructionsState implements State {
     private final PlayerController playerController;
     private BackgroundView backgroundView;
     private final CoinView coinView;

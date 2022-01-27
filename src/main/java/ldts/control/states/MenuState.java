@@ -10,7 +10,7 @@ import java.awt.*;
 import java.io.IOException;
 import java.net.URISyntaxException;
 
-public class MenuState extends State {
+public class MenuState implements State {
     private MenuView menuView;
     private final PlayerView playerView;
     private BackgroundView backgroundView;

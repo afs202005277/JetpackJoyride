@@ -13,7 +13,7 @@ import java.io.IOException;
 import java.net.URISyntaxException;
 import java.util.ArrayList;
 
-public class RunningState extends State {
+public class RunningState implements State {
     private static final int LOWER_LIMIT = 1;
     private static boolean gameOver = false;
     private static int coinsCollected = 0;

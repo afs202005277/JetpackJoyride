@@ -4,7 +4,7 @@ import java.awt.*;
 import java.io.IOException;
 import java.net.URISyntaxException;
 
-public abstract class State {
+public interface State {
 
     public abstract void step() throws IOException, URISyntaxException, FontFormatException, InterruptedException, AWTException;
 
