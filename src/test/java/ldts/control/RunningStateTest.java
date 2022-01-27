@@ -3,8 +3,7 @@ package ldts.control;
 import com.googlecode.lanterna.TerminalSize;
 import com.googlecode.lanterna.graphics.TextGraphics;
 import com.googlecode.lanterna.screen.Screen;
-import ldts.control.PlayerController;
-import ldts.control.States.RunningState;
+import ldts.control.states.RunningState;
 import ldts.model.*;
 import ldts.view.*;
 import org.junit.jupiter.api.Assertions;
@@ -12,9 +11,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 
-import java.awt.*;
 import java.io.IOException;
-import java.net.URISyntaxException;
 import java.util.ArrayList;
 
 public class RunningStateTest {

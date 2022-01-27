@@ -1,7 +1,7 @@
 package ldts.control;
 
 import com.googlecode.lanterna.screen.Screen;
-import ldts.control.States.*;
+import ldts.control.states.*;
 import ldts.model.Player;
 import ldts.view.GameOverView;
 import ldts.view.PlayerView;

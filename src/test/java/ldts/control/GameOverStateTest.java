@@ -3,7 +3,7 @@ package ldts.control;
 import com.googlecode.lanterna.input.KeyStroke;
 import com.googlecode.lanterna.input.KeyType;
 import com.googlecode.lanterna.screen.Screen;
-import ldts.control.States.GameOverState;
+import ldts.control.states.GameOverState;
 import ldts.view.*;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;

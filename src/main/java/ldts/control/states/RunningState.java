@@ -1,4 +1,4 @@
-package ldts.control.States;
+package ldts.control.states;
 
 import com.googlecode.lanterna.screen.Screen;
 import ldts.control.Controller;

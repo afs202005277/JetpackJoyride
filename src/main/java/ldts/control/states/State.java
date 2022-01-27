@@ -1,4 +1,4 @@
-package ldts.control.States;
+package ldts.control.states;
 
 import java.awt.*;
 import java.io.IOException;

@@ -5,7 +5,7 @@ import com.googlecode.lanterna.graphics.TextGraphics;
 import com.googlecode.lanterna.input.KeyStroke;
 import com.googlecode.lanterna.input.KeyType;
 import com.googlecode.lanterna.screen.Screen;
-import ldts.control.States.InstructionsState;
+import ldts.control.states.InstructionsState;
 import ldts.model.Player;
 import ldts.view.*;
 import org.junit.jupiter.api.BeforeEach;

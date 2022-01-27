@@ -1,6 +1,6 @@
 package ldts.model;
 
-import ldts.control.States.RunningState;
+import ldts.control.states.RunningState;
 import ldts.view.View;
 
 public class Coin extends Element {
