@@ -127,7 +127,7 @@ Implemented on the Controller class (the constructor is private, so the only way
 
 ### Large Class
 
-The Controller class contains many attributes, however, since this is the class the client it makes sense for the existent of these attributes.
+The RunningState class contains many attributes, however, since this is the class that runs the game it makes sense existing so many of these attributes.
 
 ### Parallel Inheritance Hierarchies
 
@@ -143,8 +143,7 @@ Most of the classes in the Model package only have constructors, getters and set
 
 ### Switch statements
 
-Both the Laser and Controller class suffer from this smell. On the Laser class for there to exist orientation, the program is using a random number and if statements to decide what that number means in terms of orientation. This smell should be ignored though because these if statements perform a simple action. Regarding the Controller class, when the method drawElements is iterating through the elements, if statements are used to determine its type. To fix this smell Polymorphism would be required but fixing this would make the models dependent of the view, which would go against the MVC architectural pattern.
-
+Both the Laser and Controller class suffer from this smell. On the Laser class for there to exist orientation, the program is using a random number and if statements to decide what that number means in terms of orientation. This smell should be ignored though because these if statements perform a simple action. Regarding the RunningState class, when the method drawElements is iterating through the elements, if statements are used to determine its type: to remove this smell Polymorphism would be required but fixing this would make the models dependent of the view, which would go against the MVC architectural pattern.
 
 
 ## Testing
