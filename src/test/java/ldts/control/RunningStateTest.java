@@ -34,6 +34,7 @@ public class RunningStateTest {
         BackgroundView backViewer = Mockito.mock(BackgroundView.class);
         graphics = Mockito.mock(TextGraphics.class);
         state.setBackgroundView(backViewer);
+        RunningState.setCoinsCollected(0);
     }
 
     ArrayList<Element> setElements(){
@@ -69,7 +70,8 @@ public class RunningStateTest {
 
 
         //CALL THE METHOD
-        state.drawElements(2, 5);
+        RunningState.setCoinsCollected(5);
+        state.drawElements(2);
 
         //VERIFICATIONS
         Mockito.verify(screen, Mockito.times(1)).clear();
@@ -86,6 +88,42 @@ public class RunningStateTest {
 
         Mockito.verify(distanceCounter, Mockito.times(1)).draw(new Position(screen.getTerminalSize().getColumns() - "metros".length() - 10, 0), 2);
         Mockito.verify(coinCounter, Mockito.times(1)).draw(new Position(0, 0), 5);
+    }
+
+    @Test
+    void moveTest() throws IOException {
+        //PREPARATION FOR THE TEST
+        LaserView lView = Mockito.mock(LaserView.class);
+        RocketView rView = Mockito.mock(RocketView.class);
+        CoinView coinView = Mockito.mock(CoinView.class);
+        CounterView coinCounter = Mockito.mock(CounterView.class), distanceCounter = Mockito.mock(CounterView.class);
+        Mockito.when(coinCounter.getUnits()).thenReturn("coins");
+        Mockito.when(distanceCounter.getUnits()).thenReturn("metros");
+        BackgroundView backgroundView = Mockito.mock(BackgroundView.class);
+        state.setCoinsCounterView(coinCounter);
+        state.setDistanceCounterView(distanceCounter);
+        state.setLaserView(lView);
+        state.setRocketView(rView);
+        state.setCoinView(coinView);
+        state.setBackgroundView(backgroundView);
+        View.setGraphics(Mockito.mock(TextGraphics.class));
+        ArrayList<Element> elements = new ArrayList<>();
+        Laser laser = Mockito.mock(Laser.class);
+        Rocket rocket = Mockito.mock(Rocket.class);
+        Mockito.when(rocket.isRocket()).thenReturn(true);
+        Coin coin = Mockito.mock(Coin.class);
+        elements.add(laser);
+        elements.add(rocket);
+        elements.add(coin);
+        state.setElements(elements);
+
+        //CALLING THE METHOD TO BE TESTED
+        state.drawElements(0);
+
+        //TESTING
+        Mockito.verify(laser, Mockito.times(1)).move(-1, 0);
+        Mockito.verify(coin, Mockito.times(1)).move(-1, 0);
+        Mockito.verify(rocket, Mockito.times(2)).move(-1, 0);
     }
 
     @Test

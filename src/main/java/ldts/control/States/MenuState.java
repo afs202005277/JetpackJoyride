@@ -12,7 +12,7 @@ import java.net.URISyntaxException;
 
 public class MenuState extends State {
     private MenuView menuView;
-    private PlayerView playerView;
+    private final PlayerView playerView;
     private BackgroundView backgroundView;
     private CoinView coinView;
     private LaserView laserView;
@@ -44,7 +44,7 @@ public class MenuState extends State {
     }
 
     @Override
-    public void step() throws IOException, URISyntaxException, InterruptedException, FontFormatException {
+    public void step() throws IOException, URISyntaxException, InterruptedException, FontFormatException, AWTException {
         keepRunning = false;
         menuView.draw(playerView, backgroundView, laserView, coinView);
         this.input(View.getScreen().readInput());
@@ -54,24 +54,20 @@ public class MenuState extends State {
         return keepRunning;
     }
 
-    public void input(KeyStroke input) throws IOException, URISyntaxException, InterruptedException, FontFormatException {
+    public void input(KeyStroke input) throws IOException, URISyntaxException, InterruptedException, FontFormatException, AWTException {
         if (input.getKeyType() == KeyType.ArrowUp) {
             menuView.moveSelected(-1);
         } else if (input.getKeyType() == KeyType.ArrowDown) {
             menuView.moveSelected(1);
         }
         else if (input.getKeyType() == KeyType.Enter) {
-            keepRunning = true;
-            if (menuView.getSelected() == 0) {
-                keepRunning = false;
+            keepRunning = false;
+            if (menuView.getSelected() == 0)
                 Controller.getInstance().run();
-            }
-            else if (menuView.getSelected() == 1) {
+            else if (menuView.getSelected() == 1)
                 do {
                     Controller.getInstance().runInstructions();
                 }while(View.getScreen().readInput().getKeyType() != KeyType.Enter);
-                keepRunning = false;
-            }
             else if (menuView.getSelected() == 2)
                 System.exit(0);
         }

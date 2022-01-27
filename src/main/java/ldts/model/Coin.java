@@ -1,6 +1,5 @@
 package ldts.model;
 
-import ldts.control.Controller;
 import ldts.control.States.RunningState;
 import ldts.view.View;
 

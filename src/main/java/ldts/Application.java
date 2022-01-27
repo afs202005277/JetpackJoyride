@@ -7,7 +7,7 @@ import java.io.IOException;
 import java.net.URISyntaxException;
 
 public class Application {
-    public static void main(String[] args) throws IOException, InterruptedException, URISyntaxException, FontFormatException {
+    public static void main(String[] args) throws IOException, InterruptedException, URISyntaxException, FontFormatException, AWTException {
         Controller controller = Controller.getInstance();
         controller.runMenu();
 

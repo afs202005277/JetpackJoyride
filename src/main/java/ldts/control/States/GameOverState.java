@@ -2,10 +2,8 @@ package ldts.control.States;
 
 import com.googlecode.lanterna.input.KeyStroke;
 import com.googlecode.lanterna.input.KeyType;
-import com.googlecode.lanterna.screen.Screen;
 import ldts.control.Controller;
 import ldts.control.InputObserver;
-import ldts.control.States.State;
 import ldts.view.GameOverView;
 import ldts.view.View;
 
@@ -14,9 +12,7 @@ import java.io.IOException;
 import java.net.URISyntaxException;
 
 public class GameOverState extends State implements InputObserver {
-
-
-    private GameOverView gameOverView;
+    private final GameOverView gameOverView;
     private boolean enterPressed = false;
     private boolean mainMenu = false;
 
@@ -31,12 +27,13 @@ public class GameOverState extends State implements InputObserver {
     public GameOverState(GameOverView gameOverView) {
         this.gameOverView = gameOverView;
     }
-    public void setGameOverView(GameOverView gameOverView) {
-        this.gameOverView = gameOverView;
+
+    public synchronized boolean isEnterPressed() {
+        return enterPressed;
     }
 
     @Override
-    public void step() throws IOException, URISyntaxException, FontFormatException, InterruptedException {
+    public void step() throws IOException, URISyntaxException, FontFormatException, InterruptedException, AWTException {
         gameOverView.draw();
         while(!enterPressed) {
             this.input(View.getScreen().readInput());
@@ -58,9 +55,5 @@ public class GameOverState extends State implements InputObserver {
                 mainMenu = true;
             enterPressed = true;
         }
-    }
-
-    public synchronized boolean isEnterPressed() {
-        return enterPressed;
     }
 }

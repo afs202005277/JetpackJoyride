@@ -2,8 +2,10 @@ package ldts.control;
 
 import com.googlecode.lanterna.screen.Screen;
 import ldts.control.States.*;
-import ldts.model.*;
-import ldts.view.*;
+import ldts.model.Player;
+import ldts.view.GameOverView;
+import ldts.view.PlayerView;
+import ldts.view.View;
 
 import java.awt.*;
 import java.io.IOException;
@@ -39,26 +41,25 @@ public class Controller {
         this.screen = screen;
     }
 
-    public void runInstructions() throws IOException, URISyntaxException, FontFormatException, InterruptedException {
+    public void runInstructions() throws IOException, URISyntaxException, FontFormatException, InterruptedException, AWTException {
         state = new InstructionsState(playerController);
         state.step();
     }
 
-    public void runMenu() throws IOException, URISyntaxException, FontFormatException, InterruptedException {
+    public void runMenu() throws IOException, URISyntaxException, FontFormatException, InterruptedException, AWTException {
         state = new MenuState(playerController.getPlayerView());
         screen = View.initScreen();
         while(!menuState.isKeepRunning())
             state.step();
     }
 
-    public void runGameOver () throws IOException, URISyntaxException, FontFormatException, InterruptedException {
+    public void runGameOver () throws IOException, URISyntaxException, FontFormatException, InterruptedException, AWTException {
         state = new GameOverState(new GameOverView());
         state.step();
     }
-    public void run() throws IOException, InterruptedException, URISyntaxException, FontFormatException {
+    public void run() throws IOException, InterruptedException, URISyntaxException, FontFormatException, AWTException {
         state = new RunningState(screen, playerController);
         while (true)
             state.step();
-
     }
 }

@@ -58,8 +58,10 @@ public class InputReader extends Thread {
         notify(keyStroke);
     }
 
-    public void clear() {
+    public void clear() throws AWTException {
         stopInputs = true;
+        Robot robot = new Robot();
+        robot.keyPress(48);
         observers.clear();
     }
 }

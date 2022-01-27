@@ -1,7 +1,10 @@
 package ldts.control.States;
 
 import com.googlecode.lanterna.screen.Screen;
-import ldts.control.*;
+import ldts.control.Controller;
+import ldts.control.ElementFactory;
+import ldts.control.InputReader;
+import ldts.control.PlayerController;
 import ldts.model.*;
 import ldts.view.*;
 
@@ -48,7 +51,7 @@ public class RunningState extends State {
         if (elementFactory.generateElements(i) != null)
             elements.add(elementFactory.generateElements(i));
     }
-    public void drawElements(int xMin, int coins) throws IOException {
+    public void drawElements(int xMin) throws IOException {
         screen.clear();
         backgroundView.draw(new Position(0, LOWER_LIMIT));
         for (Element element : elements) {
@@ -63,7 +66,7 @@ public class RunningState extends State {
             }
         }
         distanceCounterView.draw(new Position(screen.getTerminalSize().getColumns() - distanceCounterView.getUnits().length() - 10, 0), xMin);
-        coinsCounterView.draw(new Position(0, 0), coins);
+        coinsCounterView.draw(new Position(0, 0), coinsCollected);
     }
     public void setDistanceCounterView(CounterView distanceCounterView) {
         this.distanceCounterView = distanceCounterView;
@@ -92,6 +95,7 @@ public class RunningState extends State {
     public void setScreen(Screen screen) {
         this.screen = screen;
     }
+
     public void setElements(ArrayList<Element> elements) {
         this.elements = elements;
     }
@@ -131,7 +135,7 @@ public class RunningState extends State {
     }
 
     @Override
-    public void step() throws IOException, URISyntaxException, FontFormatException, InterruptedException {
+    public void step() throws IOException, URISyntaxException, FontFormatException, InterruptedException, AWTException {
         InputReader inputReader = new InputReader(screen);
         inputReader.addObserver(playerController);
         inputReader.start();
@@ -142,11 +146,10 @@ public class RunningState extends State {
         while (!gameOver) {
             long startTime = System.currentTimeMillis();
             generateObjects(xMin);
-            drawElements(xMin, coinsCollected);
+            drawElements(xMin);
             playerController.step(LOWER_LIMIT);
-            for (Element element : elements) {
+            for (Element element : elements)
                 element.checkCollision(playerController.getPlayer().getPosition());
-            }
             xMin++;
             long finalTime = System.currentTimeMillis();
             int timePerFrame = 1000 / 15;

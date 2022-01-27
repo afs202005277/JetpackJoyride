@@ -32,7 +32,7 @@ public class InputReaderTest {
     }
 
     @Test
-    void clear() {
+    void clear() throws AWTException {
         Assertions.assertFalse(iReader.getStopInputs());
         iReader.clear();
         Assertions.assertTrue(iReader.getStopInputs());
