@@ -7,9 +7,7 @@ import com.googlecode.lanterna.input.KeyType;
 import com.googlecode.lanterna.screen.Screen;
 import ldts.control.States.InstructionsState;
 import ldts.model.Player;
-import ldts.view.BackgroundView;
-import ldts.view.PlayerView;
-import ldts.view.View;
+import ldts.view.*;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
@@ -23,6 +21,7 @@ public class InstructionStateTest {
     private Screen screen;
     private TextGraphics graphics;
     private Controller controller;
+    private InstructionsView view;
 
 
     @BeforeEach
@@ -33,15 +32,19 @@ public class InstructionStateTest {
         View.setScreen(screen);
         View.setGraphics(graphics);
         controller = Mockito.mock(Controller.class);
-        BackgroundView backgroundView = Mockito.mock(BackgroundView.class);
+        view = Mockito.mock(InstructionsView.class);
+
         Controller.setSingleton(controller);
+
         state = new InstructionsState(new PlayerController(new Player(), new PlayerView("#57AAF8", "#D5433C", "!")));
     }
 
     @Test
     void step() throws IOException, URISyntaxException, FontFormatException, InterruptedException {
         Mockito.when(screen.readInput()).thenReturn(new KeyStroke(KeyType.Enter));
+        state.setInstructionsView(view);
         state.step();
+        Mockito.verify(view, Mockito.times(1)).draw(Mockito.any(PlayerView.class),Mockito.any(BackgroundView.class),Mockito.any(LaserView.class),Mockito.any(CoinView.class));
         Mockito.verify(controller,Mockito.times(1)).runMenu();
     }
 

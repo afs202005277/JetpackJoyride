@@ -150,11 +150,7 @@ public class RunningState extends State {
             xMin++;
             long finalTime = System.currentTimeMillis();
             int timePerFrame = 1000 / 15;
-            try {
-                Thread.sleep(timePerFrame - (finalTime - startTime));
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
+            Thread.sleep(timePerFrame - (finalTime - startTime));
         }
         inputReader.clear();
         Controller.getInstance().runGameOver();

@@ -4,8 +4,7 @@ import com.googlecode.lanterna.input.KeyStroke;
 import com.googlecode.lanterna.input.KeyType;
 import com.googlecode.lanterna.screen.Screen;
 import ldts.control.States.GameOverState;
-import ldts.view.GameOverView;
-import ldts.view.View;
+import ldts.view.*;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -50,17 +49,20 @@ public class GameOverStateTest {
     void inputArrowUp() throws IOException, URISyntaxException, FontFormatException, InterruptedException {
         gameOverState.input(new KeyStroke(KeyType.ArrowUp));
         Mockito.verify(gameOverView, Mockito.times(1)).moveSelected(-1);
+        Mockito.verify(gameOverView, Mockito.times(1)).draw();
     }
 
     @Test
     void inputArrowDown() throws IOException, URISyntaxException, FontFormatException, InterruptedException {
         gameOverState.input(new KeyStroke(KeyType.ArrowDown));
         Mockito.verify(gameOverView, Mockito.times(1)).moveSelected(1);
+        Mockito.verify(gameOverView, Mockito.times(1)).draw();
     }
 
     @Test
     void inputEnter() throws IOException, URISyntaxException, FontFormatException, InterruptedException {
         gameOverState.input(new KeyStroke(KeyType.Enter));
+        Mockito.verify(gameOverView, Mockito.times(1)).draw();
         Mockito.verify(gameOverView, Mockito.times(0)).moveSelected(Mockito.anyInt());
         Assertions.assertTrue(gameOverState.isEnterPressed());
     }

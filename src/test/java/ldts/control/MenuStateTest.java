@@ -41,7 +41,7 @@ public class MenuStateTest {
     }
 
     @Test
-    void step() throws IOException {
+    void step() throws IOException, URISyntaxException, InterruptedException, FontFormatException {
         Mockito.when(screen.readInput()).thenReturn(new KeyStroke(KeyType.ArrowLeft));
         menuState.step();
         Mockito.verify(menuView, Mockito.times(2)).draw(playerView, backgroundView, laserView, coinView);

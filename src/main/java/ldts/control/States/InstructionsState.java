@@ -15,7 +15,7 @@ public class InstructionsState extends State {
     private BackgroundView backgroundView;
     private final CoinView coinView;
     private final LaserView laserView;
-    private final InstructionsView instructionsView;
+    private InstructionsView instructionsView;
 
     public InstructionsState(PlayerController playerController) {
         this.playerController = playerController;
@@ -24,18 +24,16 @@ public class InstructionsState extends State {
         this.laserView = new LaserView("#fffb54", ' ');
         this.instructionsView = new InstructionsView();
     }
-
+    public void setInstructionsView(InstructionsView instructionsView) {
+        this.instructionsView = instructionsView;
+    }
     public void setBackgroundView(BackgroundView backgroundView) {
         this.backgroundView = backgroundView;
     }
 
     @Override
     public void step() throws IOException, URISyntaxException, FontFormatException, InterruptedException {
-        try {
-            instructionsView.draw(playerController.getPlayerView(), backgroundView, laserView, coinView);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        instructionsView.draw(playerController.getPlayerView(), backgroundView, laserView, coinView);
         while (true) {
             KeyStroke k = View.getScreen().readInput();
             if (k.getKeyType() == KeyType.Enter) {
