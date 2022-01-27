@@ -47,27 +47,6 @@ public class RunningState extends State {
         coinsCounterView = new CounterView(WALLS, "#DEAC4C", "coins");
     }
 
-    public void generateObjects(int i) {
-        if (elementFactory.generateElements(i) != null)
-            elements.add(elementFactory.generateElements(i));
-    }
-    public void drawElements(int xMin) throws IOException {
-        screen.clear();
-        backgroundView.draw(new Position(0, LOWER_LIMIT));
-        for (Element element : elements) {
-            element.move(-1, 0);
-            if (element.isCoin() && !((Coin) element).isCollected())
-                coinView.draw(element.getPosition());
-            else if (element.isLaser())
-                laserView.draw(element.getPosition(), ((Laser) element).getLastPosition());
-            else if (element.isRocket()) {
-                element.move(-1, 0);
-                rocketView.draw(element.getPosition());
-            }
-        }
-        distanceCounterView.draw(new Position(screen.getTerminalSize().getColumns() - distanceCounterView.getUnits().length() - 10, 0), xMin);
-        coinsCounterView.draw(new Position(0, 0), coinsCollected);
-    }
     public void setDistanceCounterView(CounterView distanceCounterView) {
         this.distanceCounterView = distanceCounterView;
     }
@@ -118,6 +97,28 @@ public class RunningState extends State {
 
     public ArrayList<Element> getElements() {
         return elements;
+    }
+
+    public void generateObjects(int i) {
+        if (elementFactory.generateElements(i) != null)
+            elements.add(elementFactory.generateElements(i));
+    }
+    public void drawElements(int xMin) throws IOException {
+        screen.clear();
+        backgroundView.draw(new Position(0, LOWER_LIMIT));
+        for (Element element : elements) {
+            element.move(-1, 0);
+            if (element.isCoin() && !((Coin) element).isCollected())
+                coinView.draw(element.getPosition());
+            else if (element.isLaser())
+                laserView.draw(element.getPosition(), ((Laser) element).getLastPosition());
+            else if (element.isRocket()) {
+                element.move(-1, 0);
+                rocketView.draw(element.getPosition());
+            }
+        }
+        distanceCounterView.draw(new Position(screen.getTerminalSize().getColumns() - distanceCounterView.getUnits().length() - 10, 0), xMin);
+        coinsCounterView.draw(new Position(0, 0), coinsCollected);
     }
 
     public void resetElements() {

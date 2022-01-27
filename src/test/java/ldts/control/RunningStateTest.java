@@ -147,11 +147,6 @@ public class RunningStateTest {
     }
 
     @Test
-    void isGameOver() {
-        Assertions.assertFalse(RunningState.isGameOver());
-    }
-
-    @Test
     void incrementCoins() {
         RunningState.incrementCoinsCollected();
         Assertions.assertEquals(1, RunningState.getCoinsCollected());

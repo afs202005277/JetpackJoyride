@@ -79,9 +79,7 @@ public class Laser extends Element  {
             }
         }
         if (collision)
-        {
             RunningState.endGame();
-        }
         return collision;
     }
 

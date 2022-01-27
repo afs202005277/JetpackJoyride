@@ -25,21 +25,9 @@ public class InputReader extends Thread {
         stopInputs = false;
     }
 
-    public synchronized void removeObserver(InputObserver obs) {
-        observers.remove(obs);
-    }
-
     public synchronized void notify(KeyStroke c) throws IOException, URISyntaxException, InterruptedException, FontFormatException {
         for (InputObserver observer : observers)
             observer.input(c);
-    }
-
-    public boolean getStopInputs() {
-        return stopInputs;
-    }
-
-    public ArrayList<InputObserver> getObservers() {
-        return observers;
     }
 
     @Override
