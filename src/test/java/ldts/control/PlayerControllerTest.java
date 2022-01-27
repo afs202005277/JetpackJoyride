@@ -83,7 +83,7 @@ public class PlayerControllerTest {
         Position prev = new Position(playerController.getPlayer().getPosition());
         playerController.input(k);
         Position after = playerController.getPlayer().getPosition();
-        Assertions.assertTrue(prev.equals(new Position(after.getX(), after.getY()-1)));
+        Assertions.assertEquals(prev, new Position(after.getX(), after.getY() - 1));
     }
 
     @Test

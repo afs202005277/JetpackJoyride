@@ -57,6 +57,5 @@ public class menuViewTest {
         Mockito.verify(graphics, Mockito.times(1)).setForegroundColor(Mockito.any(TextColor.class));
         Mockito.verify(graphics, Mockito.times(4)).putString(Mockito.anyInt(), Mockito.anyInt(),Mockito.any(String.class));
         Mockito.verify(screen, Mockito.times(1)).refresh();
-
     }
 }

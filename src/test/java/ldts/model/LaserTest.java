@@ -19,7 +19,6 @@ public class LaserTest {
         View.setScreen(screen);
     }
 
-
     @Test
     public void moveLaser() {
         Laser laser = new Laser();

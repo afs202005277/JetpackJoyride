@@ -19,7 +19,6 @@ import java.net.URISyntaxException;
 public class InstructionStateTest {
     private InstructionsState state;
     private Screen screen;
-    private TextGraphics graphics;
     private Controller controller;
     private InstructionsView view;
 
@@ -27,7 +26,7 @@ public class InstructionStateTest {
     @BeforeEach
     void setUp() {
         screen = Mockito.mock(Screen.class);
-        graphics = Mockito.mock(TextGraphics.class);
+        TextGraphics graphics = Mockito.mock(TextGraphics.class);
         Mockito.when(screen.getTerminalSize()).thenReturn(new TerminalSize(51,18));
         View.setScreen(screen);
         View.setGraphics(graphics);
@@ -47,8 +46,4 @@ public class InstructionStateTest {
         Mockito.verify(view, Mockito.times(1)).draw(Mockito.any(PlayerView.class),Mockito.any(BackgroundView.class),Mockito.any(LaserView.class),Mockito.any(CoinView.class));
         Mockito.verify(controller,Mockito.times(1)).runMenu();
     }
-
-
-
-
 }

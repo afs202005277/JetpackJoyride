@@ -12,9 +12,8 @@ public class PositionTest {
 
         Assertions.assertEquals(p1, p2);
         Assertions.assertNotEquals(p1, p3);
-        Position p4 = p1;
         p1.setY(4);
-        Assertions.assertEquals(p4.getX(), p1.getX());
+        Assertions.assertEquals(p1.getX(), p1.getX());
         Assertions.assertEquals(4, p1.getY());
     }
 }

@@ -47,6 +47,4 @@ public class PlayerTest {
         Assertions.assertFalse(player.isLaser());
         Assertions.assertFalse(player.isRocket());
     }
-
-
 }
