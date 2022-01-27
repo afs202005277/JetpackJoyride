@@ -125,8 +125,6 @@ Implemented on the Controller class (the constructor is private, so the only way
 
 ## Known Code Smells And Refactoring Suggestions
 
-These are the smells we have either not found a solution for or fixing them would result in unreadable code.
-
 ### Large Class
 
 The Controller class contains many attributes, however, since this is the class the client it makes sense for the existent of these attributes.
