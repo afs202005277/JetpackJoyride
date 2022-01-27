@@ -24,9 +24,16 @@ public abstract class View {
     static protected Screen screen = null;
     static protected TextGraphics graphics;
 
-    public static Screen initScreen() throws IOException, FontFormatException, URISyntaxException {
-        if (screen != null)
-            return screen;
+    private static Screen createScreen(Terminal terminal) throws IOException {
+        Screen screen;
+        screen = new TerminalScreen(terminal);
+        screen.setCursorPosition(null); // we don't need a cursor
+        screen.startScreen(); // screens must be started
+        screen.doResizeIfNecessary(); // resize screen if necessary
+        return screen;
+    }
+
+    private static AWTTerminalFontConfiguration loadSquareFont() throws URISyntaxException, FontFormatException, IOException {
         URL resource = View.class.getClassLoader().getResource("player_new.ttf");
         File fontFile = new File(resource.toURI());
         Font font = Font.createFont(Font.TRUETYPE_FONT, fontFile);
@@ -34,14 +41,17 @@ public abstract class View {
         GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
         ge.registerFont(font);
 
-        DefaultTerminalFactory factory = new DefaultTerminalFactory();
-
         Font loadedFont = font.deriveFont(Font.PLAIN, 30);
-        AWTTerminalFontConfiguration fontConfig = AWTTerminalFontConfiguration.newInstance(loadedFont);
-        factory.setTerminalEmulatorFontConfiguration(fontConfig);
-        factory.setForceAWTOverSwing(true);
-        factory.setInitialTerminalSize(new TerminalSize(numberCols, numberRows));
-        Terminal terminal = factory.createTerminal();
+        return AWTTerminalFontConfiguration.newInstance(loadedFont);
+    }
+
+    private static Terminal createTerminal(AWTTerminalFontConfiguration fontConfig) throws IOException {
+        TerminalSize terminalSize = new TerminalSize(numberCols, numberRows);
+        DefaultTerminalFactory terminalFactory = new DefaultTerminalFactory()
+                .setInitialTerminalSize(terminalSize);
+        terminalFactory.setForceAWTOverSwing(true);
+        terminalFactory.setTerminalEmulatorFontConfiguration(fontConfig);
+        Terminal terminal = terminalFactory.createTerminal();
         ((AWTTerminalFrame) terminal).addWindowListener(new WindowAdapter() {
             @Override
             public void windowClosing(WindowEvent e) {
@@ -49,10 +59,14 @@ public abstract class View {
                 System.exit(0);
             }
         });
-        screen = new TerminalScreen(terminal);
-        screen.setCursorPosition(null);   // we don't need a cursor
-        screen.startScreen();             // screens must be started
-        screen.doResizeIfNecessary();     // resize screen if necessary
+        return terminal;
+    }
+
+    public static Screen initScreen() throws IOException, FontFormatException, URISyntaxException {
+        if (screen != null)
+            return screen;
+        Terminal terminal = createTerminal(loadSquareFont());
+        screen = createScreen(terminal);
         numberCols = screen.getTerminalSize().getColumns();
         numberRows = screen.getTerminalSize().getRows();
         graphics = screen.newTextGraphics();
@@ -86,5 +100,4 @@ public abstract class View {
     protected TextColor stringToColor(String s) {
         return TextColor.Factory.fromString(s);
     }
-
 }

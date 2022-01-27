@@ -31,7 +31,7 @@ public class GameOverStateTest {
     }
 
     @Test
-    void step() throws IOException, URISyntaxException, FontFormatException, InterruptedException {
+    void step() throws IOException, URISyntaxException, FontFormatException, InterruptedException, AWTException {
         Mockito.when(screen.readInput()).thenReturn(new KeyStroke(KeyType.Delete));
         gameOverState.setEnterPressed(true);
         gameOverState.setMainMenu(true);

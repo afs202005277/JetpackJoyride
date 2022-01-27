@@ -30,12 +30,4 @@ public class InputReaderTest {
         iReader.inputReader(screen);
         Mockito.verify(inputObserver, Mockito.times(1)).input(new KeyStroke(KeyType.Enter));
     }
-
-    @Test
-    void clear() throws AWTException {
-        Assertions.assertFalse(iReader.getStopInputs());
-        iReader.clear();
-        Assertions.assertTrue(iReader.getStopInputs());
-        Assertions.assertTrue(iReader.getObservers().isEmpty());
-    }
 }

@@ -41,7 +41,7 @@ public class MenuStateTest {
     }
 
     @Test
-    void step() throws IOException, URISyntaxException, InterruptedException, FontFormatException {
+    void step() throws IOException, URISyntaxException, InterruptedException, FontFormatException, AWTException {
         Mockito.when(screen.readInput()).thenReturn(new KeyStroke(KeyType.ArrowLeft));
         menuState.step();
         Mockito.verify(menuView, Mockito.times(2)).draw(playerView, backgroundView, laserView, coinView);
@@ -49,21 +49,21 @@ public class MenuStateTest {
     }
 
     @Test
-    void inputArrowUp() throws IOException, URISyntaxException, InterruptedException, FontFormatException {
+    void inputArrowUp() throws IOException, URISyntaxException, InterruptedException, FontFormatException, AWTException {
         Mockito.when(screen.readInput()).thenReturn(new KeyStroke(KeyType.ArrowUp));
         menuState.input(new KeyStroke(KeyType.ArrowUp));
         Mockito.verify(menuView, Mockito.times(1)).moveSelected(-1);
     }
 
     @Test
-    void inputArrowDown() throws IOException, URISyntaxException, InterruptedException, FontFormatException {
+    void inputArrowDown() throws IOException, URISyntaxException, InterruptedException, FontFormatException, AWTException {
         Mockito.when(screen.readInput()).thenReturn(new KeyStroke(KeyType.ArrowDown));
         menuState.input(new KeyStroke(KeyType.ArrowDown));
         Mockito.verify(menuView, Mockito.times(1)).moveSelected(1);
     }
 
     @Test
-    void inputEnter0() throws IOException, URISyntaxException, InterruptedException, FontFormatException {
+    void inputEnter0() throws IOException, URISyntaxException, InterruptedException, FontFormatException, AWTException {
         Mockito.when(screen.readInput()).thenReturn(new KeyStroke(KeyType.Enter));
         Controller control = Mockito.mock(Controller.class);
         Controller.setSingleton(control);
@@ -76,7 +76,7 @@ public class MenuStateTest {
     }
 
     @Test
-    void inputEnter1() throws IOException, URISyntaxException, InterruptedException, FontFormatException {
+    void inputEnter1() throws IOException, URISyntaxException, InterruptedException, FontFormatException, AWTException {
         Mockito.when(screen.readInput()).thenReturn(new KeyStroke(KeyType.Enter));
         Controller control = Mockito.mock(Controller.class);
         Controller.setSingleton(control);

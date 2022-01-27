@@ -40,7 +40,7 @@ public class InstructionStateTest {
     }
 
     @Test
-    void step() throws IOException, URISyntaxException, FontFormatException, InterruptedException {
+    void step() throws IOException, URISyntaxException, FontFormatException, InterruptedException, AWTException {
         Mockito.when(screen.readInput()).thenReturn(new KeyStroke(KeyType.Enter));
         state.setInstructionsView(view);
         state.step();
