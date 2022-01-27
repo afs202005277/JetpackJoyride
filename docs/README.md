@@ -161,6 +161,10 @@ Both the Laser and Controller class suffer from this smell. On the Laser class f
 
 ![Control Coverage](./Images/Coverage/control.PNG)
 
+#### States Coverage
+
+![States Coverage](./Images/Coverage/states.png)
+
 #### Model Coverage
 
 ![Model Coverage](./Images/Coverage/model.PNG)
